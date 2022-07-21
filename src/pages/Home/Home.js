@@ -10,7 +10,7 @@ export default class Home extends Component{
         return(
             <div>
                 <Barra></Barra>
-                <Conteudo>
+                <Conteudo >
                     <Lateral></Lateral>
                 </Conteudo>
             </div>

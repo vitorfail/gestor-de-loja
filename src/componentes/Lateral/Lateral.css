@@ -13,6 +13,7 @@
     color: white;
 }
 .barralateral h4:hover{
+    cursor: pointer;
     background:aliceblue;
     color: rgb(0, 81, 255);
 }

@@ -1,8 +1,11 @@
 import React from "react";
+import "./Conteudo.css"
 
-function Conteudo(){
+function Conteudo(props){
     return(
-        <div className="conteudo"></div>
+        <div className="conteudo">
+            {props.children}
+        </div>
     )
 }
 export default Conteudo;
