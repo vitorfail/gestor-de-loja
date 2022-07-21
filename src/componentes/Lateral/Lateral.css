@@ -1,0 +1,19 @@
+.barralateral{
+    margin-left: 0;
+    width: 15vw;
+    height: 100%;
+    background: rgb(15, 85, 177);
+    position: fixed;
+    margin-top: 45px;
+}
+.barralateral h4{
+    padding:10px 9px;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
+}
+.barralateral h4:hover{
+    background:aliceblue;
+    color: rgb(0, 81, 255);
+}
