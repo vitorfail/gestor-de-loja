@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Barra from "../../componentes/Barra/Barra";
+import "./Home.css"; 
 import Lateral from "../../componentes/Lateral/Lateral"
 import Conteudo from "../../componentes/Conteudo/Conteudo";
 export default class Home extends Component{
@@ -8,11 +8,8 @@ export default class Home extends Component{
     }
     render(){
         return(
-            <div>
-                <Barra></Barra>
-                <Conteudo >
-                    <Lateral></Lateral>
-                </Conteudo>
+            <div className="tudo">
+                <Lateral></Lateral>
             </div>
         )
     }
