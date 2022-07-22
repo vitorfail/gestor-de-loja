@@ -1,4 +1,5 @@
 .blocos{
+    padding-top: 12px;
     justify-content: space-around;
     width: 100%;
     height: 140px;
@@ -8,8 +9,34 @@
 }
 .blocos .box{
     width: 240px;
-    height: 240px;
+    height: 180px;
     border-radius: 30px;
     background: white;
-    
+}
+.blocos .box-hora{
+    width: 240px;
+    height: 180px;
+    border-radius: 30px;
+    background-image:linear-gradient(to bottom right ,rgb(129, 19, 124), rgb(141, 54, 223)) ;
+}
+.blocos .box-hora h2{
+    border-bottom: 4px solid rgb(225, 225, 225);
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+.blocos .box-hora h1{
+    color: white;
+    text-align: center;
+    font-size: 24px;
+}
+.blocos .box h1{
+    text-align: center;
+    font-size: 24px;
+    color: rgb(36, 36, 36);
+}
+.blocos .box h2{
+    font-size: 40px;
+    text-align: center;
+    border-bottom: 4px solid rgb(225, 225, 225);
 }

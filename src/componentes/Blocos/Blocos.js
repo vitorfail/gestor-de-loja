@@ -5,13 +5,20 @@ function Blocos(){
     return(
         <div className="blocos">
             <div className="box">
-                <h2>Caixa</h2>
+                <h2 className="titulo">R$ 00,00</h2>
+                <h1>Caixa</h1>
             </div>
             <div className="box">
-                <h2>N° de roupas</h2>
+                <h2 className="titulo">R$ 00,00</h2>
+                <h1>N° de roupas</h1>
             </div>
             <div className="box">
-                <h2>Estoque</h2>
+                <h2 className="titulo">R$ 00,00</h2>
+                <h1>Estoque</h1>
+            </div>
+            <div className="box-hora">
+                <h2 className="titulo">12:00</h2>
+                <h1>12, Maio, 2020</h1>
             </div>
         </div>
     )
