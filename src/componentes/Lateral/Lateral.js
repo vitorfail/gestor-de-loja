@@ -1,5 +1,6 @@
 import React from "react";
-import "./Lateral.css"
+import "./Lateral.css";
+import { Link } from "react-router-dom";
 function Lateral(){
 return(<div className="barralateral">
                 <div className="user"> 
@@ -7,9 +8,9 @@ return(<div className="barralateral">
                     </div>
                     <h3>Vitor Manoel</h3>
                 </div>
-                <h4>Caixa</h4>
-                <h4>Produtos</h4>
-                <h4>Contas</h4>
+                <Link className="li" to="/caixa">Caixa</Link>
+                <Link className="li" to="/caixa">Produtos</Link>
+                <Link className="li" to="/caixa">Contas</Link>
             </div>)
 }
 export default Lateral

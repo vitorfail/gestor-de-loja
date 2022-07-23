@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Chart from 'chart.js/auto';
 import "./Faturamento.css";
-import {Bar} from 'react-chartjs-2';
+import {Bar, PolarArea} from 'react-chartjs-2';
 
 
 function Faturamento(){
@@ -18,6 +18,10 @@ function Faturamento(){
     const [novembro, setnovembro] = useState(45)
     const [dezembro, setdezembro] = useState(120)
     
+    const [avista, setavista] = useState(40);
+    const [cartao, setcartao] = useState(10);
+    const [boleto, setboleto] = useState(12);
+    const [pix, setpix] = useState(100.20);
     return(
         <div className="grafico_faturamento">
             <div className="planilha">
@@ -25,7 +29,7 @@ function Faturamento(){
                     data={{labels: ["Janeiro", "Fevereiro", "Março", "Abril", 
                         "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
                     datasets: [{
-                    label: "Faturamento mensal",
+                    label: "Faturamento mensal: R$",
                     data: [janeiro, fevereiro, marco, abril, 
                         maio, junho, julho, agosto, 
                         setembro, outubro, novembro, dezembro],
@@ -41,7 +45,7 @@ function Faturamento(){
                     'rgba(21, 83, 207, 0.2)',
                     'rgba(221, 73, 27, 0.2)',
                     'rgba(81, 43, 127, 0.2)'],
-                    borderColor: 'rgba(0,0,0,1)',
+                    borderColor: 'rgba(0,0,0,0)',
                     borderWidth: 2
                 }]}}
                     options={{
@@ -62,7 +66,26 @@ function Faturamento(){
                     }}
                 />
             </div>
-
+            <div className="area">
+                <PolarArea data={{labels: [
+                                "A vista",
+                                "Cartão",
+                                "Boleto",
+                                "Pix"
+                            ],datasets: [{
+                                    label: 'Tipos de pagamento',
+                                    data: [avista, 
+                                        cartao, 
+                                        boleto, 
+                                        pix],
+                                    backgroundColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(75, 192, 192)',
+                                    'rgb(255, 205, 86)',
+                                    'rgb(201, 203, 207)'
+                                    ]}]
+                                }}/>   
+                </div>
         </div>
     )
 }

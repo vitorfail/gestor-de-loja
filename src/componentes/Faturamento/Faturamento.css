@@ -1,17 +1,28 @@
 .grafico_faturamento{
     position: relative;
-    display: flex;
+    display: grid;
     justify-content: center;
-    justify-items: center;
+    grid-template-columns: 3fr 1fr;
     width: 99%;
 }
 .grafico_faturamento .planilha{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    position:relative;
+    background: #fff;
+    width: 76%;
+    margin-left: 23px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.grafico_faturamento .area{
+    background: white;
     display: flex;
     justify-content: center;
     justify-items: center;
-    position:relative;
-    background: #fff;
-    width: 60%;
-    max-height: 345px;
     border-radius: 20px;
+    margin-bottom: 20px;
+
+
 }

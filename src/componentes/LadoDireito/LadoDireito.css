@@ -1,0 +1,7 @@
+.lado-direito{
+    position: absolute;
+    right: 0%;
+    width: 85vw;
+    height: 100vh;
+    background-color: rgb(224, 224, 224);
+}
