@@ -8,9 +8,12 @@ return(<div className="barralateral">
                     </div>
                     <h3>Vitor Manoel</h3>
                 </div>
-                <Link className="li" to="/caixa">Caixa</Link>
-                <Link className="li" to="/caixa">Produtos</Link>
-                <Link className="li" to="/caixa">Contas</Link>
+                <ul>
+                    <Link className="li" to="/">Home</Link>
+                    <Link className="li" to="/caixa">Caixa</Link>
+                    <Link className="li" to="/caixa">Produtos</Link>
+                    <Link className="li" to="/caixa">Contas</Link>
+                </ul>
             </div>)
 }
 export default Lateral

@@ -1,5 +1,6 @@
 .barralateral{
     float: left;
+    display: block;
     margin-left: 0;
     width: 15vw;
     height: 100%;
@@ -7,11 +8,24 @@
     position: fixed;
 }
 .barralateral .li{
-    padding:10px 16px;
-    font-size: 18px;
-    margin-top: 0;
-    margin-bottom: 0;
-    color: white;
+    text-decoration: none;
+    width: 100%;
+    border: none;
+    background: none;
+    font-size: 20px;
+    font-style: inherit;
+    padding: 10px 19px;
+    display: flex;
+    align-items: center;
+    color: ivory;
+    cursor: pointer;
+}
+.barralateral ul{
+    margin: 0;
+    padding: 0;
+}
+.barralateral a{
+    list-style: none;
 }
 .barralateral .li:hover{
     cursor: pointer;
