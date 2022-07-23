@@ -7,6 +7,7 @@ import BarraSuperior from "../../componentes/BarraSuperior/BarraSuperior"
 import Blocos from "../../componentes/Blocos/Blocos";
 import Faturamento from "../../componentes/Faturamento/Faturamento";
 import CaixaMostra from "../../componentes/CaixaMostra/CaixaMostra";
+import BlocosCaixa from "../../componentes/BlocosCaixa/BlocosCaixa";
 
 export default class Caixa extends Component{
     constructor(){
@@ -19,6 +20,7 @@ export default class Caixa extends Component{
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>
+                        <BlocosCaixa></BlocosCaixa>
                         <CaixaMostra></CaixaMostra>      
                     </Conteudo>
                 </LadoDireito>
