@@ -1,9 +1,10 @@
 .mostrar-caixa{
-    position: relative;
+    min-height: 80vh;
+    padding: 20px 0px;
     display: flex;
-    justify-content: center;
-    justify-items: center;
-    width: 99%;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 .mostrar-caixa h3{
     margin: 0;
@@ -67,6 +68,8 @@
     padding: 2px 10%;
 }
 .mostrar-caixa .tabela .entrada{
+    border-top: 5px solid rgb(225, 225, 225);
+
     display: flex;
     font-size: 20px;
     justify-items: center;

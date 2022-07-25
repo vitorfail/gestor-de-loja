@@ -1,3 +1,5 @@
+import React from "react"
+import { useState } from "react";
 import "./CaixaMostra.css";
 
 function CaixaMostra(){
@@ -23,8 +25,20 @@ function CaixaMostra(){
                     <div className="valor">
                         <h3>- R$ 13,00</h3>
                     </div>
-                
                 </div>
+                <div className="entrada">
+                    <div className="descri">
+                        <h3>Roupa</h3>
+                    </div>
+                    <div className="valor">
+                        <h3>R$ 43,00</h3>
+                    </div>
+                </div>
+
+            </div>
+            <div className="botoes">
+                <button>Adicionar</button>
+                <button>Excluir</button>
             </div>
         </div>
     )
