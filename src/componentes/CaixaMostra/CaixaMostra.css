@@ -1,8 +1,89 @@
-.mostrar{
+.mostrar-caixa{
     position: relative;
-    display: grid;
+    display: flex;
     justify-content: center;
-    grid-template-columns: 3fr 1fr;
+    justify-items: center;
     width: 99%;
+}
+.mostrar-caixa h3{
+    margin: 0;
+}
+.mostrar-caixa .tabela .descri{
+    padding: 2px 10%;
+    width: 31.5%;
+}
+.mostrar-caixa .tabela{
+    display: block;
+    justify-content: center;
+    justify-items: center;
+    width: 60%;
+    background: white;
+    border-radius: 20px;
+}
+.mostrar-caixa .tabela .titulo{
+    background-image:linear-gradient(to right bottom, rgb(161, 37, 165), rgb(218, 44, 224));
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    display: flex;
+    height: 40%;
+    justify-content: center;
+    justify-items: center;
+    border-bottom: 5px solid rgb(225, 225, 225);
+}
+.mostrar-caixa .tabela .titulo h3{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    color: aliceblue;
+    padding: 0px 7%;
+}
+.mostrar-caixa .tabela .titulo .descricao{
+
+    border-right: 10px solid rgb(225, 225, 225);
+}
+.mostrar-caixa .tabela .saida{
+    border-top: 5px solid rgb(225, 225, 225);
+    display: flex;
+    font-size: 20px;
+    justify-items: center;
+    background: rgb(209, 64, 64);
+    color: rgb(255, 255, 255);
+}
+.mostrar-caixa .tabela .saida .descri{
+    border-right: 10px solid rgb(225, 225, 225);
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.mostrar-caixa .tabela .saida .valor{
+    width: 20%;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+}
+.mostrar-caixa .tabela .saida h3{
+    text-align: center;
+    padding: 2px 10%;
+}
+.mostrar-caixa .tabela .entrada{
+    display: flex;
+    font-size: 20px;
+    justify-items: center;
+}
+.mostrar-caixa .tabela .entrada .descri{
+    border-right: 10px solid rgb(225, 225, 225);
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.mostrar-caixa .tabela .entrada .valor{
+    width: 20%;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+}
+.mostrar-caixa .tabela .entrada h3{
+    text-align: center;
 }
     
