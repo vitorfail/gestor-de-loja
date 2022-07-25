@@ -34,13 +34,13 @@
     color: rgb(36, 36, 36);
 }
 .blocos-caixa .box .despesas{
-    color: brown;
+    color: rgb(255, 0, 0);
     margin-top: 40px;
     font-size: 30px;
     text-align: center;
     border-bottom: 4px solid rgb(225, 225, 225);
 }
-.blocos-caixa .box .receitas{
+.blocos-caixa .box .receita{
     color: rgb(4, 105, 4);
     margin-top: 40px;
     font-size: 30px;

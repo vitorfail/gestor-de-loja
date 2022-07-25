@@ -1,0 +1,8 @@
+.mostrar{
+    position: relative;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 3fr 1fr;
+    width: 99%;
+}
+    
