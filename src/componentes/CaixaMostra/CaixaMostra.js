@@ -37,8 +37,8 @@ function CaixaMostra(){
 
             </div>
             <div className="botoes">
-                <button>Adicionar</button>
-                <button>Excluir</button>
+                <button className="add">Adicionar</button>
+                <button className="del">Excluir</button>
             </div>
         </div>
     )

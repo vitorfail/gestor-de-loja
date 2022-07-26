@@ -19,6 +19,10 @@ code {
   font-family: "Roboto forte";
   src: url("./font/Roboto-Bold.ttf");
 }
+@font-face {
+  font-family: "Roboto media";
+  src: url("./font/Roboto-Regular.ttf");
+}
 *{
   font-family: Roboto normal;
 }
