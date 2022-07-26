@@ -1,0 +1,43 @@
+.blocos-estoque{
+    padding: 40px 15px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+.blocos-estoque .box{
+    width: 240px;
+    height: 180px;
+    border-radius: 30px;
+    background: white;
+}
+.blocos-estoque .box-hora{
+    width: 240px;
+    height: 180px;
+    border-radius: 30px;
+    background-image:linear-gradient(to bottom right ,rgb(129, 19, 124), rgb(141, 54, 223)) ;
+}
+.blocos-estoque .box-hora h2{
+    border-bottom: 4px solid rgb(225, 225, 225);
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+.blocos-estoque .box-hora h1{
+    color: white;
+    text-align: center;
+    font-size: 24px;
+}
+.blocos-estoque .box h1{
+    text-align: center;
+    font-size: 24px;
+    color: rgb(36, 36, 36);
+}
+
+.blocos-estoque .box .receita{
+    color: rgb(4, 105, 4);
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 4px solid rgb(225, 225, 225);
+}
