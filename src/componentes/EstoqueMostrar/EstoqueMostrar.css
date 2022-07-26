@@ -1,0 +1,143 @@
+.mostrar-estoque{
+    min-height: 80vh;
+    padding: 20px 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.mostrar-estoque h3{
+    margin: 0;
+}
+.mostrar-estoque .botoes{
+    display: grid;
+}
+.mostrar-estoque .botoes .add{
+    font-family: Roboto media;
+    border: none;
+    background: rgb(39, 39, 206);
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+.mostrar-estoque .botoes .add:hover{
+    background: white;
+    border: 2px solid rgb(39, 39, 206);
+    color: rgb(39, 39, 206, 0.7);
+    cursor: pointer;
+}
+.mostrar-estoque .botoes .del{
+    font-family: Roboto media;
+    border: none;
+    background: rgba(206, 39, 39, 0.7);
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+.mostrar-estoque .botoes .del:hover{
+    font-style: Roboto normal;
+    background: white;
+    border: 2px solid rgba(206, 39, 39, 0.7);
+    color: rgba(206, 39, 39, 0.7);
+    cursor: pointer;
+}
+.mostrar-estoque .tabela .descri{
+    width: 30%;
+    padding: 2px 7.1%;
+}
+.mostrar-estoque .tabela .valor{
+    padding: 2px 7.1%;
+}
+.mostrar-estoque .tabela{
+    display: block;
+    justify-content: center;
+    justify-items: center;
+    width: 90%;
+    background: white;
+    border-radius: 20px;
+}
+.mostrar-estoque .tabela .titulo{
+    background-image:linear-gradient(to right bottom, rgb(161, 37, 165), rgb(218, 44, 224));
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    border-bottom: 5px solid rgb(225, 225, 225);
+}
+.mostrar-estoque .tabela .titulo h3{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    color: aliceblue;
+    padding: 30px 2%;
+}
+.mostrar-estoque .tabela .titulo .descricao{
+    border-right: 10px solid rgb(225, 225, 225);
+}
+.mostrar-estoque .tabela .titulo .qtd{
+    border-right: 10px solid rgb(225, 225, 225);
+}
+.mostrar-estoque .tabela .titulo .custo{
+    border-right: 10px solid rgb(225, 225, 225);
+}
+.mostrar-estoque .tabela .titulo .lucro{
+    border-right: 10px solid rgb(225, 225, 225);
+}
+.mostrar-estoque .tabela .saida{
+    border-top: 5px solid rgb(225, 225, 225);
+    display: flex;
+    font-size: 20px;
+    justify-items: center;
+    background: rgb(209, 64, 64);
+    color: rgb(255, 255, 255);
+}
+.mostrar-estoque .tabela .saida .descri{
+    border-right: 10px solid rgb(225, 225, 225);
+    width: 39%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.mostrar-estoque .tabela .saida .valor{
+    border-right: 10px solid rgb(225, 225, 225);
+
+    width: 20%;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+}
+.mostrar-estoque .tabela .saida h3{
+    text-align: center;
+    padding: 2px 10%;
+}
+.mostrar-estoque .tabela .entrada{
+    border-top: 5px solid rgb(225, 225, 225);
+    display: flex;
+    font-size: 20px;
+    justify-items: center;
+}
+.mostrar-estoque .tabela .entrada .descri{
+    border-right: 10px solid rgb(225, 225, 225);
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.mostrar-estoque .tabela .entrada .valor{
+    border-right: 10px solid rgb(225, 225, 225);
+    width: 20%;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+}
+.mostrar-estoque .tabela .entrada h3{
+    text-align: center;
+}
+    
