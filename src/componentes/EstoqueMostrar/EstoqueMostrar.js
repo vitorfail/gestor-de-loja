@@ -24,39 +24,39 @@ function EstoqueMostrar(){
                     </div>
                 </div>
                 <div className="entrada">
-                    <div className="descri">
+                    <div className="descri-2">
                         <h3>Roupa</h3>
                     </div>
-                    <div className="valor">
+                    <div className="qtd-2">
+                        <h3>300</h3>
+                    </div>
+                    <div className="custo-2">
+                        <h3>300</h3>
+                    </div>
+                    <div className="lucro-2">
+                        <h3>13%</h3>
+                    </div>
+                    <div className="preco-2">
                         <h3>R$ 43,00</h3>
-                    </div>
-                    <div className="valor">
-                        <h3>R$ 43,00</h3>
-                    </div>
-                    <div className="valor">
-                        <h3>R$ 43,00</h3>
-                    </div>
-                    <div className="valor">
-                        <h3>R$ 43,00</h3>
-                    </div>
-                </div>
-                <div className="saida">
-                    <div className="descri">
-                        <h3>Papel</h3>
-                    </div>
-                    <div className="valor">
-                        <h3>- R$ 13,00</h3>
                     </div>
                 </div>
                 <div className="entrada">
-                    <div className="descri">
+                    <div className="descri-2">
                         <h3>Roupa</h3>
                     </div>
-                    <div className="valor">
+                    <div className="qtd-2">
+                        <h3>300</h3>
+                    </div>
+                    <div className="custo-2">
+                        <h3>300</h3>
+                    </div>
+                    <div className="lucro-2">
+                        <h3>13%</h3>
+                    </div>
+                    <div className="preco-2">
                         <h3>R$ 43,00</h3>
                     </div>
                 </div>
-
             </div>
         </div>
     )

@@ -47,13 +47,37 @@
     color: rgba(206, 39, 39, 0.7);
     cursor: pointer;
 }
-.mostrar-estoque .tabela .descri{
-    width: 30%;
-    padding: 2px 7.1%;
+.mostrar-estoque .tabela .descri-2{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    width: 20.9%;
+    border-right: 10px solid rgb(225, 225, 225);
 }
-.mostrar-estoque .tabela .valor{
-    padding: 2px 7.1%;
+.mostrar-estoque .tabela .qtd-2{
+    border-right: 10px solid rgb(225, 225, 225);
+    display: flex; 
+    width: 15%; 
+    justify-content: center;
 }
+.mostrar-estoque .tabela .custo-2{
+    border-right: 10px solid rgb(225, 225, 225);
+    display: flex; 
+    width: 19%;
+    justify-content: center;
+}
+.mostrar-estoque .tabela .lucro-2{
+    border-right: 10px solid rgb(225, 225, 225);
+    display: flex; 
+    width: 9%;
+    justify-content: center;
+}
+.mostrar-estoque .tabela .preco-2{
+    display: flex; 
+    width: 19%;
+    justify-content: center;
+}
+
 .mostrar-estoque .tabela{
     display: block;
     justify-content: center;
@@ -80,63 +104,44 @@
     padding: 30px 2%;
 }
 .mostrar-estoque .tabela .titulo .descricao{
+    display: flex;
+    justify-content: center;
+    width: 20.9%;
     border-right: 10px solid rgb(225, 225, 225);
 }
 .mostrar-estoque .tabela .titulo .qtd{
+    display: flex;
+    justify-content: center;
+    width: 15%;
     border-right: 10px solid rgb(225, 225, 225);
 }
 .mostrar-estoque .tabela .titulo .custo{
+    display: flex;
+    justify-content: center;
+    width: 19%;
     border-right: 10px solid rgb(225, 225, 225);
 }
 .mostrar-estoque .tabela .titulo .lucro{
-    border-right: 10px solid rgb(225, 225, 225);
-}
-.mostrar-estoque .tabela .saida{
-    border-top: 5px solid rgb(225, 225, 225);
-    display: flex;
-    font-size: 20px;
-    justify-items: center;
-    background: rgb(209, 64, 64);
-    color: rgb(255, 255, 255);
-}
-.mostrar-estoque .tabela .saida .descri{
-    border-right: 10px solid rgb(225, 225, 225);
-    width: 39%;
     display: flex;
     justify-content: center;
-    justify-items: center;
-}
-.mostrar-estoque .tabela .saida .valor{
+    width: 9%;
     border-right: 10px solid rgb(225, 225, 225);
-
-    width: 20%;
-    justify-content: center;
-    justify-items: center;
-    display: flex;
 }
-.mostrar-estoque .tabela .saida h3{
-    text-align: center;
-    padding: 2px 10%;
+.mostrar-estoque .tabela .titulo .preco{
+    display: flex;
+    justify-content: center;
+    width: 19%;
 }
 .mostrar-estoque .tabela .entrada{
     border-top: 5px solid rgb(225, 225, 225);
     display: flex;
     font-size: 20px;
-    justify-items: center;
-}
-.mostrar-estoque .tabela .entrada .descri{
-    border-right: 10px solid rgb(225, 225, 225);
-    display: flex;
     justify-content: center;
     justify-items: center;
+    background: white;
+    color: rgb(34, 34, 34);
 }
-.mostrar-estoque .tabela .entrada .valor{
-    border-right: 10px solid rgb(225, 225, 225);
-    width: 20%;
-    justify-content: center;
-    justify-items: center;
-    display: flex;
-}
+
 .mostrar-estoque .tabela .entrada h3{
     text-align: center;
 }
