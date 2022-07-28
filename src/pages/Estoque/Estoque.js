@@ -20,6 +20,7 @@ export default class Estoque extends Component{
                         <BlocosEstoque></BlocosEstoque>
                         <EstoqueMostrar></EstoqueMostrar>
                     </Conteudo>
+                    
                 </LadoDireito>
             </div>
         )

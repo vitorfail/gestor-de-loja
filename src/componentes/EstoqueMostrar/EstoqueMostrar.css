@@ -1,5 +1,5 @@
 .mostrar-estoque{
-    min-height: 80vh;
+    min-height: 70vh;
     padding: 20px 0px;
     display: flex;
     align-items: flex-start;
@@ -189,9 +189,48 @@
     background: white;
     color: rgb(34, 34, 34);
 }
-
 .mostrar-estoque .tabela .entrada h3{
     font-size: 18px;
     text-align: center;
 }
+.mostrar-estoque .botoes{
+    padding-top: 20px;
+    display: flex;
+}
+.mostrar-estoque .botoes .add{
+    font-family: Roboto media;
+    border: none;
+    background: rgb(39, 39, 206);
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+.mostrar-estoque .botoes .add:hover{
+    background: white;
+    border: 2px solid rgb(39, 39, 206);
+    color: rgb(39, 39, 206, 0.7);
+    cursor: pointer;
+}
+.mostrar-estoque .botoes .del{
+    font-family: Roboto media;
+    border: none;
+    background: rgba(206, 39, 39, 0.7);
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+.mostrar-estoque .botoes .del:hover{
+    font-style: Roboto normal;
+    background: white;
+    border: 2px solid rgba(206, 39, 39, 0.7);
+    color: rgba(206, 39, 39, 0.7);
+    cursor: pointer;
+}
+
     

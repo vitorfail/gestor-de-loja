@@ -34,7 +34,6 @@ function CaixaMostra(){
                         <h3>R$ 43,00</h3>
                     </div>
                 </div>
-
             </div>
             <div className="botoes">
                 <button className="add">Adicionar</button>
