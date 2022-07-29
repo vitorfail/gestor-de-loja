@@ -15,17 +15,20 @@ export default class PopupEstoque extends Component{
             <div className={this.props.exibir}>
                 <div className="menu">
                     <div className="inputs">
-                        <div className="input">
-                            <input></input>
-                            <label>Nome da peça</label>
+                        <div className="titulo">
+                            <h1>Novo produto</h1>
                         </div>
                         <div className="input">
                             <input></input>
-                            <label>Custo</label>
+                            <label className="nome">Nome da peça</label>
                         </div>
                         <div className="input">
                             <input></input>
-                            <label>Quantidade</label>
+                            <label className="nome">Custo</label>
+                        </div>
+                        <div className="input">
+                            <input></input>
+                            <label className="nome">Quantidade</label>
                         </div>
                     </div>
                     <div className="botoes">
