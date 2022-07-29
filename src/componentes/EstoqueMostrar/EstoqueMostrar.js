@@ -10,8 +10,9 @@ export default class EstoqueMostrar extends Component{
         this.state = {
             mostrar: "popup-estoque"
         }
-        this.abrir_popup = this.abrir_popup.bind(this) 
+        this.abrir_popup = this.abrir_popup.bind(this)
     }
+
     abrir_popup() {
         this.setState({mostrar: "popup-estoque mostrar"})
     }
