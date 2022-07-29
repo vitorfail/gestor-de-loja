@@ -70,16 +70,8 @@
     box-sizing: border-box;
     top: 4px;
 }
-.popup-estoque .menu .inputs .input input:required:invalid + label{
-    color: red;
-}
-.popup-estoque .menu .inputs .input input:focus:required:invalid{
-border: 2px solid red;
-}
-.popup-estoque .menu .inputs .input input:required:invalid + label:before{
-content: '*';
-}
-.popup-estoque .menu .inputs .input input:focus + .nome{    
+.popup-estoque .menu .inputs .input input:focus + .nome,
+.popup-estoque .menu .inputs .input input::not(:placeholder-shown) + label{    
     font-size: 16px;
     top: -16%;
     color: #3951b2;

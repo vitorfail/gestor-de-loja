@@ -1,0 +1,95 @@
+.login-back{
+    width: 100vw;
+    height: 100vh;
+    background-image:linear-gradient(to bottom right, rgb(180, 36, 156), rgb(87, 3, 73));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.login-back .login{
+    width: 400px;
+    height: 400px;
+    background: white;
+    display: block;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+}
+.login-back .login .titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-back .login .titulo h2{
+    font-size: 34px;
+}
+.login-back .login .botoes{
+    margin-top: 70px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-back .login .botoes button{
+    outline: none;
+    border: none;
+    font-size: 22px;
+    background: rgb(0, 94, 153);
+    color: white;
+    height: 37px;
+    width: 60%;
+}
+.login-back .login .botoes button:hover{
+    border: 2px solid rgb(0, 94, 153);
+    color: rgb(0, 94, 153);
+    background: white;
+    cursor: pointer;
+}
+.login-back .login .entradas{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 40px;
+    margin-top: 5%;
+}
+.login-back .login .entradas input{
+    position: absolute;
+    width: 60%;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    outline: none;
+    height: 100%;
+    min-width: 150px;
+    font-size: 16px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-appearance: none;
+}
+.login-back .login .entradas input:focus{
+    border: 2px solid #3951b2;
+}
+.login-back .login .entradas input::placeholder{
+    color:transparent;
+}
+.login-back .login .entradas label{
+    pointer-events: none;
+    position: absolute;
+    font-size: 20px;
+    left: 85px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    background:white;
+    box-sizing: border-box;
+    top: 4px;
+}
+.login-back .login .entradas input:focus + .nome,
+.login-back .login .entradas input:not(:placeholder-shown) + label{    
+    font-size: 16px;
+    top: -22%;
+    color: #3951b2;
+    background: white;
+    font-weight: 600;
+    z-index: 10;
+}
