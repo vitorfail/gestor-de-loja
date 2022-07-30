@@ -71,7 +71,7 @@
     top: 4px;
 }
 .popup-estoque .menu .inputs .input input:focus + .nome,
-.popup-estoque .menu .inputs .input input::not(:placeholder-shown) + label{    
+.popup-estoque .menu .inputs .input input:not(:placeholder-shown) + label{    
     font-size: 16px;
     top: -16%;
     color: #3951b2;
