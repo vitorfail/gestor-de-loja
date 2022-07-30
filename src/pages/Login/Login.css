@@ -52,6 +52,18 @@
     height: 40px;
     margin-top: 5%;
 }
+.login-back .login .aviso{
+    display: none;
+    text-align: center;
+    color: rgb(206, 0, 0);
+}
+.login-back .login .aviso.mostrar{
+    animation: tremer .4s;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    display: block;
+}
 .login-back .login .entradas input{
     position: absolute;
     width: 60%;
@@ -92,4 +104,11 @@
     background: white;
     font-weight: 600;
     z-index: 10;
+}
+@keyframes tremer{
+    0% {margin-left: 0;}
+    25% {margin-left: 33px;}
+    50% {margin-left: 0;}
+    75% {margin-left: -33px;}
+    100% {margin-left: 0;}
 }

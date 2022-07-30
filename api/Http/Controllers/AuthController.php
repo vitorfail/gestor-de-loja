@@ -9,7 +9,7 @@
     function Check_user($usuario, $senha){
         include_once("login_conect.php");
 
-        $sql = "SELECT id FROM user WHERE usuario=:usuario and senha=:senha ";
+        $sql = "SELECT id FROM users_info WHERE email=:usuario and senha=:senha ";
         $pesquisa = $conexao->prepare($sql);
         $pesquisa->execute(array(
             ':usuario'=> $usuario

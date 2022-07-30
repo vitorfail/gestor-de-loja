@@ -4,7 +4,7 @@
     $hotname = "localhost";
     $user = 'root';
     $password = '';
-    $database = "users";;
+    $database = "loja";
 
     $conexao = new PDO("mysql:host=$hotname;dbname=$database;charset=utf8", $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     if(!$conexao){
