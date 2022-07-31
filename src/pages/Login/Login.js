@@ -19,8 +19,9 @@ function Login(){
 
                 }
                 else{
-                    localStorage.setItem('token_jwt', res.data.data)
-                    alert(res.data.data)
+                    localStorage.setItem('token_jwt', res.data.data[0])
+                    localStorage.setItem('u_name', res.data.data[1])
+                    alert(res.data.data[0])
                     setTimeout(() =>{ history.push('/')}, 3000);
 
                 }

@@ -9,7 +9,7 @@
     function Check_user($usuario, $senha){
         include_once("login_conect.php");
 
-        $sql = "SELECT id FROM users_info WHERE email=:usuario and senha=:senha ";
+        $sql = "SELECT id, nome, situacao FROM users_info WHERE email=:usuario and senha=:senha ";
         $pesquisa = $conexao->prepare($sql);
         $pesquisa->execute(array(
             ':usuario'=> $usuario
@@ -18,14 +18,18 @@
         $conexao = null;
 
         $id = null;
+        $nome = null;
+        $situacao = null;
         $check = 0;
         if(count($puxar) >0 ){
             $check = 1;
             foreach($puxar as $row){
                 $id= $row['id'];
+                $nome = $row['nome'];
+                $situacao = $row['situacao'];
             }
         }
-        return array($check, $id);
+        return array($check, $id, $nome, $situacao);
     }
     class AuthController{
         public function login(){
@@ -61,8 +65,7 @@
             
                     //Token
                     $token = $header . '.' . $payload . '.' . $sign;
-            
-                    return $token;  
+                    return array($token, $resultado[2], $resultado[3]);  
                 }
                 else{
                     return 'Usuário não encontrado';
@@ -99,6 +102,28 @@
             $bearer = explode(' ', $http_header[$GLOBALS['a']]);
             $decode = json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $bearer[1])[1]))));
             return $decode;
+        }
+        public function pesquisa_nome(){
+            if(AuthController::checkAuth()){
+                include_once("login_conect.php");
+                $dados_de_usuario_sql = AuthController::dados_de_sql(); 
+                $sql = "SELECT nome from users_info WHERE id=1";
+                $pesquisa = $conexao->query($sql);
+                $resultado = $pesquisa->fetchAll();
+                $nome = '';
+                $tema = '';
+                $array = array();
+                $conexao = null;
+                foreach($resultado as $row){
+                    $nome = $row['nome'];
+                    $tema = $row['tema'];
+                }
+                array_push($array, $nome, $tema);
+                return $array;            
+            }
+            else{
+                return 'Usuário não autenticado';              
+            }
         }
     }
 ?>
