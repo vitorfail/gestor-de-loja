@@ -22,7 +22,7 @@ function Blocos(props){
     return(
         <div className="blocos">
             <div className="box">
-                <h2 className="titulo">R$ 3.456.908,00</h2>
+                <h2 className="titulo">R$ {caixa}</h2>
                 <h1>Caixa</h1>
             </div>
             <div className="box">

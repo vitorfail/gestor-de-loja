@@ -39,6 +39,9 @@
     width: 100%;
     background: rgb(141, 54, 223);
 }
+.barralateral .user.vencido{
+    background: rgb(228, 48, 41);
+}
 .barralateral .user h3{
     margin-top: 35px;
     color: whitesmoke;

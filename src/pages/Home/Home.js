@@ -13,7 +13,10 @@ export default class Home extends Component{
     constructor(){
         super()
         this.state = {
-            caixa: ''
+            caixa: '',
+            dias: '',
+            nome:'',
+            vencimento:''
         }
 
         this.iniciar= this.iniciar.bind(this)
@@ -29,7 +32,8 @@ export default class Home extends Component{
             }
             else{
                 if(res.data.data[3] === "Pago"){
-                    
+                    this.setState({caixa:res.data.data[1] })
+                    this.setState({nome: res.data.data[2]})
                 }
                 if(res.data.data[3] === "Aberto"){
                     var data = res.data.data[4].split('-');
@@ -37,8 +41,17 @@ export default class Home extends Component{
                     var data_hoje = new Date();
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);
-                    if(dif>0){
-                        this.setState({caixa:res.data.data[2] })
+                    if(dif>0 && dif<7){
+                        this.setState({caixa:res.data.data[1] })
+                        this.setState({dias: Math.round(dif)})
+                        this.setState({nome: res.data.data[2]})
+                        this.setState({vencimento: 'vencimento'})
+                    }
+                    if(dif>7){
+                        this.setState({caixa:res.data.data[1] })
+                        this.setState({nome: res.data.data[2]})
+                        this.setState({vencimento: 'vencimento'})
+    
                     }
                     else{
                         if(dif<0 && dif>-5){
@@ -55,7 +68,7 @@ export default class Home extends Component{
     render(){
         return(
             <div className="tudo">
-                <Lateral></Lateral>
+                <Lateral dias={this.state.dias} nome={this.state.nome} vencimento={this.state.vencimento} ></Lateral>
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>

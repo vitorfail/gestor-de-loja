@@ -21,6 +21,6 @@ function RoutesPrivate({component: Component, ...rest}){
                 {...rest} 
                 render={( ) => v?
                      (<Component {...rest}/>) : 
-                     (<Redirect to='/login'/>)}/>)
+                     (<Redirect to='/'/>)}/>)
 }
 export default RoutesPrivate
