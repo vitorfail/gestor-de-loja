@@ -13,6 +13,7 @@ export default class Home extends Component{
     constructor(){
         super()
         this.state = {
+            caixa:0,
             estoque: '',
             dias: '',
             nome:'',
@@ -28,6 +29,12 @@ export default class Home extends Component{
     iniciar(){
         Axios.post('index.php?url=home/pesquisa', {user:'1'})
         .then(res => {
+            if(res.data.data[5] ===null){
+                this.setState({caixa:0})
+            }
+            else{
+                this.setState({caixa: res.data.data[5]})
+            }
             if(res.data.data[1] === "Usuário não autenticado"){
                 Exit()
             }
@@ -84,7 +91,7 @@ export default class Home extends Component{
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>
-                        <Blocos estoque={this.state.estoque} numero_estoque={this.state.numero_estoque}></Blocos>
+                        <Blocos caixa={this.state.caixa} estoque={this.state.estoque} numero_estoque={this.state.numero_estoque}></Blocos>
                         <Faturamento></Faturamento>
                     </Conteudo>
                 </LadoDireito>

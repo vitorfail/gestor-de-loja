@@ -66,11 +66,27 @@
             }
 
         }
+        public function valor_caixa(){
+            if(AuthController::checkAuth()){
+                include('conexao.php');
+                $dados_de_usuario_sql = AuthController::dados_de_sql();
+                $data_atual = date('d-m-Y');
+                $sql = "SELECT SUM(valor_venda) AS total FROM user_vendas WHERE data_venda= ".$data_atual." AND `user_id`= ".$dados_de_usuario_sql->id;
+                $pesquisa = $conexao->query($sql);
+                $resultado = $pesquisa->fetchAll();
+                
+                return $resultado[0]['total'];            
+            }
+            else{
+                return 'Usuário não autenticado';              
+            }
+        }
         public function pesquisa(){
             $nome = $this->nome();
             $valor_estoque = $this->valor_estoque();
             $numero_de_roupas = $this->numero_de_roupas();
-            return array($numero_de_roupas, $valor_estoque, $nome[0], $nome[1], $nome[2]);
+            $valor_caixa = $this->valor_caixa();
+            return array($numero_de_roupas, $valor_estoque, $nome[0], $nome[1], $nome[2], $valor_caixa);
         }
     }
 ?>

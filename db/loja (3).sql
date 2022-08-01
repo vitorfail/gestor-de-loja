@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Ago-2022 às 21:48
+-- Tempo de geração: 02-Ago-2022 às 00:26
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -81,7 +81,10 @@ INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `val
 CREATE TABLE `user_vendas` (
   `id` int(130) NOT NULL,
   `user_id` int(130) DEFAULT NULL,
-  `produto_nome` varchar(130) DEFAULT NULL
+  `produto_nome` varchar(130) DEFAULT NULL,
+  `data_venda` varchar(130) DEFAULT NULL,
+  `produto_id` int(130) DEFAULT NULL,
+  `valor_venda` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
