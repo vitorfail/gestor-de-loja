@@ -33,20 +33,35 @@
     color: rgb(37, 37, 37);
 }
 .barralateral .user{
+    display: block;
     justify-items: center;
     height: 90px;
-    display: flex;
     width: 100%;
     background: rgb(141, 54, 223);
 }
+.barralateral .user .info{
+    height: 20px;
+    display: flex;
+}
+.barralateral .user .aviso{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 .barralateral .user.vencido{
     background: rgb(228, 48, 41);
+}
+.barralateral .user.prazo{
+    background: rgb(121, 119, 5);
 }
 .barralateral .user h3{
     margin-top: 35px;
     color: whitesmoke;
 }
-
+.barralateral .user .situacao{
+    margin-top: 50px;
+    font-size: 11px;
+}
 .barralateral .user .icon_user{
     margin-top: 20px;
     display: flex;

@@ -6,9 +6,11 @@ function Blocos(props){
     const [datas, setdatas] = useState(0)
     const [hora, sethora] = useState(0)
     const [minutos, setminutos] = useState(0)
-    const [caixa, setcaixa] = useState(0)
+    const [estoque, setestoque] = useState(0)
+    const [numero_estoque, setnumero_estoque] = useState(0)
     useEffect(() => {
-        setcaixa(props.valor)
+        setestoque(props.estoque)
+        setnumero_estoque(props.numero_estoque)
         var data = new Date;
         var dia = data.getDate()
         var mes = data.getMonth()
@@ -22,15 +24,15 @@ function Blocos(props){
     return(
         <div className="blocos">
             <div className="box">
-                <h2 className="titulo">R$ {caixa}</h2>
+                <h2 className="titulo">R$ 90.000,89</h2>
                 <h1>Caixa</h1>
             </div>
             <div className="box">
-                <h2 className="titulo">R$ 970,089</h2>
+                <h2 className="titulo">{numero_estoque}</h2>
                 <h1>N° de roupas</h1>
             </div>
             <div className="box">
-                <h2 className="titulo">R$ 78.890,00</h2>
+                <h2 className="titulo">R$ {estoque}</h2>
                 <h1>Estoque</h1>
             </div>
             <div className="box-hora">

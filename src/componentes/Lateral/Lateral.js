@@ -7,23 +7,30 @@ function Lateral(props){
     const [vencimento, setvencimento] = useState('')
     const [situacao, setsituacao] = useState('user')
     useEffect(() => {
-        setdias(props.dias)
         setnome(props.nome)
         setvencimento(props.vencimento)
         if(vencimento ===''){
             setsituacao("user")
         }
-        else{
+        if(vencimento === 'prazo'){
             setsituacao("user"+" "+props.vencimento)
+            setdias("Faltam "+props.dias+ " dias")
         }
-
+        if(vencimento === 'vencido'){
+            setsituacao("user"+" "+props.vencimento)
+            setdias(props.dias+ " DIAS PARA PAGAR")
+        }
     })
     return(<div className="barralateral">
                     <div className={situacao}> 
-                        <div className="icon_user">
+                        <div className="info">
+                            <div className="icon_user">
+                            </div>
+                            <h3>{nome}</h3>
                         </div>
-                        <h3>{nome}</h3>
-                        <h3>{dias}</h3>
+                        <div className="aviso">
+                            <h3 className="situacao">{dias}</h3>
+                        </div>
                     </div>
                     <ul>
                         <Link className="li" to="/home">Home</Link>
