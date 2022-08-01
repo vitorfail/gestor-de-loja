@@ -2,11 +2,13 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "./Blocos.css";
 
-function Blocos(){
+function Blocos(props){
     const [datas, setdatas] = useState(0)
     const [hora, sethora] = useState(0)
     const [minutos, setminutos] = useState(0)
+    const [caixa, setcaixa] = useState(0)
     useEffect(() => {
+        setcaixa(props.valor)
         var data = new Date;
         var dia = data.getDate()
         var mes = data.getMonth()

@@ -12,6 +12,9 @@ import Exit from "../../Exit";
 export default class Home extends Component{
     constructor(){
         super()
+        this.state = {
+            caixa: ''
+        }
 
         this.iniciar= this.iniciar.bind(this)
     }
@@ -35,14 +38,14 @@ export default class Home extends Component{
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);
                     if(dif>0){
-
+                        this.setState({caixa:res.data.data[2] })
                     }
                     else{
                         if(dif<0 && dif>-5){
 
                         }
                         if(dif<-5){
-                            
+
                         }
                     }
                 }
@@ -56,7 +59,7 @@ export default class Home extends Component{
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>
-                        <Blocos></Blocos>
+                        <Blocos valor={this.state.caixa}></Blocos>
                         <Faturamento></Faturamento>
                     </Conteudo>
                 </LadoDireito>
