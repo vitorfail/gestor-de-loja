@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Ago-2022 às 03:47
+-- Tempo de geração: 01-Ago-2022 às 21:48
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -42,7 +42,7 @@ CREATE TABLE `user-produtos` (
 
 INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `percentual`, `Vendido`) VALUES
 (1, 1, 'CAMISA POLO', '145.34', '13%', 'Não'),
-(2, 2, 'Camisa gola polo', '140.90', '12%', 'Não'),
+(2, 2, 'Camisa gola polo', '140.90', '12%', 'Sim'),
 (3, 1, 'Camisa gola polo', '140.90', '12%', 'Não');
 
 -- --------------------------------------------------------
@@ -70,7 +70,19 @@ CREATE TABLE `users_info` (
 --
 
 INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`) VALUES
-(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '25-11-2022', '12-03-2022', 'Pago', 'e8d95a51f3af4a3b134bf6bb680a213a');
+(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '06-08-2022', '12-03-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user_vendas`
+--
+
+CREATE TABLE `user_vendas` (
+  `id` int(130) NOT NULL,
+  `user_id` int(130) DEFAULT NULL,
+  `produto_nome` varchar(130) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Índices para tabelas despejadas
@@ -89,6 +101,12 @@ ALTER TABLE `users_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `user_vendas`
+--
+ALTER TABLE `user_vendas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -103,6 +121,12 @@ ALTER TABLE `user-produtos`
 --
 ALTER TABLE `users_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `user_vendas`
+--
+ALTER TABLE `user_vendas`
+  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
