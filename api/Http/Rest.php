@@ -5,6 +5,7 @@
     header("Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT");
     header("Access-Control-Allow-Headers: *");
     require_once('Controllers/UsersController.php');
+    require_once('Controllers/Home.php');
     require_once('Controllers/AuthController.php');
     require_once('./idades.php');
     require_once('./atualiza.php');
