@@ -31,6 +31,31 @@
         }
         return array($check, $id, $nome, $situacao);
     }
+    function Check_user_email($usuario){
+        include_once("login_conect.php");
+
+        $sql = "SELECT id, nome, situacao FROM users_info WHERE email=:usuario";
+        $pesquisa = $conexao->prepare($sql);
+        $pesquisa->execute(array(
+            ':usuario'=> $usuario
+            ,':senha' => $senha));
+        $puxar= $pesquisa->fetchAll();
+        $conexao = null;
+
+        $id = null;
+        $nome = null;
+        $situacao = null;
+        $check = 0;
+        if(count($puxar) >0 ){
+            $check = 1;
+            foreach($puxar as $row){
+                $id= $row['id'];
+                $nome = $row['nome'];
+                $situacao = $row['situacao'];
+            }
+        }
+        return array($check, $id, $nome, $situacao);
+    }
     class AuthController{
         public function login(){
             if(isset($_POST['user']) && isset($_POST['password'])){
@@ -70,6 +95,28 @@
                 else{
                     return 'Usuário não encontrado';
                 }    
+            }
+            else{
+                return 'Operação inválida';
+            }
+        }
+        public function registro(){
+            if(isset($_POST['user_nome']) && isset($_POST['user_email']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
+                $nome = $_POST['user_nome'];
+                $email = $_POST['nomeuser_email'];
+                $password = $_POST['password'];
+                $password_confirm = $_POST['password_confirm'];
+                $endereco = $_POST['endereco'];
+                $resultado = Check_user_email($email);
+                if($resultado[0] >0){
+                    return "Já existe";
+                }
+                else{
+                    $sql= "INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`) VALUES
+                    (1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '06-08-2022', '12-03-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
+                    "
+                }
+
             }
             else{
                 return 'Operação inválida';

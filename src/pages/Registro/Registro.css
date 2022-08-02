@@ -1,4 +1,4 @@
-.login-back{
+.register-back{
     width: 100vw;
     height: 100vh;
     background-image:linear-gradient(to bottom right, rgb(180, 36, 156), rgb(87, 3, 73));
@@ -8,29 +8,29 @@
     margin: 0;
     padding: 0;
 }
-.login-back .login{
+.register-back .register{
     width: 400px;
-    height: 400px;
+    height: 90%;
     background: white;
     display: block;
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
 }
-.login-back .login .titulo{
+.register-back .register .titulo{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.login-back .login .titulo h2{
+.register-back .register .titulo h2{
     font-size: 34px;
 }
-.login-back .login .botoes{
-    margin-top: 70px;
+.register-back .register .botoes{
+    margin-top: 20px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.login-back .login .botoes button{
+.register-back .register .botoes button{
     outline: none;
     border: none;
     font-size: 22px;
@@ -39,56 +39,59 @@
     height: 37px;
     width: 60%;
 }
-.login-back .login .botoes button:hover{
+.register-back .register .botoes button:hover{
     border: 2px solid rgb(0, 94, 153);
     color: rgb(0, 94, 153);
     background: white;
     cursor: pointer;
 }
-.login-back .login .entradas{
+.register-back .register .entradas{
     display: flex;
     justify-content: center;
     position: relative;
     height: 40px;
     margin-top: 5%;
 }
-.login-back .login .aviso{
+.register-back .register .aviso{
     display: none;
     text-align: center;
     color: rgb(206, 0, 0);
 }
-.login-back .login .aviso_erro{
-    display: none;
-    text-align: center;
-    color: rgb(206, 0, 0);
-}
-.login-back .login .aviso_net{
-    display: none;
-    text-align: center;
-    color: rgb(206, 0, 0);
-}
-.login-back .login .aviso_erro.mostrar{
+.register-back .register .aviso.mostrar{
     animation: tremer .4s;
     transition: all .1s linear;
     -webkit-transition: all .1s linear;
     -moz-transition: all .1s linear;
     display: block;
 }
-.login-back .login .aviso_net.mostrar{
+.register-back .register .aviso_senha{
+    display: none;
+    text-align: center;
+    color: rgb(206, 0, 0);
+}
+.register-back .register .aviso_senha.mostrar{
     animation: tremer .4s;
     transition: all .1s linear;
     -webkit-transition: all .1s linear;
     -moz-transition: all .1s linear;
     display: block;
 }
-.login-back .login .aviso.mostrar{
-    animation: tremer .4s;
+
+.register-back .register .entradas select{
+    position: absolute;
+    width: 60%;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    outline: none;
+    height: 100%;
+    min-width: 150px;
+    font-size: 20px;
     transition: all .1s linear;
     -webkit-transition: all .1s linear;
     -moz-transition: all .1s linear;
-    display: block;
+    -webkit-appearance: none;
 }
-.login-back .login .entradas input{
+.register-back .register .entradas input{
     position: absolute;
     width: 60%;
     border: 1px solid lightgrey;
@@ -102,13 +105,13 @@
     -moz-transition: all .1s linear;
     -webkit-appearance: none;
 }
-.login-back .login .entradas input:focus{
+.register-back .register .entradas input:focus{
     border: 2px solid #3951b2;
 }
-.login-back .login .entradas input::placeholder{
+.register-back .register .entradas input::placeholder{
     color:transparent;
 }
-.login-back .login .entradas label{
+.register-back .register .entradas label{
     pointer-events: none;
     position: absolute;
     font-size: 20px;
@@ -120,8 +123,8 @@
     box-sizing: border-box;
     top: 4px;
 }
-.login-back .login .entradas input:focus + .nome,
-.login-back .login .entradas input:not(:placeholder-shown) + label{    
+.register-back .register .entradas input:focus + .nome,
+.register-back .register .entradas input:not(:placeholder-shown) + label{    
     font-size: 16px;
     top: -22%;
     color: #3951b2;
