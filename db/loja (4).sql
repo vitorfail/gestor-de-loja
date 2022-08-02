@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02-Ago-2022 às 00:26
+-- Tempo de geração: 02-Ago-2022 às 02:58
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -75,6 +75,17 @@ INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `val
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `user_financeiro`
+--
+
+CREATE TABLE `user_financeiro` (
+  `id` int(130) NOT NULL,
+  `user_id` int(130) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `user_vendas`
 --
 
@@ -104,6 +115,12 @@ ALTER TABLE `users_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `user_financeiro`
+--
+ALTER TABLE `user_financeiro`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `user_vendas`
 --
 ALTER TABLE `user_vendas`
@@ -124,6 +141,12 @@ ALTER TABLE `user-produtos`
 --
 ALTER TABLE `users_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `user_financeiro`
+--
+ALTER TABLE `user_financeiro`
+  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `user_vendas`
