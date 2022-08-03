@@ -29,7 +29,7 @@ export default class Home extends Component{
     iniciar(){
         Axios.post('index.php?url=home/pesquisa', {user:'1'})
         .then(res => {
-            if(res.data.data[5] ===null){
+            if(res.data.data[5] === null){
                 this.setState({caixa:0})
             }
             else{

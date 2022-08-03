@@ -32,13 +32,11 @@
         return array($check, $id, $nome, $situacao);
     }
     function Check_user_email($usuario){
-        include_once("login_conect.php");
-
+        include("login_conect.php");
         $sql = "SELECT id, nome, situacao FROM users_info WHERE email=:usuario";
         $pesquisa = $conexao->prepare($sql);
         $pesquisa->execute(array(
-            ':usuario'=> $usuario
-            ,':senha' => $senha));
+            ':usuario'=> $usuario));
         $puxar= $pesquisa->fetchAll();
         $conexao = null;
 
@@ -101,20 +99,59 @@
             }
         }
         public function registro(){
-            if(isset($_POST['user_nome']) && isset($_POST['user_email']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
+            if(isset($_POST['user_nome']) && isset($_POST['user_email']) && isset($_POST['password'])){
+                include_once("login_conect.php");
                 $nome = $_POST['user_nome'];
-                $email = $_POST['nomeuser_email'];
-                $password = $_POST['password'];
-                $password_confirm = $_POST['password_confirm'];
+                $email = $_POST['user_email'];
                 $endereco = $_POST['endereco'];
+                $telefone = $_POST['telefone'];
+                $ip= $_POST['ip'];
+                $plano = $_POST['plano_'];
+                $valor_plano = '';
+                $data_venci = date('d-m-Y', strtotime('+1 month'));
+                $data_contratacao = date('d-m-Y');
+                $password = md5($_POST['password']);
+                if($plano == 'Normal'){
+                    $valor_plano = '20';
+                }
+                if($plano == 'Médio'){
+                    $valor_plano = '30';
+                }
+                if($plano == 'Avançado'){
+                    $valor_plano = '40';
+                }
                 $resultado = Check_user_email($email);
                 if($resultado[0] >0){
                     return "Já existe";
                 }
                 else{
-                    $sql= "INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`) VALUES
-                    (1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '06-08-2022', '12-03-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
-                    "
+                    try{
+                        $sql= "INSERT INTO `users_info` (`nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`) VALUES
+                        (:nome, :email, :telefone, :ip, 
+                        :plano, :valor_plano, :data_venci, :data_contratacao, 'Aberto', 
+                        :password)";
+                        $inserir = $conexao->prepare($sql);
+                        $inserir->bindValue(':nome' ,$nome);
+                        $inserir->bindValue(':email' ,$email);
+                        $inserir->bindValue(':telefone' ,$telefone);
+                        $inserir->bindValue(':ip' ,$ip);
+                        $inserir->bindValue(':plano' ,$plano);
+                        $inserir->bindValue(':valor_plano' ,$valor_plano);
+                        $inserir->bindValue(':data_venci' ,$data_venci);
+                        $inserir->bindValue(':data_contratacao' ,$data_contratacao);
+                        $inserir->bindValue(':password' ,$password);
+                        $inserir->execute();
+    
+                        $sql2= "INSERT INTO `user_financeiro`(caixa, custos_fixos, user_email) VALUES(0, 0, :email)";
+                        $inserir2 = $conexao->prepare($sql2);
+                        $inserir2->bindValue(':email' ,$email);
+                        $inserir2->execute();
+                        $conexao =null;
+                        return '1';    
+                    }
+                    catch(Excepition $ex){
+                        return '0';
+                    }
                 }
 
             }

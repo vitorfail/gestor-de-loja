@@ -1,6 +1,5 @@
 <?php
 
-	session_start();
     $hotname = "localhost";
     $user = 'root';
     $password = '';

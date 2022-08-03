@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02-Ago-2022 às 02:58
+-- Tempo de geração: 03-Ago-2022 às 18:34
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -70,7 +70,8 @@ CREATE TABLE `users_info` (
 --
 
 INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`) VALUES
-(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '06-08-2022', '12-03-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
+(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '06-08-2022', '12-03-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
+(2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', '8989090', '192.168.1.2', 'Normal', '20', '03-09-2022', '03-08-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
 
 -- --------------------------------------------------------
 
@@ -80,8 +81,18 @@ INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `val
 
 CREATE TABLE `user_financeiro` (
   `id` int(130) NOT NULL,
-  `user_id` int(130) DEFAULT NULL
+  `user_email` varchar(130) DEFAULT NULL,
+  `caixa` double DEFAULT NULL,
+  `custos_fixos` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `user_financeiro`
+--
+
+INSERT INTO `user_financeiro` (`id`, `user_email`, `caixa`, `custos_fixos`) VALUES
+(1, 'failcreator0.0@gmail.com', 0, 0),
+(2, 'vitor_andrademanoel@hotmail.com', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -140,13 +151,13 @@ ALTER TABLE `user-produtos`
 -- AUTO_INCREMENT de tabela `users_info`
 --
 ALTER TABLE `users_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `user_financeiro`
 --
 ALTER TABLE `user_financeiro`
-  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `user_vendas`
