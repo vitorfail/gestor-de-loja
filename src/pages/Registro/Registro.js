@@ -1,4 +1,5 @@
 import "./Registro.css";
+import './loading.scss'
 import React, { useState } from "react";
 import Axios from "../../Axios.js";
 import axios from "axios";
@@ -15,7 +16,8 @@ function Registro(){
     const [ipv4, setip] =useState('');
     const [end, setend] = useState('');
     const [plano, setplano] = useState('Normal');
-    const [tel, settel] = useState('(00) 00000-0000')
+    const [tel, settel] = useState('');
+    const [loading, setloading] = useState('loading')
 
 
     const history = useHistory()
@@ -30,38 +32,44 @@ function Registro(){
         tel = tel.replace(/\D/g, "");
         tel = tel.replace(/(\d)(\d{4})$/,'$1-$2')
         tel = tel.replace(/^(\d{1})(\d{1})/,'($1$2) ') 
-
         return tel
     }
     function register(){
         ip_teste()
+        setloading('loading mostrar')
         setaviso_senha('aviso_senha')
         setaviso_erro('aviso_erro')
         setaviso_net('aviso_net')
         if(email === ''|| senha === ''|| nome === ''){
             setaviso("aviso")
             setTimeout(() =>  setaviso('aviso mostrar'), 4);
+            setloading('loading')
         }
         if(senha !== confirmar){
             setaviso_senha('aviso_senha mostrar')
+            setloading('loading')
         }
         else{
             Axios.post("index.php?url=auth/registro", {user_nome:nome, user_email: email, 
                 password:senha, ip:ipv4, endereco:end, plano_:plano, telefone:tel})
             .then(res => {
                 if(res.data.data === 'Operação inválida' || res.data.data === "Usuário não encontrado"){
-                    
+                    setloading('loading')
                 }
                 if(res.data.data === "Já existe"){
+                    alert(email)
                     setaviso_erro("aviso_erro mostrar")
+                    setloading('loading')
                 }
                 if(res.data.data === "0"){
                     setaviso_net('aviso_net mostrar')
+                    setloading('loading')
                 }
                 if(res.data.data ==='1'){
                     setTimeout(() =>{ history.push('/home')}, 3000);
                 }
             }).catch(err =>{
+                setloading('loading')
                 setaviso_net("aviso_net mostrar")
             })
         }
@@ -96,12 +104,12 @@ function Registro(){
                 </select>
             </div>
             <div className="entradas">
-                <input onChange={(e) => setsenha(e.target.value)} type="password" placeholder=" "></input>
-                <label className="nome">Senha:</label>
+                <input onChange={(e) => settel(telefone_mask(e.target.value))} maxLength='15' placeholder=" " value={tel}></input>
+                <label className="nome">Telefone:</label>
             </div>
             <div className="entradas">
-                <input onChange={(e) => settel(telefone_mask(e.target.value))} placeholder=" "></input>
-                <label className="nome">Telefone:</label>
+                <input onChange={(e) => setsenha(e.target.value)} type="password" placeholder=" "></input>
+                <label className="nome">Senha:</label>
             </div>
             <div className="entradas">
                 <input onChange={(e) => setconfirmar(e.target.value)}  type="password" placeholder=" "></input>
@@ -111,6 +119,10 @@ function Registro(){
                 <button onClick={(e) => register()}>Entrar</button>
             </div>
         </div>
+        <div className={loading}>
+            <div className="c-loader"></div>
+        </div>
+
     </div>
     )
    
