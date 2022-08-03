@@ -52,24 +52,48 @@
     height: 40px;
     margin-top: 5%;
 }
+.register-back .register .aviso_senha{
+    display: none;
+    text-align: center;
+    color: rgb(206, 0, 0);
+}
 .register-back .register .aviso{
     display: none;
     text-align: center;
     color: rgb(206, 0, 0);
 }
-.register-back .register .aviso.mostrar{
+.register-back .register .aviso_erro{
+    display: none;
+    text-align: center;
+    color: rgb(206, 0, 0);
+}
+.register-back .register .aviso_net{
+    display: none;
+    text-align: center;
+    color: rgb(206, 0, 0);
+}
+.register-back .register .aviso_erro.mostrar{
     animation: tremer .4s;
     transition: all .1s linear;
     -webkit-transition: all .1s linear;
     -moz-transition: all .1s linear;
     display: block;
 }
-.register-back .register .aviso_senha{
-    display: none;
-    text-align: center;
-    color: rgb(206, 0, 0);
-}
 .register-back .register .aviso_senha.mostrar{
+    animation: tremer .4s;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    display: block;
+}
+.register-back .register .aviso_net.mostrar{
+    animation: tremer .4s;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    display: block;
+}
+.register-back .register .aviso.mostrar{
     animation: tremer .4s;
     transition: all .1s linear;
     -webkit-transition: all .1s linear;
