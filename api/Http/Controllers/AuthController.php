@@ -122,7 +122,7 @@
                 }
                 $resultado = Check_user_email($email);
                 if($resultado[0] >0){
-                    return "Já existe";
+                    return $resultado[1];
                 }
                 else{
                     try{

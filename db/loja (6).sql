@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03-Ago-2022 às 18:34
+-- Tempo de geração: 04-Ago-2022 às 19:36
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -71,7 +71,22 @@ CREATE TABLE `users_info` (
 
 INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`) VALUES
 (1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '06-08-2022', '12-03-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
-(2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', '8989090', '192.168.1.2', 'Normal', '20', '03-09-2022', '03-08-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
+(2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', '8989090', '192.168.1.2', 'Normal', '20', '03-09-2022', '03-08-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
+(4, 'Tudo é 10', 'vitor@gmail.com', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '04-09-2022', '04-08-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
+(5, 'Tudo é 20', 'valesca@hotmail.com', '(78) 76867-8666', '', 'Normal', '20', '04-09-2022', '04-08-2022', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user_despesas`
+--
+
+CREATE TABLE `user_despesas` (
+  `id` int(13) NOT NULL,
+  `user_id` int(13) DEFAULT NULL,
+  `valor_despesas` double NOT NULL,
+  `data_vencimento` varchar(130) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -92,7 +107,9 @@ CREATE TABLE `user_financeiro` (
 
 INSERT INTO `user_financeiro` (`id`, `user_email`, `caixa`, `custos_fixos`) VALUES
 (1, 'failcreator0.0@gmail.com', 0, 0),
-(2, 'vitor_andrademanoel@hotmail.com', 0, 0);
+(2, 'vitor_andrademanoel@hotmail.com', 0, 0),
+(4, 'vitor@gmail.com', 0, 0),
+(5, 'valesca@hotmail.com', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -126,6 +143,12 @@ ALTER TABLE `users_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `user_despesas`
+--
+ALTER TABLE `user_despesas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `user_financeiro`
 --
 ALTER TABLE `user_financeiro`
@@ -151,13 +174,19 @@ ALTER TABLE `user-produtos`
 -- AUTO_INCREMENT de tabela `users_info`
 --
 ALTER TABLE `users_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `user_despesas`
+--
+ALTER TABLE `user_despesas`
+  MODIFY `id` int(13) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `user_financeiro`
 --
 ALTER TABLE `user_financeiro`
-  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `user_vendas`

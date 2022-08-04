@@ -50,7 +50,6 @@ function Registro(){
         else{
             if((email.includes("@") === true && email.includes(".com") === true) ||
              (email.includes(".org") === true && email.includes("@") === true)){
-                setloading('loading')
                 if(senha !== confirmar){
                     setaviso_senha('aviso_senha mostrar')
                     setloading('loading')

@@ -14,7 +14,7 @@ function Login(){
     const [darespaco, setdarespaco] = useState('');
 
     function login(){
-        if(email == ''|| senha == ''){
+        if(email === ''|| senha === ''){
             setaviso("aviso")
             setTimeout(() =>  setaviso('aviso mostrar'), 4);
         }
@@ -75,7 +75,7 @@ function Login(){
             <h3 className={aviso_erro}>Senha ou email incorretos*</h3>
             <h3 className={aviso_net}>Verifique sua internet, ou fale com o fornecedor*</h3>
             <div className="entradas">
-                <input onChange={(e) => setemail(e.target.value)} placeholder=" "></input>
+                <input type="text" onChange={(e) => setemail(e.target.value)} placeholder=" "></input>
                 <label className="nome">Email:</label>
             </div>
             <div className="entradas">
