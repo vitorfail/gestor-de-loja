@@ -18,7 +18,7 @@ function Registro(){
     const [plano, setplano] = useState('Normal');
     const [tel, settel] = useState('');
     const [loading, setloading] = useState('loading')
-
+    const [aviso_email, setaviso_email] = useState("aviso_email")
 
     const history = useHistory()
     function ip_teste(){
@@ -40,39 +40,57 @@ function Registro(){
         setaviso_senha('aviso_senha')
         setaviso_erro('aviso_erro')
         setaviso_net('aviso_net')
-        if(email === ''|| senha === ''|| nome === ''){
+        setaviso_email('aviso_email')
+        setaviso("aviso")
+        if(email === ''|| senha === ''|| nome === '' || confirmar ===''){
             setaviso("aviso")
             setTimeout(() =>  setaviso('aviso mostrar'), 4);
             setloading('loading')
         }
-        if(senha !== confirmar){
-            setaviso_senha('aviso_senha mostrar')
-            setloading('loading')
-        }
         else{
-            Axios.post("index.php?url=auth/registro", {user_nome:nome, user_email: email, 
-                password:senha, ip:ipv4, endereco:end, plano_:plano, telefone:tel})
-            .then(res => {
-                if(res.data.data === 'Operação inválida' || res.data.data === "Usuário não encontrado"){
-                    setloading('loading')
-                }
-                if(res.data.data === "Já existe"){
-                    alert(email)
-                    setaviso_erro("aviso_erro mostrar")
-                    setloading('loading')
-                }
-                if(res.data.data === "0"){
-                    setaviso_net('aviso_net mostrar')
-                    setloading('loading')
-                }
-                if(res.data.data ==='1'){
-                    setTimeout(() =>{ history.push('/home')}, 3000);
-                }
-            }).catch(err =>{
+            if((email.includes("@") === true && email.includes(".com") === true) ||
+             (email.includes(".org") === true && email.includes("@") === true)){
                 setloading('loading')
-                setaviso_net("aviso_net mostrar")
-            })
+                if(senha !== confirmar){
+                    setaviso_senha('aviso_senha mostrar')
+                    setloading('loading')
+                }
+                else{
+                    Axios.post("index.php?url=auth/registro", {user_nome:nome, user_email: email, 
+                        password:senha, ip:ipv4, endereco:end, plano_:plano, telefone:tel})
+                    .then(res => {
+                        if(res.data.data === 'Operação inválida' || res.data.data === "Usuário não encontrado"){
+                            setloading('loading')
+                        }
+                        if(res.data.data === "Já existe"){
+                            setaviso_senha('aviso_senha')
+                            setaviso_net('aviso_net')
+                            setaviso_email('aviso_email')
+                    
+                            setaviso_erro("aviso_erro mostrar")
+                            setloading('loading')
+                        }
+                        if(res.data.data === "0"){
+                            setaviso_net('aviso_net mostrar')
+                            setloading('loading')
+                        }
+                        if(res.data.data ==='1'){
+                            setTimeout(() =>{ history.push('/')}, 3000);
+                        }
+                    }).catch(err =>{
+                        setloading('loading')
+                        setaviso_net("aviso_net mostrar")
+                    })
+                }
+            }
+            else{
+                setloading('loading')
+                setaviso_email('aviso_email')
+                setTimeout(() =>  setaviso_email('aviso_email mostrar'), 4);
+    
+            }
         }
+        
     }
     return(
     <div className="register-back">
@@ -84,6 +102,7 @@ function Registro(){
             <h3 className={aviso_erro}>Email já cadastrado*</h3>
             <h3 className={aviso_net}>Verifique sua internet, ou fale com o fornecedor*</h3>
             <h3 className={aviso_senha}>As senha não estão iguais*</h3>
+            <h3 className={aviso_email}>Use um email válido*</h3>
             <div className="entradas">
                 <input onChange={(e) => setnome(e.target.value)} placeholder=" "></input>
                 <label className="nome">Nome da empresa:</label>

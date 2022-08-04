@@ -72,6 +72,18 @@
     text-align: center;
     color: rgb(206, 0, 0);
 }
+.register-back .register .aviso_email{
+    display: none;
+    text-align: center;
+    color: rgb(206, 0, 0);
+}
+.register-back .register .aviso_email.mostrar{
+    animation: tremer .4s;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    display: block;
+}
 .register-back .register .aviso_erro.mostrar{
     animation: tremer .4s;
     transition: all .1s linear;

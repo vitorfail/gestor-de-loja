@@ -48,7 +48,9 @@ function Login(){
             })
         }
     }
-    
+    function encaminhar(){
+        history.push('/registro')
+    }
     return(
     <div className="login-back">
         <div className="login">
@@ -80,6 +82,7 @@ function Login(){
                 <input onChange={(e) => setsenha(e.target.value)} type="password" placeholder=" "></input>
                 <label className="nome">Senha:</label>
             </div>
+            <button className="cadastro" onClick={(e) => encaminhar()}>Não possui conta?</button>
             <div className="botoes">
                 <button onClick={(e) => login()}>Entrar</button>
             </div>

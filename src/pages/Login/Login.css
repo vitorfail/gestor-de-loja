@@ -23,8 +23,24 @@
 .login-back .login .titulo h2{
     font-size: 34px;
 }
+.login-back .login .cadastro{
+    margin-top: 40px;
+    margin-left: 80px;
+    margin-bottom: 4px;
+    background: rgba(255, 255, 255, 0);
+    color: #3951b2;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    border-bottom:1px solid #3951b2;
+    text-decoration: none;
+}
+.login-back .login .cadastro:hover{
+    cursor: pointer;
+}
 .login-back .login .botoes{
-    margin-top: 70px;
+    margin-top: 40px;
     height: 40px;
     display: flex;
     align-items: center;
