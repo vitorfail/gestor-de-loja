@@ -1,7 +1,7 @@
 import React from "react";
 import "./BlocosCaixa.css";
 import { useState, useEffect } from "react";
-function BlocosCaixa(){
+function BlocosCaixa(props){
     const [receita, setreceita] = useState(890);
     const [despesas, setdespesas] = useState(45680)
     const [datas, setdatas] = useState(0)
@@ -22,11 +22,11 @@ function BlocosCaixa(){
     return(
         <div className="blocos-caixa">
             <div className="box">
-                <h2 className="receita">R$ {receita}</h2>
+                <h2 className="receita">R$ {props.recebido_hoje}</h2>
                 <h1 >Recebido Hoje</h1>
             </div>
             <div className="box">
-                <h2 className="despesas">R$ {despesas}</h2>
+                <h2 className="despesas">R$ {props.despesas}</h2>
                 <h1 >Despesas</h1>
             </div>
             <div className="box-hora">

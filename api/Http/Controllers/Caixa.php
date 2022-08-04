@@ -29,18 +29,23 @@
             else{
                 return 'Usuário não autenticado';              
             }
-
         }
         public function despesas_hoje(){
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
                 $datahoje = date('Y-m-d');
-                $datasql = $datahoje.explode('-', $datahoje);
-                $sql = "SELECT SUM(valor_despesas) FROM `user_despesas` WHERE MONTH(data_vencimento) = AND `user-id`= ".$dados_de_usuario_sql->id;
+                $datasql = explode('-', $datahoje);
+                $sql = "SELECT SUM(valor_despesas) FROM `user_despesas` WHERE (MONTH(data_vencimento), DAY(data_vencimento), `user_id`)  =  (".$datasql[1]." ,  ".$datasql[2].", ".$dados_de_usuario_sql->id.")";
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
-                $total = $resultado[0]["SUM(valor_despesas)"];
+                $total = 0;
+                if($resultado[0]["SUM(valor_despesas)"] == null){
+                    $total = 0;
+                }
+                else{
+                    $total = $resultado[0]["SUM(valor_despesas)"];
+                }
                 $conexao = null;
                 return $total;            
             }
@@ -89,10 +94,10 @@
         }
         public function pesquisa(){
             $nome = $this->nome();
-            $valor_estoque = $this->valor_estoque();
-            $numero_de_roupas = $this->numero_de_roupas();
+            $recebido_hoje = $this->recebido_hoje();
+            $despesas_hoje = $this->despesas_hoje();
             $valor_caixa = $this->valor_caixa();
-            return array($numero_de_roupas, $valor_estoque, $nome[0], $nome[1], $nome[2], $valor_caixa);
+            return array($despesas_hoje, $recebido_hoje, $nome[0], $nome[1], $nome[2], $valor_caixa);
         }
     }
 ?>

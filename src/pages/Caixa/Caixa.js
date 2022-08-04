@@ -13,10 +13,10 @@ export default class Caixa extends Component{
         super()
         this.state = {
             caixa:0,
-            estoque: '',
+            recebido_hoje: '',
             dias: '',
             nome:'',
-            numero_estoque:0,
+            despesas:0,
             vencimento:''
         }
 
@@ -26,7 +26,7 @@ export default class Caixa extends Component{
         this.iniciar()
     }        
     iniciar(){
-        Axios.post('index.php?url=home/pesquisa', {user:'1'})
+        Axios.post('index.php?url=caixa/pesquisa', {user:'1'})
         .then(res => {
             if(res.data.data[5] === null){
                 this.setState({caixa:0})
@@ -39,9 +39,9 @@ export default class Caixa extends Component{
             }
             else{
                 if(res.data.data[3] === "Pago"){
-                    this.setState({estoque:res.data.data[1] })
+                    this.setState({recebido_hoje:res.data.data[1] })
                     this.setState({nome: res.data.data[2]})
-                    this.setState({numero_estoque: res.data.data[0]})
+                    this.setState({despesas: res.data.data[0]})
                 }
                 if(res.data.data[3] === "Aberto"){
                     var data = res.data.data[4].split('-');
@@ -50,33 +50,33 @@ export default class Caixa extends Component{
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);
                     if(dif>0 && dif<7){
-                        this.setState({estoque:res.data.data[1] })
+                        this.setState({recebido_hoje:res.data.data[1] })
                         this.setState({dias: Math.round(dif)})
                         this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
-                        this.setState({numero_estoque: res.data.data[0]})
+                        this.setState({despesas: res.data.data[0]})
                     }
                     if(dif>7){
                         this.setState({dias: Math.round(dif)})
-                        this.setState({estoque:res.data.data[1] })
+                        this.setState({recebido_hoje:res.data.data[1] })
                         this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
-                        this.setState({numero_estoque: res.data.data[0]})    
+                        this.setState({despesas: res.data.data[0]})    
                     }
                     else{
                         if(dif<0 && dif>-5){
                             this.setState({dias: Math.round(dif)})
-                            this.setState({estoque:res.data.data[1] })
+                            this.setState({recebido_hoje:res.data.data[1] })
                             this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({numero_estoque: res.data.data[0]})        
+                            this.setState({despesas: res.data.data[0]})        
                         }
                         if(dif<-5){
                             this.setState({dias: Math.round(dif)})
-                            this.setState({estoque:res.data.data[1] })
+                            this.setState({recebido_hoje:res.data.data[1] })
                             this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({numero_estoque: res.data.data[0]})        
+                            this.setState({despesas: res.data.data[0]})        
                         }
                     }
                 }
@@ -90,7 +90,7 @@ export default class Caixa extends Component{
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>
-                        <BlocosCaixa></BlocosCaixa>
+                        <BlocosCaixa despesas={this.state.despesas} recebido_hoje={this.state.recebido_hoje}></BlocosCaixa>
                         <CaixaMostra></CaixaMostra>      
                     </Conteudo>
                 </LadoDireito>
