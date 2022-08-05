@@ -13,6 +13,10 @@ function Blocos(props){
         setestoque(props.estoque)
         setnumero_estoque(props.numero_estoque)
         setcaixa(props.caixa)
+
+        setInterval(() => hora_atualizar(), 27000);
+    })
+    function hora_atualizar(){
         var data = new Date;
         var dia = data.getDate()
         var mes = data.getMonth()
@@ -20,9 +24,20 @@ function Blocos(props){
          "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
         if(dia< 10) dia = "0"+dia
         setdatas(dia+ ", "+meses[data.getMonth()+1]+ ", "+data.getFullYear())
-        sethora(data.getHours())
-        setminutos(data.getMinutes())
-    })
+        if(data.getHours() >9){
+            sethora(data.getHours())
+        }
+        if(data.getHours() <10){
+            sethora('0'+data.getHours())
+        }
+        if(data.getMinutes() >9){
+            setminutos(data.getMinutes())
+        }
+        if(data.getHours() <10){
+            setminutos('0'+data.getMinutes())
+        }
+
+    }
     return(
         <div className="blocos">
             <div className="box">

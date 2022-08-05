@@ -33,7 +33,7 @@ function Lateral(props){
                         </div>
                     </div>
                     <ul>
-                        <Link className="li" to="/home">Home</Link>
+                        <Link className="li" to="/">Home</Link>
                         <Link className="li" to="/caixa">Caixa</Link>
                         <Link className="li" to="/estoque">Produtos</Link>
                         <Link className="li" to="/caixa">Contas</Link>

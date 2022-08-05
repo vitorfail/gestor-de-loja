@@ -74,7 +74,7 @@ function Registro(){
                             setloading('loading')
                         }
                         if(res.data.data ==='1'){
-                            setTimeout(() =>{ history.push('/')}, 3000);
+                            setTimeout(() =>{ history.push('/login')}, 3000);
                         }
                     }).catch(err =>{
                         setloading('loading')

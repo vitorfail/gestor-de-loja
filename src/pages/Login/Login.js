@@ -36,7 +36,7 @@ function Login(){
                 else{
                     localStorage.setItem('token_jwt', res.data.data[0])
                     localStorage.setItem('u_name', res.data.data[1])
-                    setTimeout(() =>{ history.push('/home')}, 3000);
+                    setTimeout(() =>{ history.push('/')}, 3000);
                 }
             }).catch(erro => {
                 setaviso_net('aviso_net mostrar')
