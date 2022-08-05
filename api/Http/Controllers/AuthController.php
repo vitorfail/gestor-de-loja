@@ -108,8 +108,8 @@
                 $ip= $_POST['ip'];
                 $plano = $_POST['plano_'];
                 $valor_plano = '';
-                $data_venci = date('d-m-Y', strtotime('+1 month'));
-                $data_contratacao = date('d-m-Y');
+                $data_venci = date('Y-m-d', strtotime('+1 month'));
+                $data_contratacao = date('Y-m-d');
                 $password = md5($_POST['password']);
                 if($plano == 'Normal'){
                     $valor_plano = '20';

@@ -45,7 +45,7 @@ export default class Caixa extends Component{
                 }
                 if(res.data.data[3] === "Aberto"){
                     var data = res.data.data[4].split('-');
-                    var data_vencimento = new Date(parseInt(data[2]), parseInt(data[1])-1, parseInt(data[0]))
+                    var data_vencimento = new Date(parseInt(data[0]), parseInt(data[1])-1, parseInt(data[2]))
                     var data_hoje = new Date();
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);

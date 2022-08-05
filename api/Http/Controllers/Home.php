@@ -70,7 +70,7 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql();
-                $data_atual = date('d-m-Y');
+                $data_atual = date('Y-m-d');
                 $sql = "SELECT SUM(valor_venda) AS total FROM user_vendas WHERE data_venda= ".$data_atual." AND `user_id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
@@ -81,11 +81,11 @@
                 return 'Usuário não autenticado';              
             }
         }
-        public function valor_estoque(){
+        public function faturamento_mensal(){
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT data_venda, valor_venda  FROM `user_vendas` WHERE MONTH(data_venda) AND `user_id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT data_venda, valor_venda  FROM `user_vendas` WHERE YEAR(data_venda) AND `user_id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $janeiro = 0;
@@ -102,11 +102,62 @@
                 $dezembro = 0;
                 $array = array();
                 $conexao = null;
-                foreach($resultado as $row){
-                    $total = floatval($row['produto_valor']) + $total;
+                if(count($resultado) == 0){
+                    $janeiro = 0;
+                    $fevereiro = 0;
+                    $marco = 0;
+                    $abril = 0;
+                    $maio = 0;
+                    $junho = 0;
+                    $julho = 0;
+                    $agosto = 0;
+                    $setembro = 0;
+                    $outubro = 0;
+                    $novembro = 0;
+                    $dezembro = 0;    
                 }
-                return $total;            
-            }
+                else{
+                    foreach($resultado as $row){
+                        $dataf =  explode('-', $row['data_venda']);
+                        if($dataf[1] == 1){
+                            $janeiro = $janeiro + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 2){
+                            $fevereiro = $fevereiro + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 3){
+                            $marco = $marco + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 4){
+                            $abril = $abril + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 1){
+                            $maio = $maio + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 1){
+                            $junho = $junho + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 1){
+                            $julho = $julho + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 1){
+                            $agosto = $agosto + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 1){
+                            $setembro = $setembro + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 1){
+                            $outubro = $outubro + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 1){
+                            $novembro = $novembro + $row['valor_venda '];
+                        }
+                        if($dataf[1] == 1){
+                            $dezembro = $dezembro + $row['valor_venda '];
+                        }
+                    }    
+                }
+                return array($janeiro, $fevereiro, $marco, $abril, $maio, $junho, $julho, $agosto, $setembro, $outubro, $novembro, $dezembro);            }
             else{
                 return 'Usuário não autenticado';              
             }
@@ -117,7 +168,8 @@
             $valor_estoque = $this->valor_estoque();
             $numero_de_roupas = $this->numero_de_roupas();
             $valor_caixa = $this->valor_caixa();
-            return array($numero_de_roupas, $valor_estoque, $nome[0], $nome[1], $nome[2], $valor_caixa);
+            $faturamento_mensal = $this->faturamento_mensal();
+            return array($numero_de_roupas, $valor_estoque, $nome[0], $nome[1], $nome[2], $valor_caixa, $faturamento_mensal);
         }
     }
 ?>
