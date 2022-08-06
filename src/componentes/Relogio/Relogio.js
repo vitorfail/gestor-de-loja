@@ -13,7 +13,6 @@ function Relogio(){
     function hora_atualizar(){
         var data = new Date()
         var dia = data.getDate()
-        var mes = data.getMonth()
         var meses = ["Janeiro", "Fevereiro", "Março", "Abril","Maio",
          "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
         if(dia< 10) dia = "0"+dia

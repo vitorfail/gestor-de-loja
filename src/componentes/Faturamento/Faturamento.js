@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Chart from 'chart.js/auto';
 import "./Faturamento.css";
 import {Bar, PolarArea} from 'react-chartjs-2';
 
 
-function Faturamento(){
+function Faturamento(props){
     const [janeiro, setjaneiro] = useState(134)
     const [fevereiro, setfevereiro] = useState(789)
     const [marco, setmarco] = useState(56)
@@ -22,6 +22,24 @@ function Faturamento(){
     const [cartao, setcartao] = useState(10);
     const [boleto, setboleto] = useState(12);
     const [pix, setpix] = useState(100.20);
+
+    useEffect(() =>{
+        iniciar()
+    })
+    function iniciar(){
+        setjaneiro(props.faturamento_mes[0])
+        setfevereiro(props.faturamento_mes[1])
+        setmarco(props.faturamento_mes[2])
+        setabril(props.faturamento_mes[3])
+        setmaio(props.faturamento_mes[4])
+        setjunho(props.faturamento_mes[5])
+        setjulho(props.faturamento_mes[6])
+        setagosto(props.faturamento_mes[7])
+        setsetembro(props.faturamento_mes[8])
+        setoutubro(props.faturamento_mes[9])
+        setnovembro(props.faturamento_mes[10])
+        setdezembro(props.faturamento_mes[11])
+    }
     return(
         <div className="grafico_faturamento">
             <div className="planilha">

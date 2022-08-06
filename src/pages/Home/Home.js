@@ -18,7 +18,8 @@ export default class Home extends Component{
             dias: '',
             nome:'',
             numero_estoque:0,
-            vencimento:''
+            vencimento:'',
+            faturamento:0
         }
 
         this.iniciar= this.iniciar.bind(this)
@@ -43,6 +44,7 @@ export default class Home extends Component{
                     this.setState({estoque:res.data.data[1] })
                     this.setState({nome: res.data.data[2]})
                     this.setState({numero_estoque: res.data.data[0]})
+                    this.setState({faturamento: res.data.data[6]})
                 }
                 if(res.data.data[3] === "Aberto"){
                     var data = res.data.data[4].split('-');
@@ -56,13 +58,15 @@ export default class Home extends Component{
                         this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
                         this.setState({numero_estoque: res.data.data[0]})
+                        this.setState({faturamento: res.data.data[6]})
                     }
                     if(dif>7){
                         this.setState({dias: Math.round(dif)})
                         this.setState({estoque:res.data.data[1] })
                         this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
-                        this.setState({numero_estoque: res.data.data[0]})    
+                        this.setState({numero_estoque: res.data.data[0]}) 
+                        this.setState({faturamento: res.data.data[6]})   
                     }
                     else{
                         if(dif<0 && dif>-5){
@@ -70,14 +74,16 @@ export default class Home extends Component{
                             this.setState({estoque:res.data.data[1] })
                             this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({numero_estoque: res.data.data[0]})        
+                            this.setState({numero_estoque: res.data.data[0]})
+                            this.setState({faturamento: res.data.data[6]})        
                         }
                         if(dif<-5){
                             this.setState({dias: Math.round(dif)})
                             this.setState({estoque:res.data.data[1] })
                             this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({numero_estoque: res.data.data[0]})        
+                            this.setState({numero_estoque: res.data.data[0]})
+                            this.setState({faturamento: res.data.data[6]})        
                         }
                     }
                 }
@@ -92,7 +98,7 @@ export default class Home extends Component{
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>
                         <Blocos caixa={this.state.caixa} estoque={this.state.estoque} numero_estoque={this.state.numero_estoque}></Blocos>
-                        <Faturamento></Faturamento>
+                        <Faturamento faturamento_mes={this.state.faturamento}></Faturamento>
                     </Conteudo>
                 </LadoDireito>
             </div>

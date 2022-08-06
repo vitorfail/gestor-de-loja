@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Ago-2022 às 20:39
--- Versão do servidor: 10.4.21-MariaDB
--- versão do PHP: 8.0.11
+-- Tempo de geração: 06-Ago-2022 às 17:46
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `loja`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(130) NOT NULL,
+  `nome` varchar(130) DEFAULT NULL,
+  `accesstoken` varchar(130) DEFAULT NULL,
+  `publickey` varchar(130) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `admin`
+--
+
+INSERT INTO `admin` (`id`, `nome`, `accesstoken`, `publickey`) VALUES
+(1, 'Vitor Manoel', 'APP_USR-4390047053471485-080610-8552e3de7962295c5375753a253cd0f5-517207508', 'APP_USR-e0eaa414-897d-4880-82d7-fa1db4326221');
 
 -- --------------------------------------------------------
 
@@ -70,7 +90,7 @@ CREATE TABLE `users_info` (
 --
 
 INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`) VALUES
-(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-06-', '2022-03-12', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
+(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-06', '2022-03-12', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
 (2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', '8989090', '192.168.1.2', 'Normal', '20', '2022-09-03', '2022-08-03', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
 (4, 'Tudo é 10', 'vitor@gmail.com', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
 (5, 'Tudo é 20', 'valesca@hotmail.com', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
@@ -131,6 +151,12 @@ CREATE TABLE `user_vendas` (
 --
 
 --
+-- Índices para tabela `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `user-produtos`
 --
 ALTER TABLE `user-produtos`
@@ -163,6 +189,12 @@ ALTER TABLE `user_vendas`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `user-produtos`

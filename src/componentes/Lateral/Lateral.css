@@ -71,3 +71,8 @@
     height: 50px;
     background: whitesmoke;
 }
+.barralateral .pagar{
+    height: 23px;
+    width: 23px;
+    z-index: 3000;
+}
