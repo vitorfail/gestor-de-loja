@@ -40,15 +40,6 @@ function Lateral(props){
                         <Link className="li" to="/estoque">Produtos</Link>
                         <Link className="li" to="/caixa">Contas</Link>
                     </ul>
-                    <form  className='pagar' action="mercadopago/processapagamentomp.php" method="POST">
-                        <script
-                            src="https://www.mercadopago.com.br/integrations/v1/web-tokenize-checkout.js"
-                            data-public-key={publickey}				
-                            data-button-label="Pagar assinatura"
-                            data-transaction-amount="100.00"
-                            data-summary-product-label="Assinatura">
-                        </script>
-                    </form>
             </div>)
 }
 export default Lateral

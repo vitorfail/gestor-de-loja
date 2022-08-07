@@ -7,7 +7,7 @@
     $GLOBALS['a'] = 'Authorization';
     $_POST = json_decode(file_get_contents("php://input"), true);
     function Check_user($usuario, $senha){
-        include_once("login_conect.php");
+        include_once("./conexao.php");
 
         $sql = "SELECT id, nome, situacao FROM users_info WHERE email=:usuario and senha=:senha ";
         $pesquisa = $conexao->prepare($sql);
@@ -32,7 +32,7 @@
         return array($check, $id, $nome, $situacao);
     }
     function Check_user_email($usuario){
-        include("login_conect.php");
+        include("./conexao.php");
         $sql = "SELECT id, nome, situacao FROM users_info WHERE email=:usuario";
         $pesquisa = $conexao->prepare($sql);
         $pesquisa->execute(array(
@@ -100,7 +100,7 @@
         }
         public function registro(){
             if(isset($_POST['user_nome']) && isset($_POST['user_email']) && isset($_POST['password'])){
-                include_once("login_conect.php");
+                include_once("./conexao.php");
                 $nome = $_POST['user_nome'];
                 $email = $_POST['user_email'];
                 $endereco = $_POST['endereco'];
@@ -189,7 +189,7 @@
         }
         public function pesquisa_nome(){
             if(AuthController::checkAuth()){
-                include_once("login_conect.php");
+                include_once("./conexao.php");
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
                 $sql = "SELECT nome from users_info WHERE id=1";
                 $pesquisa = $conexao->query($sql);

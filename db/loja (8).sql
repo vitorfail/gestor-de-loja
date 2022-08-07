@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Ago-2022 às 17:46
+-- Tempo de geração: 07-Ago-2022 às 23:55
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -143,7 +143,8 @@ CREATE TABLE `user_vendas` (
   `produto_nome` varchar(130) DEFAULT NULL,
   `data_venda` varchar(130) DEFAULT NULL,
   `produto_id` int(130) DEFAULT NULL,
-  `valor_venda` double NOT NULL
+  `valor_venda` double NOT NULL,
+  `tipo_de_pagamento` varchar(130) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

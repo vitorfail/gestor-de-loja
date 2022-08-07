@@ -85,7 +85,7 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT data_venda, valor_venda  FROM `user_vendas` WHERE YEAR(data_venda) AND `user_id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT data_venda, valor_venda, tipo_de_pagamento  FROM `user_vendas` WHERE YEAR(data_venda) AND `user_id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $janeiro = 0;
