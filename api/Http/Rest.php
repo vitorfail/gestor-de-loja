@@ -6,6 +6,7 @@
     header("Access-Control-Allow-Headers: *");
     require_once('Controllers/Home.php');
     require_once('Controllers/Caixa.php');
+    require_once('Controllers/Estoque.php');
     require_once('Controllers/AuthController.php');
     require_once('inserir_produtos.php');
 

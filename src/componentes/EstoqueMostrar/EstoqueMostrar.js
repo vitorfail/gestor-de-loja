@@ -5,7 +5,7 @@ import Excluir from "../../icons/excluir.png";
 import PopupEstoque from "../PopupEstoque/PopupEstoque";
 
 export default class EstoqueMostrar extends Component{
-    constructor(){
+    constructor(props){
         super()
         this.state = {
             mostrar: "popup-estoque"
@@ -18,6 +18,41 @@ export default class EstoqueMostrar extends Component{
     }
     fechar_popup(){
         this.setState({mostrar: "popup-estoque"})
+    }
+    mostrar_estoque(props){
+        var data = props.conteudo 
+        if(data === '1' || data === 'Usuário não autenticado'){
+            Exit()
+        }
+        else{
+            for(var i=0; i< 15; i++){
+               this.lista.push( <div  key={(res.data.data[2])[i]+(res.data.data[0])[i]} className="entrada">
+                        <div className="descri-2">
+                            <h3>Roupa</h3>
+                        </div>
+                        <div className="qtd-2">
+                            <h3>300</h3>
+                        </div>
+                        <div className="custo-2">
+                            <h3>300</h3>
+                        </div>
+                        <div className="lucro-2">
+                            <h3>13%</h3>
+                        </div>
+                        <div className="preco-2">
+                            <h3>R$ 43,00</h3>
+                        </div>
+                        <div className="editar-2">
+                            <button><img src={Editar}/></button>
+                        </div>
+                        <div className="excluir-2">
+                            <button><img src={Excluir}/></button>
+                        </div>
+                    </div>)
+            }
+            this.setState({resultado: this.lista})
+        }
+
     }
     render(){
         return(

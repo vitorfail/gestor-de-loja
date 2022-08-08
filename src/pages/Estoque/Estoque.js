@@ -17,22 +17,24 @@ export default class Estoque extends Component{
             dias: '',
             nome:'',
             despesas:0,
-            vencimento:''
+            vencimento:'',
+            dados:[],
         }
-
         this.iniciar= this.iniciar.bind(this)
     }
     componentDidMount(){
         this.iniciar()
-    }        
+    }
     iniciar(){
-        Axios.post('index.php?url=caixa/pesquisa', {user:'1'})
+        Axios.post('index.php?url=estoque/pesquisa', {user:'1'})
         .then(res => {
             if(res.data.data[5] === null){
                 this.setState({caixa:0})
             }
             else{
                 this.setState({caixa: res.data.data[5]})
+                this.setState({dados: res.data.data})
+                
             }
             if(res.data.data[1] === "Usuário não autenticado"){
                 Exit()

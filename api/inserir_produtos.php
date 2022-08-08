@@ -15,12 +15,12 @@
                     $sql = "INSERT into `user-produtos` (`user-id`, `produto-nome`, produto_valor , percentual, Vendido, quantidade) 
                     values ( :user_id, :produto_nome, :produto_valor, :percentual, :Vendido, :quantidade )";
                     $salvar = $conexao->prepare($sql);
-                    $salvar->bindValue( ':user_id', $_POST['user_id']);
+                    $salvar->bindValue( ':user_id', $dados_de_usuario_sql->id);
                     $salvar->bindValue(':produto_nome', $_POST['produto_nome']);
                     $salvar->bindValue(':produto_valor', $_POST['produto_valor']);
                     $salvar->bindValue(':percentual', $_POST['percentual']);
-                    $salvar->bindValue(':Vendido', 'Vendido');
-                    $salvar->bindValue(':quantidade', 'quantidade');
+                    $salvar->bindValue(':Vendido', 'Não');
+                    $salvar->bindValue(':quantidade', $_POST['quantidade']);
                     $salvar->execute();
                     $conexao = null;    
                     return "1";

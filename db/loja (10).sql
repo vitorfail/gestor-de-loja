@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Ago-2022 às 03:40
+-- Tempo de geração: 08-Ago-2022 às 19:27
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -64,7 +64,8 @@ CREATE TABLE `user-produtos` (
 INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `percentual`, `Vendido`, `quantidade`) VALUES
 (1, 1, 'CAMISA POLO', '145.34', '13%', 'Não', NULL),
 (2, 2, 'Camisa gola polo', '140.90', '12%', 'Sim', NULL),
-(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', NULL);
+(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', NULL),
+(4, 1, 'Calça Jean', '45.68', '2%', 'Não', 7);
 
 -- --------------------------------------------------------
 
@@ -202,7 +203,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT de tabela `user-produtos`
 --
 ALTER TABLE `user-produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `users_info`
