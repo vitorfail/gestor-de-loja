@@ -44,9 +44,38 @@
     display: flex;
 }
 .barralateral .user .aviso{
+    margin-top: 12px;
     align-items: center;
     justify-content: center;
     display: flex;
+}
+.barralateral .link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.barralateral .link a{
+    font-weight: 700;
+}
+.barralateral .link a:hover{
+    background: white;
+    color: blue;
+
+}
+.barralateral  a{
+    
+    text-align: center;
+    justify-items: center;
+    height: 27px;
+    width: 70px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: rgb(25, 25, 211);
+    color: aliceblue;
 }
 .barralateral .user.vencido{
     background: rgb(228, 48, 41);
@@ -55,24 +84,16 @@
     background: rgb(121, 119, 5);
 }
 .barralateral .user h3{
-    margin-top: 35px;
     color: whitesmoke;
 }
 .barralateral .user .situacao{
-    margin-top: 50px;
     font-size: 11px;
 }
 .barralateral .user .icon_user{
-    margin-top: 20px;
     display: flex;
     margin-right: 10px;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     background: whitesmoke;
-}
-.barralateral .pagar{
-    height: 23px;
-    width: 23px;
-    z-index: 3000;
 }

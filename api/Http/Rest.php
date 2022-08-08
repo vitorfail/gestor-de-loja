@@ -4,37 +4,10 @@
     header("Access-Control-Allow-Credentials: true");
     header("Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT");
     header("Access-Control-Allow-Headers: *");
-    require_once('Controllers/UsersController.php');
     require_once('Controllers/Home.php');
     require_once('Controllers/Caixa.php');
     require_once('Controllers/AuthController.php');
-    require_once('./idades.php');
-    require_once('./atualiza.php');
-    require_once('./adicionar_pagamento.php');
-    require_once('./rankings_top.php');
-    require_once('./rankings.php');
-    require_once('./pagamentos_mes.php');
-    require_once('./estado_civil.php');
-    require_once('./sexo.php');
-    require_once('./pagamentos_totais.php');
-    require_once('./quantidade_clientes.php');
-    require_once('./aniversariantes.php');
-    require_once('./cadastrar.php');
-    require_once('./atualizar-cadastro.php');
-    require_once('./pesquisa-info.php');
-    require_once('./deletar_cliente.php');
-    require_once('./pagamentos.php');
-    require_once('./pesquisa.php');
-    require_once('./nome.php');
-    require_once('./contas_dre.php');
-    require_once('./inserir_contas.php');
-    require_once('./tipos_pagamento.php');
-    require_once('./contas_painel.php');
-    require_once('./dadosuser.php');
-    require_once('./politicasprivacidade.php');
-    require_once('./cederprivacidade.php');
-    require_once('./atualizar_usuario.php');
-    require_once('./atualizar_conta.php');                 
+    require_once('inserir_produtos.php');
 
     class Rest{
         private $request;

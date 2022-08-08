@@ -12,20 +12,22 @@
                 try{
                     include_once('conexao.php');
                     $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                    $sql = "INSERT into contas_".$dados_de_usuario_sql->name."_".$dados_de_usuario_sql->id." (conta, data, valor , situacao, tipo) values ( :conta, :data, :valor, :situacao, :tipo )";
+                    $sql = "INSERT into `user-produtos` (`user-id`, `produto-nome`, produto_valor , percentual, Vendido, quantidade) 
+                    values ( :user_id, :produto_nome, :produto_valor, :percentual, :Vendido, :quantidade )";
                     $salvar = $conexao->prepare($sql);
-                    $salvar->bindValue( ':conta', $_POST['conta']);
-                    $salvar->bindValue(':data', $_POST['vencimento']);
-                    $salvar->bindValue(':valor', $_POST['val']);
-                    $salvar->bindValue(':situacao', 'Aberto');
-                    $salvar->bindValue(':tipo', $_POST['tipo']);
+                    $salvar->bindValue( ':user_id', $_POST['user_id']);
+                    $salvar->bindValue(':produto_nome', $_POST['produto_nome']);
+                    $salvar->bindValue(':produto_valor', $_POST['produto_valor']);
+                    $salvar->bindValue(':percentual', $_POST['percentual']);
+                    $salvar->bindValue(':Vendido', 'Vendido');
+                    $salvar->bindValue(':quantidade', 'quantidade');
                     $salvar->execute();
                     $conexao = null;    
                     return "1";
                 }
                 catch(Exception $ex){
                     $conexao = null;  
-                    return 'Usuário não autenticado';
+                    return '0';
                 }
             }
         }

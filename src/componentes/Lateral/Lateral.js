@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Lateral.css";
 import { Link } from "react-router-dom";
+import Axios from '../../Axios'
 function Lateral(props){
     const [nome, setnome] = useState('')
     const [dias, setdias] = useState('')
     const [vencimento, setvencimento] = useState('')
     const [situacao, setsituacao] = useState('user')
-    const [publickey, setpublickey] = useState('')
+    const [pagar, sepagar] =useState(null)
+
     useEffect(() => {
         setnome(props.nome)
         setvencimento(props.vencimento)
@@ -14,16 +16,33 @@ function Lateral(props){
             setsituacao("user")
         }
         if(vencimento === 'prazo'){
+            Pagamento()
             setsituacao("user "+props.vencimento.toString())
             setdias("Faltam "+props.dias+ " dias")
         }
         if(vencimento === 'vencido'){
-            setsituacao("user "+props.vencimento.toString())
-            setdias(props.dias.toString()+ " DIAS PARA PAGAR")
+            if(props.dias< -5){
+                Pagamento()
+                setsituacao("user "+props.vencimento.toString())
+                setdias("VENCEU")    
+            }
+            else{
+                Pagamento()
+                setsituacao("user "+props.vencimento.toString())
+                setdias(props.dias.toString()+ " DIAS PARA PAGAR")    
+            }
         }
     }, [props.nome, props.vencimento, props.dias, vencimento])
+    function Pagamento(){
+        Axios.post('processarpagamento.php').then(res => {
+            sepagar(res.data)
+        })
+    }
     return(<div className="barralateral">
                     <div className={situacao}> 
+                        <div className="link">
+                            <a href={pagar}  rel="noreferrer"  target="_blank">PAGAR</a>
+                        </div>
                         <div className="info">
                             <div className="icon_user">
                             </div>

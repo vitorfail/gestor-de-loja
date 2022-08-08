@@ -12,8 +12,7 @@
                 try{
                     include_once('conexao.php');
                     $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                    $sql = "INSERT into `user-produtos` (`user-id`, `produto-nome`, produto_valor , percentual, Vendido) 
-                    values ( :user_id, :produto_nome, :produto_valor, :percentual, :Vendido )";
+                    $sql = "INSERT into contas_".$dados_de_usuario_sql->name."_".$dados_de_usuario_sql->id." (conta, data, valor , situacao, tipo) values ( :conta, :data, :valor, :situacao, :tipo )";
                     $salvar = $conexao->prepare($sql);
                     $salvar->bindValue( ':conta', $_POST['conta']);
                     $salvar->bindValue(':data', $_POST['vencimento']);
