@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07-Ago-2022 às 23:55
+-- Tempo de geração: 08-Ago-2022 às 03:40
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -53,17 +53,18 @@ CREATE TABLE `user-produtos` (
   `produto-nome` varchar(1300) DEFAULT NULL,
   `produto_valor` varchar(1300) DEFAULT NULL,
   `percentual` varchar(130) DEFAULT NULL,
-  `Vendido` varchar(130) DEFAULT NULL
+  `Vendido` varchar(130) DEFAULT NULL,
+  `quantidade` int(130) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `user-produtos`
 --
 
-INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `percentual`, `Vendido`) VALUES
-(1, 1, 'CAMISA POLO', '145.34', '13%', 'Não'),
-(2, 2, 'Camisa gola polo', '140.90', '12%', 'Sim'),
-(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não');
+INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `percentual`, `Vendido`, `quantidade`) VALUES
+(1, 1, 'CAMISA POLO', '145.34', '13%', 'Não', NULL),
+(2, 2, 'Camisa gola polo', '140.90', '12%', 'Sim', NULL),
+(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', NULL);
 
 -- --------------------------------------------------------
 
