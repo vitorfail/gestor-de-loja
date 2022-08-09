@@ -30,16 +30,13 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT * FROM `user-produtos` WHERE `user-id` = ".$dados_de_usuario_sql->id." ORDER By id DESC LIMIT 15";
+                $sql = "SELECT * FROM `user-produtos` WHERE `user-id`= ".$dados_de_usuario_sql->id." ORDER BY id DESC";
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $total = 0;
                 $array = array();
                 $conexao = null;
-                foreach($resultado as $row){
-                    $total = floatval($row['produto_valor']) + $total;
-                }
-                return $total;            
+                return array_slice($resultado, $_POST['index'], $_POST['tamanho'] );            
             }
             else{
                 return 'Usuário não autenticado';              
@@ -71,10 +68,9 @@
         }
         public function pesquisa(){
             $nome = $this->nome();
-            $recebido_hoje = $this->recebido_hoje();
-            $despesas_hoje = $this->despesas_hoje();
-            $valor_caixa = $this->valor_caixa();
-            return array($despesas_hoje, $recebido_hoje, $nome[0], $nome[1], $nome[2], $valor_caixa);
+            $valor_estoque = $this->valor_estoque();
+            $estoque_descri = $this->estoque_descri();
+            return array($valor_estoque, $estoque_descri, $nome[0], $nome[1], $nome[2]);
         }
     }
 ?>
