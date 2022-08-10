@@ -23,11 +23,11 @@ function Relogio(){
         if(data.getHours() <10){
             sethora('0'+data.getHours())
         }
-        if(data.getMinutes() >9){
-            setminutos(data.getMinutes())
-        }
-        if(data.getHours() <10){
+        if(data.getMinutes() <10){
             setminutos('0'+data.getMinutes())
+        }
+        if(data.getMinutes() >10 || data.getMinutes() === 10){
+            setminutos(data.getMinutes())
         }
 
     }

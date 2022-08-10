@@ -1,0 +1,140 @@
+.popup-pagar{
+    display: none;
+}
+.popup-pagar.mostrar{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(122, 122, 122, 0.63);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.popup-pagar .menu{
+    border-radius: 50px;
+    width: 400px;
+    height: 470px;
+    background: white;
+    display: block;
+}
+.popup-pagar .menu .inputs{    
+    height: 295px;
+    display: block;
+}
+.popup-pagar .menu .inputs .titulo{
+    padding-left: 15px;
+}
+.popup-pagar .menu .inputs .titulo h1{
+    font-weight: 700;
+    font-family: Roboto forte;
+    color: #3951b2;
+}
+.popup-pagar .menu .inputs .titulo .preencha{
+    color: red;
+    display: none;
+}
+.popup-pagar .menu .inputs .titulo .preencha.mostrar{
+    animation: tremer .4s;
+    display: block;
+
+}
+.popup-pagar .menu .inputs .input{
+    position: relative;
+    height: 40px;
+    padding-left: 5%;
+    margin-top: 5%;
+}
+.popup-pagar .menu .inputs .input input{
+    position: absolute;
+    width: 70%;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    outline: none;
+    height: 100%;
+    min-width: 150px;
+    font-size: 16px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-appearance: none;
+}
+.popup-pagar .menu .inputs .input input:focus{
+    border: 2px solid #3951b2;
+}
+.popup-pagar .menu .inputs .input input::placeholder{
+    color:transparent;
+}
+.popup-pagar .menu .inputs .input label{
+    pointer-events: none;
+    position: absolute;
+    font-size: 20px;
+    left: 25px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    background:white;
+    box-sizing: border-box;
+    top: 4px;
+}
+.popup-pagar .menu .inputs .input input:focus + .nome,
+.popup-pagar .menu .inputs .input input:not(:placeholder-shown) + label{    
+    font-size: 16px;
+    top: -16%;
+    color: #3951b2;
+    background: white;
+    font-weight: 600;
+    z-index: 10;
+}
+.popup-pagar .menu .botoes{
+    justify-content: center;
+    justify-items: center;
+    margin-top: 18px;
+    padding-top: 20px;
+    display: flex;
+}
+.popup-pagar .menu .botoes .add{
+    font-family: Roboto media;
+    border: none;
+    background: rgb(39, 39, 206);
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 8px;
+    margin-right: 10px;
+}
+.popup-pagar .menu .botoes .add:hover{
+    background: white;
+    border: 2px solid rgb(39, 39, 206);
+    color: rgb(39, 39, 206, 0.7);
+    cursor: pointer;
+}
+.popup-pagar .menu .botoes .cancel{
+    font-family: Roboto media;
+    border: none;
+    background: rgba(206, 39, 39, 0.7);
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+.popup-pagar .menu .botoes .cancel:hover{
+    font-style: Roboto normal;
+    background: white;
+    border: 2px solid rgba(206, 39, 39, 0.7);
+    color: rgba(206, 39, 39, 0.7);
+    cursor: pointer;
+}
+@keyframes tremer{
+    0% {margin-left: 0;}
+    25% {margin-left: 33px;}
+    50% {margin-left: 0;}
+    75% {margin-left: -33px;}
+    100% {margin-left: 0;}
+}

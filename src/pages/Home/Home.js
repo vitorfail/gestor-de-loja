@@ -8,6 +8,7 @@ import Blocos from "../../componentes/Blocos/Blocos";
 import Faturamento from "../../componentes/Faturamento/Faturamento";
 import Axios from "../../Axios.js";
 import Exit from "../../Exit";
+import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
 
 export default class Home extends Component{
     constructor(){
@@ -19,13 +20,17 @@ export default class Home extends Component{
             nome:'',
             numero_estoque:0,
             vencimento:'',
-            faturamento:0
+            faturamento:0,
+            mostrar_pagar:"popup-pagar"
         }
-
+        this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
         this.iniciar= this.iniciar.bind(this)
     }
     componentDidMount(){
         this.iniciar()
+    }
+    fechar_popup_pagar(){
+        this.setState({mostrar_pagar: "popup-pagar"})
     }        
     iniciar(){
         Axios.post('index.php?url=home/pesquisa', {user:'1'})
@@ -47,6 +52,7 @@ export default class Home extends Component{
                     this.setState({faturamento: res.data.data[6]})
                 }
                 if(res.data.data[3] === "Aberto"){
+                    this.setState({mostrar_pagar: 'popup-pagar mostrar'})
                     var data = res.data.data[4].split('-');
                     var data_vencimento = new Date(parseInt(data[0]), parseInt(data[1])-1, parseInt(data[2]))
                     var data_hoje = new Date();
@@ -93,6 +99,7 @@ export default class Home extends Component{
     render(){
         return(
             <div className="tudo">
+                <PopupPagar exibir={this.state.mostrar_pagar} fechar= {this.fechar_popup_pagar.bind(this)}></PopupPagar>
                 <Lateral dias={this.state.dias} nome={this.state.nome} vencimento={this.state.vencimento} ></Lateral>
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
