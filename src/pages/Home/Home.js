@@ -9,6 +9,8 @@ import Faturamento from "../../componentes/Faturamento/Faturamento";
 import Axios from "../../Axios.js";
 import Exit from "../../Exit";
 import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
+import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
+import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
 
 export default class Home extends Component{
     constructor(){
@@ -21,17 +23,25 @@ export default class Home extends Component{
             numero_estoque:0,
             vencimento:'',
             faturamento:0,
-            mostrar_pagar:"popup-pagar"
+            mostrar_pagar:"popup-pagar",
+            mostrar_vencido:"popup-vencido",
+            mostrar_prazo: "popup-prazo"
         }
         this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
         this.iniciar= this.iniciar.bind(this)
     }
+    fechar_popup_pagar(){
+        this.setState({mostrar_pagar: "popup-pagar"})
+    } 
+    fechar_popup_prazo(){
+        this.setState({mostrar_prazo: "popup-prazo"})
+    }
+    fechar_popup_vencido(){
+        this.setState({mostrar_vencido: "popup-vencido"})
+    }
     componentDidMount(){
         this.iniciar()
     }
-    fechar_popup_pagar(){
-        this.setState({mostrar_pagar: "popup-pagar"})
-    }        
     iniciar(){
         Axios.post('index.php?url=home/pesquisa', {user:'1'})
         .then(res => {
@@ -52,13 +62,13 @@ export default class Home extends Component{
                     this.setState({faturamento: res.data.data[6]})
                 }
                 if(res.data.data[3] === "Aberto"){
-                    this.setState({mostrar_pagar: 'popup-pagar mostrar'})
                     var data = res.data.data[4].split('-');
                     var data_vencimento = new Date(parseInt(data[0]), parseInt(data[1])-1, parseInt(data[2]))
                     var data_hoje = new Date();
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);
                     if(dif>0 && dif<7){
+                        this.setState({mostrar_prazo: "popup-prazo mostrar"})
                         this.setState({estoque:res.data.data[1] })
                         this.setState({dias: Math.round(dif)})
                         this.setState({nome: res.data.data[2]})
@@ -76,6 +86,7 @@ export default class Home extends Component{
                     }
                     else{
                         if(dif<0 && dif>-5){
+                            this.setState({mostrar_pagar: 'popup-pagar mostrar'})
                             this.setState({dias: Math.round(dif)})
                             this.setState({estoque:res.data.data[1] })
                             this.setState({nome: res.data.data[2]})
@@ -84,6 +95,7 @@ export default class Home extends Component{
                             this.setState({faturamento: res.data.data[6]})        
                         }
                         if(dif<-5){
+                            this.setState({mostrar_vencido:"popup-vencido mostrar"})
                             this.setState({dias: Math.round(dif)})
                             this.setState({estoque:res.data.data[1] })
                             this.setState({nome: res.data.data[2]})
@@ -99,6 +111,8 @@ export default class Home extends Component{
     render(){
         return(
             <div className="tudo">
+                <PopupVencido exibir={this.state.mostrar_vencido} fechar= {this.fechar_popup_vencido.bind(this)}></PopupVencido>
+                <PopupPrazo exibir={this.state.mostrar_prazo} fechar= {this.fechar_popup_prazo.bind(this)}></PopupPrazo>
                 <PopupPagar exibir={this.state.mostrar_pagar} fechar= {this.fechar_popup_pagar.bind(this)}></PopupPagar>
                 <Lateral dias={this.state.dias} nome={this.state.nome} vencimento={this.state.vencimento} ></Lateral>
                 <LadoDireito>

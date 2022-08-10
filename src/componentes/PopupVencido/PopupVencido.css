@@ -1,7 +1,7 @@
-.popup-pagar{
+.popup-vencido{
     display: none;
 }
-.popup-pagar.mostrar{
+.popup-vencido.mostrar{
     width: 100vw;
     height: 100vh;
     background-color: rgba(122, 122, 122, 0.63);
@@ -13,59 +13,59 @@
     justify-content: center;
     display: flex;
 }
-.popup-pagar .menu{
+.popup-vencido .menu{
     border-radius: 50px;
     width: 400px;
     height: 470px;
     background: white;
     display: block;
 }
-.popup-pagar .menu .inputs{    
+.popup-vencido .menu .inputs{    
     height: 295px;
     display: block;
 }
-.popup-pagar .menu .inputs .titulo{
+.popup-vencido .menu .inputs .titulo{
     padding-left: 15px;
 }
-.popup-pagar .menu .inputs .titulo h1{
+.popup-vencido .menu .inputs .titulo h1{
     text-align: center;
     font-weight: 700;
     font-family: Roboto forte;
-    color: #cc1313;
+    color: #ffdc17;
 }
-.popup-pagar .menu .inputs  .licenca {
+.popup-vencido .menu .inputs  .licenca {
     align-content: center;
     justify-content: center;
 }
-.popup-pagar .menu .inputs .licenca .aviso_licenca{
+.popup-vencido .menu .inputs .licenca .aviso_licenca{
     font-size: 20px;
     font-family: Roboto media;
     text-align: justify;
     margin:32px
 }
-.popup-pagar .menu .inputs .licenca .err-mercado{
+.popup-vencido .menu .inputs .licenca .err-mercado{
     font-size: 20px;
     font-family: Roboto media;
     text-align: justify;
     margin:32px;
     color:#cc1313
 }
-.popup-pagar .menu .inputs .titulo .preencha{
+.popup-vencido .menu .inputs .titulo .preencha{
     color: red;
     display: none;
 }
-.popup-pagar .menu .inputs .titulo .preencha.mostrar{
+.popup-vencido .menu .inputs .titulo .preencha.mostrar{
     animation: tremer .4s;
     display: block;
 
 }
-.popup-pagar .menu .inputs .input{
+.popup-vencido .menu .inputs .input{
     position: relative;
     height: 40px;
     padding-left: 5%;
     margin-top: 5%;
 }
-.popup-pagar .menu .inputs .input input{
+.popup-vencido .menu .inputs .input input{
     position: absolute;
     width: 70%;
     border: 1px solid lightgrey;
@@ -79,13 +79,13 @@
     -moz-transition: all .1s linear;
     -webkit-appearance: none;
 }
-.popup-pagar .menu .inputs .input input:focus{
+.popup-vencido .menu .inputs .input input:focus{
     border: 2px solid #3951b2;
 }
-.popup-pagar .menu .inputs .input input::placeholder{
+.popup-vencido .menu .inputs .input input::placeholder{
     color:transparent;
 }
-.popup-pagar .menu .inputs .input label{
+.popup-vencido .menu .inputs .input label{
     pointer-events: none;
     position: absolute;
     font-size: 20px;
@@ -97,8 +97,8 @@
     box-sizing: border-box;
     top: 4px;
 }
-.popup-pagar .menu .inputs .input input:focus + .nome,
-.popup-pagar .menu .inputs .input input:not(:placeholder-shown) + label{    
+.popup-vencido .menu .inputs .input input:focus + .nome,
+.popup-vencido .menu .inputs .input input:not(:placeholder-shown) + label{    
     font-size: 16px;
     top: -16%;
     color: #3951b2;
@@ -106,14 +106,14 @@
     font-weight: 600;
     z-index: 10;
 }
-.popup-pagar .menu .botoes{
+.popup-vencido .menu .botoes{
     justify-content: center;
     justify-items: center;
     margin-top: 18px;
     padding-top: 20px;
     display: flex;
 }
-.popup-pagar .menu .botoes .add{
+.popup-vencido .menu .botoes .add{
     font-family: Roboto media;
     border: none;
     background: rgb(39, 39, 206);
@@ -125,13 +125,13 @@
     margin-bottom: 8px;
     margin-right: 10px;
 }
-.popup-pagar .menu .botoes .add:hover{
+.popup-vencido .menu .botoes .add:hover{
     background: white;
     border: 2px solid rgb(39, 39, 206);
     color: rgb(39, 39, 206, 0.7);
     cursor: pointer;
 }
-.popup-pagar .menu .botoes .cancel{
+.popup-vencido .menu .botoes .cancel{
     font-family: Roboto media;
     border: none;
     background: rgba(206, 39, 39, 0.7);
@@ -142,7 +142,7 @@
     height: 50px;
     margin-bottom: 8px;
 }
-.popup-pagar .menu .botoes .cancel:hover{
+.popup-vencido .menu .botoes .cancel:hover{
     font-style: Roboto normal;
     background: white;
     border: 2px solid rgba(206, 39, 39, 0.7);

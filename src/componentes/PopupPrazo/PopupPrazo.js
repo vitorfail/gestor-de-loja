@@ -1,10 +1,10 @@
 
-import "./PopupPagar.css";
+import "./PopupPrazo.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
 import Loading1 from "../Loading1/Loading1";
 
-export default class PopupPagar extends Component{
+export default class PopupPrazo extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -15,9 +15,7 @@ export default class PopupPagar extends Component{
             quantidade_:'',
             pagar:'',
             loading:'loading',
-            conteudo:<p className="aviso_licenca">Sua licenta esta no prazo de <strong>carência</strong> regularize antes do 
-            <strong>vencimento</strong>. Depois do prazo de carência só poderá 
-           usar o sistema depois de efeturar pagamento</p>
+            conteudo:<p className="aviso_licenca">Faltam poucos dias para entrar no prazo de carência</p>
         }
         this.Pagamento = this.Pagamento.bind(this)
     }
@@ -41,7 +39,7 @@ export default class PopupPagar extends Component{
                 <div className="menu">
                     <div className="inputs">
                         <div className="titulo">
-                            <h1>Atenção!!</h1>
+                            <h1>Aviso</h1>
                         </div>
                         <div className="licenca">
                             {this.state.conteudo}
