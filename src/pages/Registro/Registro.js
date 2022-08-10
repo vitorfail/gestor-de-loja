@@ -1,9 +1,9 @@
 import "./Registro.css";
-import './loading.scss'
 import React, { useState } from "react";
 import Axios from "../../Axios.js";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
 function Registro(){
     const [email, setemail] = useState('');
     const [senha, setsenha] = useState('');
@@ -17,8 +17,8 @@ function Registro(){
     const [end, setend] = useState('');
     const [plano, setplano] = useState('Normal');
     const [tel, settel] = useState('');
-    const [loading, setloading] = useState('loading')
     const [aviso_email, setaviso_email] = useState("aviso_email")
+    const [loading_, setloading] = useState('loading')
 
     const history = useHistory()
     function ip_teste(){
@@ -93,6 +93,7 @@ function Registro(){
     }
     return(
     <div className="register-back">
+        <PopupPagar loading={loading_}></PopupPagar>
         <div className="register">
             <div className="titulo">
                 <h2>Registro</h2>
@@ -137,10 +138,6 @@ function Registro(){
                 <button onClick={(e) => register()}>Entrar</button>
             </div>
         </div>
-        <div className={loading}>
-            <div className="c-loader"></div>
-        </div>
-
     </div>
     )
    

@@ -2,6 +2,7 @@
 import "./PopupPagar.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
+import Loading1 from "../Loading1/Loading1";
 
 export default class PopupPagar extends Component{
     constructor(props){
@@ -12,21 +13,24 @@ export default class PopupPagar extends Component{
             produto_valor_: '',
             percentual_: '',
             quantidade_:'',
-            pagar:''
+            pagar:'',
+            loading:'loading'
         }
         this.Pagamento = this.Pagamento.bind(this)
     }
     componentDidMount(){
-        this.Pagamento()
     }
     Pagamento(){
+        this.setState({loading:'loading mostrar'})
         Axios.post('processarpagamento.php').then(res => {
-            this.setState({pagar: res.data}) 
+            window.open(res.data, '_blank'); 
+            this.setState({loading:'loading'})
         })
     }
     render(){
         return(
             <div className={this.props.exibir}>
+                <Loading1 loading={this.state.loading}></Loading1>
                 <div className="menu">
                     <div className="inputs">
                         <div className="titulo">
@@ -37,7 +41,7 @@ export default class PopupPagar extends Component{
                         </div>
                     </div>
                     <div className="botoes">
-                        <a className="add" href={this.state.pagar} target="_blank" >Adicionar</a>
+                        <button className="add"  onClick={(event) => this.Pagamento()}>Adicionar</button>
                         <button  className="cancel" onClick={(event) => this.props.fechar()}>Cancelar</button>
                     </div>
                 </div>

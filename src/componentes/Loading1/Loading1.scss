@@ -1,4 +1,4 @@
-.register-back .loading{
+.loading{
     top: 0px;
     z-index: 4000;
     position: fixed;
@@ -11,7 +11,7 @@
     padding: 15px;
     border-radius: 15px;
 }
-.register-back .loading .c-loader {
+.loading .c-loader {
     animation: is-rotating 1s infinite;
     border: 17px solid #e5e5e5;
     border-radius: 50%;
@@ -19,7 +19,7 @@
     height: 150px;
     width: 150px;
 }
-.register-back .loading.mostrar{
+.loading.mostrar{
     display: flex;
 }
 @keyframes is-rotating {
