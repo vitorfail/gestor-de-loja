@@ -39,6 +39,10 @@ function Faturamento(props){
         setoutubro(props.faturamento_mes[9])
         setnovembro(props.faturamento_mes[10])
         setdezembro(props.faturamento_mes[11])
+        setavista(props.tipos_de_pagamento[0])
+        setcartao(props.tipos_de_pagamento[1])
+        setboleto(props.tipos_de_pagamento[1])
+        setpix(props.tipos_de_pagamento[1])
     }
     return(
         <div className="grafico_faturamento">

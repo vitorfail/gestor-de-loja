@@ -80,10 +80,10 @@ export default class Estoque extends Component{
                             <h3>R$ {preco}</h3>
                         </div>
                         <div className="editar-2">
-                            <button><img src={Editar}/></button>
+                            <button><img alt="editar" src={Editar}/></button>
                         </div>
                         <div className="excluir-2">
-                            <button><img src={Excluir}/></button>
+                            <button><img alt="editar" src={Excluir}/></button>
                         </div>
                     </div>)
             }

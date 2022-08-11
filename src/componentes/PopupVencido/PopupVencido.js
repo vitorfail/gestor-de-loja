@@ -39,7 +39,7 @@ export default class PopupVencido extends Component{
                 <div className="menu">
                     <div className="inputs">
                         <div className="titulo">
-                            <h1>Aviso</h1>
+                            <h1>Conta Vencida</h1>
                         </div>
                         <div className="licenca">
                             {this.state.conteudo}

@@ -24,6 +24,46 @@
     margin: 0;
     padding: 0;
 }
+.barralateral ul .home{
+    height: 10px;
+    width: 10px;
+    background-image: url('../../icons/home-1.png');
+}
+.barralateral ul .home:hover{
+    height: 10px;
+    width: 10px;
+    background-image: url('../../icons/home-2.png');
+}
+.barralateral ul .caixa{
+    height: 10px;
+    width: 10px;
+    background-image: url('../../icons/caixa-1.png');
+}
+.barralateral ul .caixa:hover{
+    height: 10px;
+    width: 10px;
+    background-image: url('../../icons/caixa-2.png');
+}
+.barralateral ul .produtos{
+    height: 10px;
+    width: 10px;
+    background-image: url('../../icons/produtos-1.png');
+}
+.barralateral ul .produtos:hover{
+    height: 10px;
+    width: 10px;
+    background-image: url('../../icons/produtos-2.png');
+}
+.barralateral ul .vendas{
+    height: 10px;
+    width: 10px;
+    background-image: url('../../icons/vendas-1.png');
+}
+.barralateral ul .vendas:hover{
+    height: 10px;
+    width: 10px;
+    background-image: url('../../icons/vendas-2.png');
+}
 .barralateral a{
     list-style: none;
 }
