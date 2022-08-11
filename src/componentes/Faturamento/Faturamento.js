@@ -5,23 +5,23 @@ import {Bar, PolarArea} from 'react-chartjs-2';
 
 
 function Faturamento(props){
-    const [janeiro, setjaneiro] = useState(134)
-    const [fevereiro, setfevereiro] = useState(789)
-    const [marco, setmarco] = useState(56)
-    const [abril, setabril] = useState(23)
-    const [maio, setmaio] = useState(190)
-    const [junho, setjunho] = useState(90)
-    const [julho, setjulho] = useState(200)
-    const [agosto, setagosto] = useState(78)
-    const [setembro, setsetembro] = useState(87)
-    const [outubro, setoutubro] = useState(19)
-    const [novembro, setnovembro] = useState(45)
-    const [dezembro, setdezembro] = useState(120)
+    const [janeiro, setjaneiro] = useState(0)
+    const [fevereiro, setfevereiro] = useState(0)
+    const [marco, setmarco] = useState(0)
+    const [abril, setabril] = useState(0)
+    const [maio, setmaio] = useState(0)
+    const [junho, setjunho] = useState(0)
+    const [julho, setjulho] = useState(0)
+    const [agosto, setagosto] = useState(0)
+    const [setembro, setsetembro] = useState(0)
+    const [outubro, setoutubro] = useState(0)
+    const [novembro, setnovembro] = useState(0)
+    const [dezembro, setdezembro] = useState(0)
     
-    const [avista, setavista] = useState(40);
-    const [cartao, setcartao] = useState(10);
-    const [boleto, setboleto] = useState(12);
-    const [pix, setpix] = useState(100.20);
+    const [avista, setavista] = useState(0);
+    const [cartao, setcartao] = useState(0);
+    const [boleto, setboleto] = useState(0);
+    const [pix, setpix] = useState(0);
 
     useEffect(() =>{
         iniciar()

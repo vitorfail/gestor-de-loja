@@ -5,7 +5,6 @@ import LadoDireito from "../../componentes/LadoDireito/LadoDireito";
 import Conteudo from "../../componentes/Conteudo/Conteudo";
 import BarraSuperior from "../../componentes/BarraSuperior/BarraSuperior"
 import BlocosEstoque from "../../componentes/BlocosEstoque/BlocosEstoque";
-import EstoqueMostrar from "../../componentes/EstoqueMostrar/EstoqueMostrar";
 import Axios from "../../Axios";
 import Exit from '../../Exit'
 import Editar from "../../icons/editar.png";

@@ -25,7 +25,8 @@ export default class Home extends Component{
             faturamento:0,
             mostrar_pagar:"popup-pagar",
             mostrar_vencido:"popup-vencido",
-            mostrar_prazo: "popup-prazo"
+            mostrar_prazo: "popup-prazo",
+            tipos_de_pagamento:0
         }
         this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
         this.iniciar= this.iniciar.bind(this)
@@ -60,6 +61,7 @@ export default class Home extends Component{
                     this.setState({nome: res.data.data[2]})
                     this.setState({numero_estoque: res.data.data[0]})
                     this.setState({faturamento: res.data.data[6]})
+                    this.setState({tipos_de_pagamento: res.data.data[7]})
                 }
                 if(res.data.data[3] === "Aberto"){
                     var data = res.data.data[4].split('-');
@@ -75,6 +77,7 @@ export default class Home extends Component{
                         this.setState({vencimento: 'prazo'})
                         this.setState({numero_estoque: res.data.data[0]})
                         this.setState({faturamento: res.data.data[6]})
+                        this.setState({tipos_de_pagamento: res.data.data[7]})
                     }
                     if(dif>7){
                         this.setState({dias: Math.round(dif)})
@@ -82,7 +85,8 @@ export default class Home extends Component{
                         this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
                         this.setState({numero_estoque: res.data.data[0]}) 
-                        this.setState({faturamento: res.data.data[6]})   
+                        this.setState({faturamento: res.data.data[6]})
+                        this.setState({tipos_de_pagamento: res.data.data[7]})   
                     }
                     else{
                         if(dif<0 && dif>-5){
@@ -92,7 +96,8 @@ export default class Home extends Component{
                             this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
                             this.setState({numero_estoque: res.data.data[0]})
-                            this.setState({faturamento: res.data.data[6]})        
+                            this.setState({faturamento: res.data.data[6]})
+                            this.setState({tipos_de_pagamento: res.data.data[7]})        
                         }
                         if(dif<-5){
                             this.setState({mostrar_vencido:"popup-vencido mostrar"})
@@ -101,7 +106,8 @@ export default class Home extends Component{
                             this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
                             this.setState({numero_estoque: res.data.data[0]})
-                            this.setState({faturamento: res.data.data[6]})        
+                            this.setState({faturamento: res.data.data[6]})
+                            this.setState({tipos_de_pagamento: res.data.data[7]})        
                         }
                     }
                 }
@@ -119,7 +125,7 @@ export default class Home extends Component{
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>
                         <Blocos caixa={this.state.caixa} estoque={this.state.estoque} numero_estoque={this.state.numero_estoque}></Blocos>
-                        <Faturamento faturamento_mes={this.state.faturamento}></Faturamento>
+                        <Faturamento faturamento_mes={this.state.faturamento} tipos_de_pagamento={this.state.tipos_de_pagamento}></Faturamento>
                     </Conteudo>
                 </LadoDireito>
             </div>

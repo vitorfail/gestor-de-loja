@@ -85,7 +85,7 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT data_venda, valor_venda, tipo_de_pagamento  FROM `user_vendas` WHERE YEAR(data_venda) AND `user_id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT data_venda, valor_venda  FROM `user_vendas` WHERE YEAR(data_venda) AND `user_id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $janeiro = 0;
@@ -163,13 +163,56 @@
             }
 
         }
+        public function tipos_de_pagamento(){
+            if(AuthController::checkAuth()){
+                include('conexao.php');
+                $dados_de_usuario_sql = AuthController::dados_de_sql(); 
+                $sql = "SELECT tipo_de_pagamento, COUNT(*) FROM user_vendas WHERE user_id= ".$dados_de_usuario_sql->id." GROUP BY tipo_de_pagamento; ";
+                $pesquisa = $conexao->query($sql);
+                $resultado = $pesquisa->fetchAll();
+                $array = array();
+                $avista = 0;
+                $cartao = 0;
+                $boleto = 0;
+                $pix = 0;  
+
+                $conexao = null;
+                if(count($resultado) == 0){
+                    $avista = 0;
+                    $cartao = 0;
+                    $boleto = 0;
+                    $pix = 0;  
+                }
+                else{
+                    foreach($resultado as $row){
+                        if($row['tipo_de_pagamento'] == 'A vista'){
+                            $avista = $row['COUNT(*)'] ;
+                        }
+                        if($row['tipo_de_pagamento'] == 'Cartao'){
+                            $cartao = $row['COUNT(*)'] ;
+                        }
+                        if($row['tipo_de_pagamento'] == 'Boleto'){
+                            $boleto = $row['COUNT(*)'] ;
+                        }
+                        if($row['tipo_de_pagamento'] == 'Pix'){
+                            $pix = $row['COUNT(*)'] ;
+                        }
+                    }
+                }
+                return array($avista, $cartao, $boleto, $pix);            
+            }
+            else{
+                return 'Usuário não autenticado';              
+            }
+        }
         public function pesquisa(){
             $nome = $this->nome();
             $valor_estoque = $this->valor_estoque();
             $numero_de_roupas = $this->numero_de_roupas();
             $valor_caixa = $this->valor_caixa();
             $faturamento_mensal = $this->faturamento_mensal();
-            return array($numero_de_roupas, $valor_estoque, $nome[0], $nome[1], $nome[2], $valor_caixa, $faturamento_mensal);
+            $tipos_de_pagamento = $this->tipos_de_pagamento();
+            return array($numero_de_roupas, $valor_estoque, $nome[0], $nome[1], $nome[2], $valor_caixa, $faturamento_mensal, $tipos_de_pagamento);
         }
     }
 ?>
