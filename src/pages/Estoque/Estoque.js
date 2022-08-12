@@ -91,6 +91,7 @@ export default class Estoque extends Component{
         }
     }
     restart(){
+        console.log("passou aqui")
         this.setState({dados: []})
         this.lista =[]
         this.iniciar()
