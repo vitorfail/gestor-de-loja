@@ -119,41 +119,41 @@
                 else{
                     foreach($resultado as $row){
                         $dataf =  explode('-', $row['data_venda']);
-                        if($dataf[1] == 1){
-                            $janeiro = $janeiro + $row['valor_venda '];
+                        if($dataf[1] == '01'){
+                            $janeiro = $janeiro + $row['valor_venda'];
                         }
-                        if($dataf[1] == 2){
-                            $fevereiro = $fevereiro + $row['valor_venda '];
+                        if($dataf[1] == '02'){
+                            $fevereiro = $fevereiro + $row['valor_venda'];
                         }
-                        if($dataf[1] == 3){
-                            $marco = $marco + $row['valor_venda '];
+                        if($dataf[1] == '03'){
+                            $marco = $marco + $row['valor_venda'];
                         }
-                        if($dataf[1] == 4){
-                            $abril = $abril + $row['valor_venda '];
+                        if($dataf[1] == '04'){
+                            $abril = $abril + $row['valor_venda'];
                         }
-                        if($dataf[1] == 1){
-                            $maio = $maio + $row['valor_venda '];
+                        if($dataf[1] == '05'){
+                            $maio = $maio + $row['valor_venda'];
                         }
-                        if($dataf[1] == 1){
-                            $junho = $junho + $row['valor_venda '];
+                        if($dataf[1] == '06'){
+                            $junho = $junho + $row['valor_venda'];
                         }
-                        if($dataf[1] == 1){
-                            $julho = $julho + $row['valor_venda '];
+                        if($dataf[1] == '07'){
+                            $julho = $julho + $row['valor_venda'];
                         }
-                        if($dataf[1] == 1){
-                            $agosto = $agosto + $row['valor_venda '];
+                        if($dataf[1] == '08'){
+                            $agosto = $agosto + $row['valor_venda'];
                         }
-                        if($dataf[1] == 1){
-                            $setembro = $setembro + $row['valor_venda '];
+                        if($dataf[1] == '09'){
+                            $setembro = $setembro + $row['valor_venda'];
                         }
-                        if($dataf[1] == 1){
-                            $outubro = $outubro + $row['valor_venda '];
+                        if($dataf[1] == '10'){
+                            $outubro = $outubro + $row['valor_venda'];
                         }
-                        if($dataf[1] == 1){
-                            $novembro = $novembro + $row['valor_venda '];
+                        if($dataf[1] == '11'){
+                            $novembro = $novembro + $row['valor_venda'];
                         }
-                        if($dataf[1] == 1){
-                            $dezembro = $dezembro + $row['valor_venda '];
+                        if($dataf[1] == '12'){
+                            $dezembro = $dezembro + $row['valor_venda'];
                         }
                     }    
                 }
@@ -167,7 +167,7 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT tipo_de_pagamento, COUNT(*) FROM user_vendas WHERE user_id= ".$dados_de_usuario_sql->id." GROUP BY tipo_de_pagamento; ";
+                $sql = "SELECT tipo_de_pagamento, COUNT(*) FROM user_vendas WHERE `user_id`= ".$dados_de_usuario_sql->id." GROUP BY tipo_de_pagamento; ";
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $array = array();

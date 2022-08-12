@@ -1,26 +1,55 @@
 
-import "./PopupEstoque.css";
+import "./PopupVenda.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
+import Exit from "../../Exit";
 
-export default class PopupEstoque extends Component{
+export default class PopupVenda extends Component{
     constructor(props){
         super(props)
+        this.lista = []
         this.state = {
             mostrar: this.props.exibir,
             produto_nome_: '',
             produto_valor_: '',
             percentual_: '',
             quantidade_:'',
-            preencha: "preencha"
+            preencha: "preencha",
+            dados:[]
         }
         this.add_produtos = this.add_produtos.bind(this)
+        this.puxar_produtos = this.puxar_produtos.bind(this)
         this.mascara_valor = this.mascara_valor.bind(this)
         this.mascara_percentual = this.mascara_percentual.bind(this)
         this.delete_percental = this.delete_percental.bind(this) 
     }
-    componentDidMount(){
-        this.setState({preencha: "preencha"})
+
+    puxar_produtos(){
+        this.setState({dados: this.lista})
+        this.lista =[]
+        Axios.post('index.php?url=produtos/pesquisa').then(
+            res => {
+                if(res.data.data === 'Usuário não autenticado'){
+                    Exit()
+                }
+                else{
+                    var id_roupas = res.data.data[0]
+                    var lista_roupas = res.data.data[1]
+                    var qtd = res.data.data[2]
+                    for(var i = 0; i < lista_roupas.length; i++){
+                        this.lista.push(
+                        <option key={id_roupas[i] +"lista_roupas"+lista_roupas[i]+i} value={id_roupas[i]}>{lista_roupas[i]}</option>
+                        )
+                    }
+                    this.setState({dados: this.lista})
+                }
+            }
+        ).catch(erro =>{
+            alert("Erro ao tentar procurar produtos. Verifique sua internet e tente denovo")
+        })
+    }
+    componentWillReceiveProps(){
+        this.puxar_produtos()
     }
     add_produtos(){
         this.setState({preencha: "preencha"})
@@ -75,7 +104,9 @@ export default class PopupEstoque extends Component{
                             <h3 className={this.state.preencha}>Preencha os dados*</h3>
                         </div>
                         <div className="input">
-                            <input value={this.state.produto_nome_} onChange={(event) => this.setState({produto_nome_: event.target.value})} ></input>
+                            <select onChange={(event) => this.setState({produto_nome_: event.target.value})} >
+                                {this.state.dados}
+                            </select>
                             <label className="nome">Nome da peça</label>
                         </div>
                         <div className="input">

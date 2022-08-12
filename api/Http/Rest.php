@@ -9,6 +9,7 @@
     require_once('Controllers/Estoque.php');
     require_once('Controllers/AuthController.php');
     require_once('inserir_produtos.php');
+    require_once('produtos.php');
 
     class Rest{
         private $request;

@@ -11,6 +11,7 @@ import Axios from "../../Axios"
 import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
 import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
 import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
+import PopupVenda from "../../componentes/PopupVenda/PopupVenda";
 
 export default class Caixa extends Component{
     constructor(){
@@ -24,7 +25,7 @@ export default class Caixa extends Component{
             vencimento:'',
             mostrar_pagar:"popup-pagar",
             mostrar_vencido:"popup-vencido",
-            mostrar_prazo: "popup-prazo"
+            mostrar_prazo: "popup-prazo",
         }
         this.iniciar= this.iniciar.bind(this)
     }

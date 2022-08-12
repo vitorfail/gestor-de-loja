@@ -90,6 +90,11 @@ export default class Estoque extends Component{
             this.setState({dados: this.lista})
         }
     }
+    restart(){
+        this.setState({dados: []})
+        this.lista =[]
+        this.iniciar()
+    }
     iniciar(){
         Axios.post('index.php?url=estoque/pesquisa', {user:'1', index: 0, tamanho:15})
         .then(res => {
@@ -154,7 +159,7 @@ export default class Estoque extends Component{
                     <Conteudo>
                         <BlocosEstoque></BlocosEstoque>
                         <div className="mostrar-estoque">
-                            <PopupEstoque exibir={this.state.mostrar} fechar= {this.fechar_popup.bind(this)}></PopupEstoque>
+                            <PopupEstoque exibir={this.state.mostrar} reiniciar={this.restart.bind(this)} fechar= {this.fechar_popup.bind(this)}></PopupEstoque>
                             <div className="tabela">
                                 <div className="titulo">
                                     <div  className="descricao">

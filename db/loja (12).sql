@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Ago-2022 às 15:50
+-- Tempo de geração: 12-Ago-2022 às 18:02
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -65,7 +65,16 @@ INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `
 (1, 1, 'CAMISA POLO', '145.34', '13%', 'Não', 9),
 (2, 2, 'Camisa gola polo', '140.90', '12%', 'Sim', 7),
 (3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', 13),
-(4, 1, 'Calça Jean', '45.68', '2%', 'Não', 7);
+(4, 1, 'Calça Jean', '45.68', '2%', 'Não', 7),
+(11, 1, 'Calaça leag', '12.41', '34%', 'Não', 7),
+(12, 1, 'Saia infantil', '45.21', '12%', 'Não', 5),
+(13, 1, 'Camiseta masculina', '56.53', '32%', 'Não', 12),
+(14, 1, 'Camisa social', '34.31', '34%', 'Não', 12),
+(15, 1, 'Camisa do flamengo', '56.9', '45%', 'Não', 12),
+(16, 1, 'Vestido transparente', '12.56', '12%', 'Não', 12),
+(17, 1, 'Gaita', '34.52', '34%', 'Não', 12),
+(18, 1, 'gelinho', '34.56', '7%', 'Não', 12),
+(19, 1, 'Blusa social', '34.9', '12%', 'Não', 12);
 
 -- --------------------------------------------------------
 
@@ -92,7 +101,7 @@ CREATE TABLE `users_info` (
 --
 
 INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`) VALUES
-(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-06', '2022-03-12', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
+(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-10', '2022-03-12', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
 (2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', '8989090', '192.168.1.2', 'Normal', '20', '2022-09-03', '2022-08-03', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
 (4, 'Tudo é 10', 'vitor@gmail.com', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
 (5, 'Tudo é 20', 'valesca@hotmail.com', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
@@ -203,7 +212,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT de tabela `user-produtos`
 --
 ALTER TABLE `user-produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `users_info`

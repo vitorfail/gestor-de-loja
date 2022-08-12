@@ -18,7 +18,6 @@ export default class EstoqueMostrar extends Component{
     fechar_popup(){
         this.setState({mostrar: "popup-estoque"})
     }
-
     render(){
         return(
             <div className="mostrar-estoque">

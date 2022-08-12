@@ -1,10 +1,17 @@
 import React from "react"
 import { useState } from "react";
 import "./CaixaMostra.css";
+import PopupVenda from "../PopupVenda/PopupVenda";
 
 function CaixaMostra(){
+    const [mostrar_venda, setmostrar_venda] = useState('popup-venda');
+
+    const fechar_popup_venda = () => {
+        setmostrar_venda('popup-venda')
+    }
     return(
         <div className="mostrar-caixa">
+            <PopupVenda exibir={mostrar_venda} fechar={fechar_popup_venda}></PopupVenda>
             <div className="tabela">
                 <div className="titulo">
                     <h3 className="descricao">Descrição</h3>
@@ -36,7 +43,7 @@ function CaixaMostra(){
                 </div>
             </div>
             <div className="botoes">
-                <button className="add">Adicionar</button>
+                <button className="add" onClick={(event) => setmostrar_venda('popup-venda mostrar')}>Adicionar</button>
                 <button className="del">Excluir</button>
             </div>
         </div>
