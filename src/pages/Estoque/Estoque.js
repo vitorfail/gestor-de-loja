@@ -59,6 +59,7 @@ export default class Estoque extends Component{
             Exit()
         }
         else{
+            this.lista = [];
             for(var i=0; i< data.length; i++){
                 var custo = parseFloat(data[i]["produto_valor"])
                 var percentual = parseInt(data[i]["percentual"].replace('%', ''))
@@ -92,9 +93,6 @@ export default class Estoque extends Component{
     }
     restart(){
         console.log("passou aqui")
-        this.setState({dados: []})
-        this.lista =[]
-        this.iniciar()
     }
     iniciar(){
         Axios.post('index.php?url=estoque/pesquisa', {user:'1', index: 0, tamanho:15})
@@ -160,7 +158,6 @@ export default class Estoque extends Component{
                     <Conteudo>
                         <BlocosEstoque></BlocosEstoque>
                         <div className="mostrar-estoque">
-                            <PopupEstoque exibir={this.state.mostrar} reiniciar={this.restart.bind(this)} fechar= {this.fechar_popup.bind(this)}></PopupEstoque>
                             <div className="tabela">
                                 <div className="titulo">
                                     <div  className="descricao">
