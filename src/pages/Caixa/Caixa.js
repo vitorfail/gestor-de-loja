@@ -11,7 +11,6 @@ import Axios from "../../Axios"
 import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
 import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
 import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
-import PopupVenda from "../../componentes/PopupVenda/PopupVenda";
 
 export default class Caixa extends Component{
     constructor(){

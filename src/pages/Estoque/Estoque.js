@@ -35,6 +35,9 @@ export default class Estoque extends Component{
         this.fechar_popup = this.fechar_popup.bind(this)
         this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
     }
+    fechar_popup(){
+        this.setState({mostrar: "popup-estoque"})
+    } 
     fechar_popup_pagar(){
         this.setState({mostrar_pagar: "popup-pagar"})
     } 
@@ -50,9 +53,6 @@ export default class Estoque extends Component{
     abrir_popup() {
         this.setState({mostrar: "popup-estoque mostrar"})
     }
-    fechar_popup(){
-        this.setState({mostrar: "popup-estoque"})
-    }  
     mostrar_estoque(props){
         var data = props
         if(data === '1' || data === 'Usuário não autenticado'){
@@ -92,7 +92,7 @@ export default class Estoque extends Component{
         }
     }
     restart(){
-        console.log("passou aqui")
+        this.iniciar()
     }
     iniciar(){
         Axios.post('index.php?url=estoque/pesquisa', {user:'1', index: 0, tamanho:15})
@@ -149,6 +149,7 @@ export default class Estoque extends Component{
     render(){
         return(
             <div className="tudo">
+                <PopupEstoque exibir={this.state.mostrar} fechar= {this.fechar_popup.bind(this)} reiniciar={this.restart.bind(this)}></PopupEstoque>
                 <PopupVencido exibir={this.state.mostrar_vencido} fechar= {this.fechar_popup_vencido.bind(this)}></PopupVencido>
                 <PopupPrazo exibir={this.state.mostrar_prazo} fechar= {this.fechar_popup_prazo.bind(this)}></PopupPrazo>
                 <PopupPagar exibir={this.state.mostrar_pagar} fechar= {this.fechar_popup_pagar.bind(this)}></PopupPagar>

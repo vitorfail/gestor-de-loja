@@ -1,13 +1,14 @@
 .loader{
+    margin-top: 27px;
     align-items: center;
     justify-content: center;
-    margin-left: 190px;
-    display: none;
+    margin-left: 90px;
+    display: flex;
     width: 180px;
     transform: translate3d(-50%,-50%,0);
 }
 .loader.espaco{
-    display: flex;
+    display: none;
 }
 .dot{
     margin-left: 2px;

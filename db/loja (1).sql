@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Ago-2022 às 18:02
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 7.3.33
+-- Tempo de geração: 14-Ago-2022 às 01:27
+-- Versão do servidor: 10.4.21-MariaDB
+-- versão do PHP: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,27 +54,29 @@ CREATE TABLE `user-produtos` (
   `produto_valor` varchar(1300) DEFAULT NULL,
   `percentual` varchar(130) DEFAULT NULL,
   `Vendido` varchar(130) DEFAULT NULL,
-  `quantidade` int(130) DEFAULT NULL
+  `quantidade` int(130) DEFAULT NULL,
+  `custo_indireto` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `user-produtos`
 --
 
-INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `percentual`, `Vendido`, `quantidade`) VALUES
-(1, 1, 'CAMISA POLO', '145.34', '13%', 'Não', 9),
-(2, 2, 'Camisa gola polo', '140.90', '12%', 'Sim', 7),
-(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', 13),
-(4, 1, 'Calça Jean', '45.68', '2%', 'Não', 7),
-(11, 1, 'Calaça leag', '12.41', '34%', 'Não', 7),
-(12, 1, 'Saia infantil', '45.21', '12%', 'Não', 5),
-(13, 1, 'Camiseta masculina', '56.53', '32%', 'Não', 12),
-(14, 1, 'Camisa social', '34.31', '34%', 'Não', 12),
-(15, 1, 'Camisa do flamengo', '56.9', '45%', 'Não', 12),
-(16, 1, 'Vestido transparente', '12.56', '12%', 'Não', 12),
-(17, 1, 'Gaita', '34.52', '34%', 'Não', 12),
-(18, 1, 'gelinho', '34.56', '7%', 'Não', 12),
-(19, 1, 'Blusa social', '34.9', '12%', 'Não', 12);
+INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `percentual`, `Vendido`, `quantidade`, `custo_indireto`) VALUES
+(1, 1, 'CAMISA POLO', '145.34', '13%', 'Não', 9, 0),
+(2, 2, 'Camisa gola polo', '140.90', '12%', 'Sim', 7, 0),
+(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', 13, 0),
+(4, 1, 'Calça Jean', '45.68', '2%', 'Não', 7, 0),
+(11, 1, 'Calaça leag', '12.41', '34%', 'Não', 7, 0),
+(12, 1, 'Saia infantil', '45.21', '12%', 'Não', 5, 0),
+(13, 1, 'Camiseta masculina', '56.53', '32%', 'Não', 12, 0),
+(14, 1, 'Camisa social', '34.31', '34%', 'Não', 12, 0),
+(15, 1, 'Camisa do flamengo', '56.9', '45%', 'Não', 12, 0),
+(16, 1, 'Vestido transparente', '12.56', '12%', 'Não', 12, 0),
+(17, 1, 'Gaita', '34.52', '34%', 'Não', 12, 0),
+(18, 1, 'gelinho', '34.56', '7%', 'Não', 12, 0),
+(19, 1, 'Blusa social', '34.9', '12%', 'Não', 12, 0),
+(20, 1, 'Cinto', '34.9', '34%', 'Não', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -155,7 +157,8 @@ CREATE TABLE `user_vendas` (
   `data_venda` varchar(130) DEFAULT NULL,
   `produto_id` int(130) DEFAULT NULL,
   `valor_venda` double NOT NULL,
-  `tipo_de_pagamento` varchar(130) DEFAULT NULL
+  `tipo_de_pagamento` varchar(130) DEFAULT NULL,
+  `quantidade` int(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -212,7 +215,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT de tabela `user-produtos`
 --
 ALTER TABLE `user-produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `users_info`

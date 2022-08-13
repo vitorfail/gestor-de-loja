@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Axios from "../../Axios.js";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
+import Loading1 from "../../componentes/Loading1/Loading1";
 function Registro(){
     const [email, setemail] = useState('');
     const [senha, setsenha] = useState('');
@@ -93,7 +93,7 @@ function Registro(){
     }
     return(
     <div className="register-back">
-        <PopupPagar loading={loading_}></PopupPagar>
+        <Loading1 loading={loading_}></Loading1>
         <div className="register">
             <div className="titulo">
                 <h2>Registro</h2>
