@@ -3,7 +3,7 @@ import "./PopupDespesas.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
 
-export default class PopupEstoque extends Component{
+export default class PopupDespesas extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -13,7 +13,8 @@ export default class PopupEstoque extends Component{
             percentual_: '',
             quantidade_:'',
             preencha: "preencha",
-            data:''
+            data:'',
+            vencimento:''
         }
         this.add_produtos = this.add_produtos.bind(this)
         this.mascara_valor = this.mascara_valor.bind(this)
@@ -92,19 +93,19 @@ export default class PopupEstoque extends Component{
                         </div>
                         <div className="input">
                             <input value={this.state.produto_nome_} onChange={(event) => this.setState({produto_nome_: event.target.value})} ></input>
-                            <label className="nome">Despesas</label>
+                            <label className="nome">Descrição</label>
                         </div>
                         <div className="input">
                             <input value={this.state.produto_valor_} onChange={(event) => this.mascara_valor(event.target.value)}></input>
-                            <label className="nome">Custo(R$)</label>
-                        </div>
-                        <div className="input">
-                            <input type="number" value={this.state.quantidade_} onChange={(event) => this.setState({quantidade_: event.target.value})} ></input>
-                            <label className="nome">Quantidade</label>
+                            <label className="nome">Valor(R$)</label>
                         </div>
                         <div className="input">
                             <input  value={this.state.data} onChange={(even) => this.mask_data(even.target.value)}  ></input>
                             <label className="nome">Data</label>
+                        </div>
+                        <div className="input">
+                            <input  value={this.state.vencimento} onChange={(even) => this.mask_data(even.target.value)}  ></input>
+                            <label className="nome">Vencimento</label>
                         </div>
 
                     </div>

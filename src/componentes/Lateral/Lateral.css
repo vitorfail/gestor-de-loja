@@ -20,49 +20,66 @@
     color: ivory;
     cursor: pointer;
 }
+.barralateral .li:focus{
+    cursor: pointer;
+    background:aliceblue;
+    color: rgb(37, 37, 37);
+}
 .barralateral ul{
     margin: 0;
     padding: 0;
 }
 .barralateral ul .home{
-    height: 10px;
-    width: 10px;
-    background: url('../../icons/home-1.png') no-repeat;
+    margin-right: 10px;
+    height: 20px;
+    width:20px;
+    background: url('../../icons/home-1.png') no-repeat center right;
+    background-size: 20px;
 }
-.barralateral ul .home:hover{
-    height: 10px;
-    width: 10px;
-    background: url('../../icons/home-2.png') no-repeat;
+.barralateral .li:hover>.home{
+    height: 20px;
+    width:20px;
+    background: url('../../icons/home-2.png') no-repeat center right;
+    background-size: 20px;
 }
 .barralateral ul .caixa{
-    height: 10px;
-    width: 10px;
-    background: url('../../icons/caixa-1.png') no-repeat;
+    margin-right: 10px;
+    height: 20px;
+    width:20px;
+    background: url('../../icons/caixa-1.png') no-repeat center right;
+    background-size: 20px;
 }
-.barralateral ul .caixa:hover{
-    height: 10px;
-    width: 10px;
-    background: url('../../icons/caixa-2.png') no-repeat;
+.barralateral .li:hover>.caixa{
+    height: 20px;
+    width:20px;
+    background: url('../../icons/caixa-2.png') no-repeat center right;
+    background-size: 20px;
 }
 .barralateral ul .produtos{
-    height: 10px;
-    width: 10px;
-    background: url('../../icons/produtos-1.png') no-repeat;
+    margin-right: 10px;
+    height: 20px;
+    width:20px;
+    background: url('../../icons/produtos-1.png') no-repeat center right;
+    background-size: 20px;
 }
-.barralateral ul .produtos:hover{
-    height: 10px;
-    width: 10px;
-    background: url('../../icons/produtos-2.png') no-repeat;
+.barralateral .li:hover>.produtos{
+    height: 20px;
+    width:20px;
+    background: url('../../icons/produtos-2.png') no-repeat center right;
+    background-size: 20px;
 }
 .barralateral ul .vendas{
-    height: 10px;
-    width: 10px;
-    background: url('../../icons/vendas-1.png') no-repeat;
+    margin-right: 10px;
+    height: 20px;
+    width:20px;
+    background: url('../../icons/vendas-1.png') no-repeat center right;
+    background-size: 20px;
 }
-.barralateral ul .vendas:hover{
-    height: 10px;
-    width: 10px;
-    background: url('../../icons/vendas-2.png') no-repeat;
+.barralateral .li:hover> .vendas{
+    height: 20px;
+    width:20px;
+    background: url('../../icons/vendas-2.png') no-repeat center right;
+    background-size: 20px;
 }
 .barralateral a{
     list-style: none;
@@ -73,14 +90,16 @@
     color: rgb(37, 37, 37);
 }
 .barralateral .user{
-    display: block;
+    display: flex;
+    align-items: center;
     justify-items: center;
+    justify-content: center;
     height: 90px;
     width: 100%;
     background: rgb(141, 54, 223);
 }
 .barralateral .user .info{
-    height: 20px;
+    height: 75px;
     display: flex;
 }
 .barralateral .user .aviso{

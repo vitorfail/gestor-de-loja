@@ -81,7 +81,7 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT data_venda, valor_venda  FROM `user_vendas` WHERE YEAR(data_venda) AND `user_id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT data_venda, (valor_venda*quantidade) AS total FROM `user_vendas` WHERE YEAR(data_venda) AND `user_id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $janeiro = 0;
@@ -116,40 +116,40 @@
                     foreach($resultado as $row){
                         $dataf =  explode('-', $row['data_venda']);
                         if($dataf[1] == '01'){
-                            $janeiro = $janeiro + $row['valor_venda'];
+                            $janeiro = $janeiro + $row['total'];
                         }
                         if($dataf[1] == '02'){
-                            $fevereiro = $fevereiro + $row['valor_venda'];
+                            $fevereiro = $fevereiro + $row['total'];
                         }
                         if($dataf[1] == '03'){
-                            $marco = $marco + $row['valor_venda'];
+                            $marco = $marco + $row['total'];
                         }
                         if($dataf[1] == '04'){
-                            $abril = $abril + $row['valor_venda'];
+                            $abril = $abril + $row['total'];
                         }
                         if($dataf[1] == '05'){
-                            $maio = $maio + $row['valor_venda'];
+                            $maio = $maio + $row['total'];
                         }
                         if($dataf[1] == '06'){
-                            $junho = $junho + $row['valor_venda'];
+                            $junho = $junho + $row['total'];
                         }
                         if($dataf[1] == '07'){
-                            $julho = $julho + $row['valor_venda'];
+                            $julho = $julho + $row['total'];
                         }
                         if($dataf[1] == '08'){
-                            $agosto = $agosto + $row['valor_venda'];
+                            $agosto = $agosto + $row['total'];
                         }
                         if($dataf[1] == '09'){
-                            $setembro = $setembro + $row['valor_venda'];
+                            $setembro = $setembro + $row['total'];
                         }
                         if($dataf[1] == '10'){
-                            $outubro = $outubro + $row['valor_venda'];
+                            $outubro = $outubro + $row['total'];
                         }
                         if($dataf[1] == '11'){
-                            $novembro = $novembro + $row['valor_venda'];
+                            $novembro = $novembro + $row['total'];
                         }
                         if($dataf[1] == '12'){
-                            $dezembro = $dezembro + $row['valor_venda'];
+                            $dezembro = $dezembro + $row['total'];
                         }
                     }    
                 }
@@ -163,7 +163,7 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT tipo_de_pagamento, COUNT(*) FROM user_vendas WHERE `user_id`= ".$dados_de_usuario_sql->id." GROUP BY tipo_de_pagamento; ";
+                $sql = "SELECT tipo_de_pagamento, SUM(quantidade) FROM user_vendas WHERE `user_id`= ".$dados_de_usuario_sql->id." GROUP BY tipo_de_pagamento";
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $array = array();
@@ -182,16 +182,16 @@
                 else{
                     foreach($resultado as $row){
                         if($row['tipo_de_pagamento'] == 'A vista'){
-                            $avista = intval($row['COUNT(*)']);
+                            $avista = intval($row['SUM(quantidade)']);
                         }
                         if($row['tipo_de_pagamento'] == 'Cartao'){
-                            $cartao = intval($row['COUNT(*)']);
+                            $cartao = intval($row['SUM(quantidade)']);
                         }
                         if($row['tipo_de_pagamento'] == 'Boleto'){
-                            $boleto = intval($row['COUNT(*)']);
+                            $boleto = intval($row['SUM(quantidade)']);
                         }
                         if($row['tipo_de_pagamento'] == 'Pix'){
-                            $pix = intval($row['COUNT(*)']);
+                            $pix = intval($row['SUM(quantidade)']);
                         }
                     }
                 }

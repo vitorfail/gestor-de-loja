@@ -11,6 +11,7 @@ import Axios from "../../Axios"
 import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
 import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
 import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
+import Loading from "../../componentes/Loading/Loading";
 
 export default class Caixa extends Component{
     constructor(){
@@ -25,6 +26,7 @@ export default class Caixa extends Component{
             mostrar_pagar:"popup-pagar",
             mostrar_vencido:"popup-vencido",
             mostrar_prazo: "popup-prazo",
+            isLoading: true
         }
         this.iniciar= this.iniciar.bind(this)
     }
@@ -99,10 +101,12 @@ export default class Caixa extends Component{
                     }
                 }
             }
+            this.setState({isLoading:false})
+
         })
     }
     render(){
-        return(
+        return(this.state.isLoading? <Loading></Loading>:
             <div className="tudo">
                 <PopupVencido exibir={this.state.mostrar_vencido} fechar= {this.fechar_popup_vencido.bind(this)}></PopupVencido>
                 <PopupPrazo exibir={this.state.mostrar_prazo} fechar= {this.fechar_popup_prazo.bind(this)}></PopupPrazo>
