@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14-Ago-2022 às 01:27
--- Versão do servidor: 10.4.21-MariaDB
--- versão do PHP: 8.0.11
+-- Tempo de geração: 15-Ago-2022 às 18:41
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -63,20 +63,20 @@ CREATE TABLE `user-produtos` (
 --
 
 INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `percentual`, `Vendido`, `quantidade`, `custo_indireto`) VALUES
-(1, 1, 'CAMISA POLO', '145.34', '13%', 'Não', 9, 0),
+(1, 1, 'CAMISA POLO', '145.34', '13%', 'Não', 5, 0),
 (2, 2, 'Camisa gola polo', '140.90', '12%', 'Sim', 7, 0),
-(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', 13, 0),
+(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', 4, 0),
 (4, 1, 'Calça Jean', '45.68', '2%', 'Não', 7, 0),
 (11, 1, 'Calaça leag', '12.41', '34%', 'Não', 7, 0),
 (12, 1, 'Saia infantil', '45.21', '12%', 'Não', 5, 0),
 (13, 1, 'Camiseta masculina', '56.53', '32%', 'Não', 12, 0),
-(14, 1, 'Camisa social', '34.31', '34%', 'Não', 12, 0),
-(15, 1, 'Camisa do flamengo', '56.9', '45%', 'Não', 12, 0),
+(14, 1, 'Camisa social', '34.31', '34%', 'Não', 4, 0),
+(15, 1, 'Camisa do flamengo', '56.9', '45%', 'Não', 6, 0),
 (16, 1, 'Vestido transparente', '12.56', '12%', 'Não', 12, 0),
 (17, 1, 'Gaita', '34.52', '34%', 'Não', 12, 0),
 (18, 1, 'gelinho', '34.56', '7%', 'Não', 12, 0),
 (19, 1, 'Blusa social', '34.9', '12%', 'Não', 12, 0),
-(20, 1, 'Cinto', '34.9', '34%', 'Não', 4, 0);
+(20, 1, 'Cinto', '34.9', '34%', 'Não', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -103,7 +103,7 @@ CREATE TABLE `users_info` (
 --
 
 INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`) VALUES
-(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-10', '2022-03-12', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
+(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-15', '2022-03-12', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
 (2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', '8989090', '192.168.1.2', 'Normal', '20', '2022-09-03', '2022-08-03', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
 (4, 'Tudo é 10', 'vitor@gmail.com', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a'),
 (5, 'Tudo é 20', 'valesca@hotmail.com', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a');
@@ -139,7 +139,7 @@ CREATE TABLE `user_financeiro` (
 --
 
 INSERT INTO `user_financeiro` (`id`, `user_email`, `caixa`, `custos_fixos`) VALUES
-(1, 'failcreator0.0@gmail.com', 0, 0),
+(1, 'failcreator0.0@gmail.com', 2127.41, 0),
 (2, 'vitor_andrademanoel@hotmail.com', 0, 0),
 (4, 'vitor@gmail.com', 0, 0),
 (5, 'valesca@hotmail.com', 0, 0);
@@ -160,6 +160,17 @@ CREATE TABLE `user_vendas` (
   `tipo_de_pagamento` varchar(130) DEFAULT NULL,
   `quantidade` int(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `user_vendas`
+--
+
+INSERT INTO `user_vendas` (`id`, `user_id`, `produto_nome`, `data_venda`, `produto_id`, `valor_venda`, `tipo_de_pagamento`, `quantidade`) VALUES
+(1, 1, 'CAMISA POLO', '2022-08-14', 1, 160, 'A vista', 2),
+(2, 1, 'CAMISA POLO', '2022-08-14', 1, 164.23, 'A vista', 2),
+(3, 1, 'Cinto', '2022-08-14', 20, 79.56, 'Boleto', 1),
+(4, 1, 'Camisa do flamengo', '2022-08-15', 15, 120, 'Pix', 6),
+(5, 1, 'Camisa gola polo', '2022-08-15', 3, 178.18, 'A vista', 9);
 
 --
 -- Índices para tabelas despejadas
@@ -239,7 +250,7 @@ ALTER TABLE `user_financeiro`
 -- AUTO_INCREMENT de tabela `user_vendas`
 --
 ALTER TABLE `user_vendas`
-  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

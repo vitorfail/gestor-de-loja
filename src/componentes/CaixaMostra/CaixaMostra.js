@@ -43,8 +43,8 @@ function CaixaMostra(){
                 </div>
             </div>
             <div className="botoes">
-                <button className="add" onClick={(event) => setmostrar_venda('popup-venda mostrar')}>Adicionar</button>
-                <button className="del">Excluir</button>
+                <button className="add" onClick={(event) => setmostrar_venda('popup-venda mostrar')}>Adicionar venda</button>
+                <button className="del">Adicionar despesas</button>
             </div>
         </div>
     )

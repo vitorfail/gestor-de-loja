@@ -11,21 +11,20 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT produto_valor FROM `user-produtos` WHERE Vendido='Não' AND `user-id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT SUM((produto_valor+ custo_indireto) * quantidade) FROM `user-produtos` WHERE `user-id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $total = 0;
                 $array = array();
                 $conexao = null;
-                foreach($resultado as $row){
-                    $total = floatval($row['produto_valor']) + $total;
-                }
-                return $total;            
+                return floatval($resultado[0]['SUM((produto_valor+ custo_indireto) * quantidade)']);            
             }
             else{
                 return 'Usuário não autenticado';              
             }
+
         }
+
         public function estoque_descri(){
             if(AuthController::checkAuth()){
                 include('conexao.php');

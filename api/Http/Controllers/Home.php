@@ -11,16 +11,13 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT produto_valor FROM `user-produtos` WHERE Vendido='Não' AND `user-id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT SUM((produto_valor+ custo_indireto) * quantidade) FROM `user-produtos` WHERE `user-id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $total = 0;
                 $array = array();
                 $conexao = null;
-                foreach($resultado as $row){
-                    $total = floatval($row['produto_valor']) + $total;
-                }
-                return $total;            
+                return floatval($resultado[0]['SUM((produto_valor+ custo_indireto) * quantidade)']);            
             }
             else{
                 return 'Usuário não autenticado';              
@@ -31,10 +28,10 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT COUNT(id) FROM `user-produtos` WHERE Vendido='Não' AND `user-id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT SUM(quantidade) FROM `user-produtos` WHERE Vendido='Não' AND `user-id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
-                $total = $resultado[0]["COUNT(id)"];
+                $total = $resultado[0]["SUM(quantidade)"];
                 $conexao = null;
                 return $total;            
             }
@@ -70,12 +67,11 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql();
-                $data_atual = date('Y-m-d');
-                $sql = "SELECT SUM(valor_venda) AS total FROM user_vendas WHERE data_venda= ".$data_atual." AND `user_id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT caixa FROM user_financeiro WHERE `id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 
-                return $resultado[0]['total'];            
+                return floatval($resultado[0]['caixa']);            
             }
             else{
                 return 'Usuário não autenticado';              
@@ -186,16 +182,16 @@
                 else{
                     foreach($resultado as $row){
                         if($row['tipo_de_pagamento'] == 'A vista'){
-                            $avista = $row['COUNT(*)'] ;
+                            $avista = intval($row['COUNT(*)']);
                         }
                         if($row['tipo_de_pagamento'] == 'Cartao'){
-                            $cartao = $row['COUNT(*)'] ;
+                            $cartao = intval($row['COUNT(*)']);
                         }
                         if($row['tipo_de_pagamento'] == 'Boleto'){
-                            $boleto = $row['COUNT(*)'] ;
+                            $boleto = intval($row['COUNT(*)']);
                         }
                         if($row['tipo_de_pagamento'] == 'Pix'){
-                            $pix = $row['COUNT(*)'] ;
+                            $pix = intval($row['COUNT(*)']);
                         }
                     }
                 }

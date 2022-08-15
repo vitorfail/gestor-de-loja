@@ -19,7 +19,7 @@ export default class Estoque extends Component{
         super()
         this.lista =[];
         this.state = {
-            estoque_valor: '',
+            estoque_valor: 0,
             dias: '',
             nome:'',
             vencimento:'',
@@ -157,7 +157,7 @@ export default class Estoque extends Component{
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>
-                        <BlocosEstoque></BlocosEstoque>
+                        <BlocosEstoque estoque={this.state.estoque_valor}></BlocosEstoque>
                         <div className="mostrar-estoque">
                             <div className="tabela">
                                 <div className="titulo">

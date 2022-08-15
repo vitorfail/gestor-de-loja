@@ -31,6 +31,6 @@
   
   # Return the HTML code for button
   
-  echo '$preference->init_point';
+  echo $preference->init_point;
 
 ?>

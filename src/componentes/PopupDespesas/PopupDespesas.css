@@ -1,7 +1,7 @@
-.popup-venda{
+.popup-despesa{
     display: none;
 }
-.popup-venda.mostrar{
+.popup-despesa.mostrar{
     width: 100vw;
     height: 100vh;
     background-color: rgba(122, 122, 122, 0.63);
@@ -13,41 +13,41 @@
     justify-content: center;
     display: flex;
 }
-.popup-venda .menu{
+.popup-despesa .menu{
     border-radius: 50px;
     width: 400px;
-    height: 570px;
+    height: 470px;
     background: white;
     display: block;
 }
-.popup-venda .menu .inputs{    
-    height: 429px;
+.popup-despesa .menu .inputs{    
+    height: 295px;
     display: block;
 }
-.popup-venda .menu .inputs .titulo{
+.popup-despesa .menu .inputs .titulo{
     padding-left: 15px;
 }
-.popup-venda .menu .inputs .titulo h1{
-    text-align: center;
+.popup-despesa .menu .inputs .titulo h1{
     font-weight: 700;
     font-family: Roboto forte;
-    color: #1e9b06;
+    color: #3951b2;
 }
-.popup-venda .menu .inputs .titulo .preencha{
+.popup-despesa .menu .inputs .titulo .preencha{
     color: red;
     display: none;
 }
-.popup-venda .menu .inputs .titulo .preencha.mostrar{
+.popup-despesa .menu .inputs .titulo .preencha.mostrar{
     animation: tremer .4s;
     display: block;
+
 }
-.popup-venda .menu .inputs .input{
+.popup-despesa .menu .inputs .input{
     position: relative;
     height: 40px;
     padding-left: 5%;
     margin-top: 5%;
 }
-.popup-venda .menu .inputs .input input{
+.popup-despesa .menu .inputs .input input{
     position: absolute;
     width: 70%;
     border: 1px solid lightgrey;
@@ -61,37 +61,13 @@
     -moz-transition: all .1s linear;
     -webkit-appearance: none;
 }
-.popup-venda .menu .inputs .input select{
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: url("../../icons/seta.png") no-repeat center right #FFF;
-    background-size: 15px;
-    border: 1px solid #333;
-    padding-right: 20px;
-    position: absolute;
-    width: 70%;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    outline: none;
-    height: 100%;
-    min-width: 150px;
-    font-size: 20px;
-    transition: all .1s linear;
-    -webkit-transition: all .1s linear;
-    -moz-transition: all .1s linear;
-    -webkit-appearance: none;
+.popup-despesa .menu .inputs .input input:focus{
+    border: 2px solid #3951b2;
 }
-.popup-venda .menu .inputs .input select:hover{
-    cursor: pointer;
-}
-.popup-venda .menu .inputs .input input:focus{
-    border: 2px solid #39b28a;
-}
-.popup-venda .menu .inputs .input input::placeholder{
+.popup-despesa .menu .inputs .input input::placeholder{
     color:transparent;
 }
-.popup-venda .menu .inputs .input label{
+.popup-despesa .menu .inputs .input label{
     pointer-events: none;
     position: absolute;
     font-size: 20px;
@@ -103,26 +79,26 @@
     box-sizing: border-box;
     top: 4px;
 }
-.popup-venda .menu .inputs .input input:focus + .nome,
-.popup-venda .menu .inputs .input input:not(:placeholder-shown) + label{    
+.popup-despesa .menu .inputs .input input:focus + .nome,
+.popup-despesa .menu .inputs .input input:not(:placeholder-shown) + label{    
     font-size: 16px;
     top: -16%;
-    color: #3db239;
+    color: #3951b2;
     background: white;
     font-weight: 600;
     z-index: 10;
 }
-.popup-venda .menu .botoes{
+.popup-despesa .menu .botoes{
     justify-content: center;
     justify-items: center;
     margin-top: 18px;
     padding-top: 20px;
     display: flex;
 }
-.popup-venda .menu .botoes .add{
+.popup-despesa .menu .botoes .add{
     font-family: Roboto media;
     border: none;
-    background: rgb(39, 206, 81);
+    background: rgb(39, 39, 206);
     border-radius: 10px;
     color: white;
     font-size: 20px;
@@ -131,13 +107,13 @@
     margin-bottom: 8px;
     margin-right: 10px;
 }
-.popup-venda .menu .botoes .add:hover{
+.popup-despesa .menu .botoes .add:hover{
     background: white;
-    border: 2px solid rgb(86, 206, 39);
-    color: rgba(39, 206, 53, 0.7);
+    border: 2px solid rgb(39, 39, 206);
+    color: rgb(39, 39, 206, 0.7);
     cursor: pointer;
 }
-.popup-venda .menu .botoes .cancel{
+.popup-despesa .menu .botoes .cancel{
     font-family: Roboto media;
     border: none;
     background: rgba(206, 39, 39, 0.7);
@@ -148,7 +124,7 @@
     height: 50px;
     margin-bottom: 8px;
 }
-.popup-venda .menu .botoes .cancel:hover{
+.popup-despesa .menu .botoes .cancel:hover{
     font-style: Roboto normal;
     background: white;
     border: 2px solid rgba(206, 39, 39, 0.7);

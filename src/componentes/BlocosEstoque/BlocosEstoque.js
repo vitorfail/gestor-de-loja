@@ -3,10 +3,11 @@ import "./BlocosEstoque.css";
 import { useState, useEffect } from "react";
 import Relogio from "../Relogio/Relogio";
 
-function BlocosEstoque(){
-    const [estoque, setestoque] = useState(890);
+function BlocosEstoque(props){
+    const [estoque, setestoque] = useState(props.estoque);
     useEffect(() => {
-    })
+        setestoque(props.estoque)
+    }, [props.estoque])
 
     return(
         <div className="blocos-estoque">

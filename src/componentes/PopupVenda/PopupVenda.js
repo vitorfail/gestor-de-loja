@@ -17,20 +17,30 @@ export default class PopupVenda extends Component{
             quantidade_:'',
             preencha: "preencha",
             dados:[],
-            tipo_pagamento:'',
+            tipo_pagamento:'A vista',
             maximo_quantidade:0,
             maximo_largura:0,
-            valor_venda_recomendado:0
+            valor_venda_recomendado:0,
+            data:''
         }
         this.add_venda = this.add_venda.bind(this)
         this.puxar_produtos = this.puxar_produtos.bind(this)
         this.mascara_valor = this.mascara_valor.bind(this)
         this.mascara_percentual = this.mascara_percentual.bind(this)
         this.delete_percental = this.delete_percental.bind(this)
-        this.identificar_produto = this.identificar_produto.bind(this) 
+        this.identificar_produto = this.identificar_produto.bind(this)
+        this.mask_data = this.mask_data.bind(this) 
     }
 
     puxar_produtos(){
+        var data_ = new Date()
+        var dias = data_.getDate()
+        var mes = data_.getMonth()+1
+        if( data_.getDate() <10) dias = "0"+dias
+        if( (data_.getMonth()+1) <10) mes = "0"+mes
+        var data_hoje = dias+"/"+mes+"/"+data_.getFullYear()
+        this.setState({data: data_hoje})
+
         this.setState({dados: this.lista})
         this.lista =[]
         Axios.post('index.php?url=produtos/pesquisa').then(
@@ -56,7 +66,8 @@ export default class PopupVenda extends Component{
                 }
             }
         ).catch(erro =>{
-            alert("Erro ao tentar procurar produtos. Verifique sua internet e tente denovo")
+            console.log(erro)
+            //alert("Erro ao tentar procurar produtos. Verifique sua internet e tente denovo")
         })
     }
     componentWillReceiveProps(props){
@@ -64,23 +75,24 @@ export default class PopupVenda extends Component{
             
         }
         else{
+            this.setState({preencha: "preencha"})
             this.puxar_produtos()
         }
     }
     add_venda(){
-        this.setState({preencha: "preencha"})
-        if(this.state.produto_nome_ ==='' || this.state.valor_venda ==='' 
-        || this.state.percentual_ ==='' || this.state.quantidade_ ==='' || this.state.percentual_ ==='%'){
+        if(this.state.data ==='' || this.state.valor_venda ==='' 
+        || this.state.produto_nome_ ==='' || this.state.id_produto ==='' || this.state.tipo_pagamento ==='' || this.state.quantidade_=== ''){
             setTimeout(() =>  this.setState({preencha: "preencha mostrar"}), 4);
         }
         else{
-            var data_ = new Date()
-            var data_hoje = data_.getFullYear()+"-"+(data_.getMonth()+1)+"-"+data_.getDate()
-            Axios.post('index.php?url=inserirprodutos/pesquisa', { nome:this.state.produto_nome_, 
+            var data_hoje =  this.state.data.split('/')
+            data_hoje = data_hoje[2]+'-'+data_hoje[1]+'-'+data_hoje[0]
+            var preco = parseFloat(((this.state.valor_venda.replace('R$ ', '')).replace('.', '')).replace(',', '.'))
+            Axios.post('index.php?url=inserirvenda/pesquisa', { nome:this.state.produto_nome_, 
                 data:data_hoje, 
-                id:this.state.id_produto, 
-                valor:this.state.valor_venda, 
-                tipo:this.state.tipo_pagamento, qtd:this.state.quantidade_ }).then(res =>{
+                id:parseInt(this.state.id_produto), 
+                valor:preco, 
+                tipo:this.state.tipo_pagamento, qtd:parseInt(this.state.quantidade_ )}).then(res =>{
                     if(res.data.data === '1'){
                         this.props.fechar()
                         this.props.reiniciar()
@@ -118,12 +130,18 @@ export default class PopupVenda extends Component{
         this.setState({quantidade_: lista[2]})
         this.setState({maximo_quantidade: lista[2]})
         this.setState({maximo_largura: lista[2].length})
-        this.setState({valor_venda: lista[3]})
+        this.setState({valor_venda: lista[3].replace('.', ',')})
         this.setState({valor_venda_recomendado: lista[3]})
     }
     quantidade(qtd){
         var largura = this.state.maximo_largura
         this.setState({quantidade_: qtd.slice(0, largura)})
+    }
+    mask_data(e){
+        e = e.replace(/\D/g, '');
+        e = e.replace(/(\d)(\d{4})$/, '$1/$2');
+        e = e.replace(/^(\d{2})(\d)/, '$1/$2');
+        return e;
     }
     render(){
         return(
@@ -148,13 +166,21 @@ export default class PopupVenda extends Component{
                             <label className="nome">Quantidade</label>
                         </div>
                         <div className="input">
-                            <input  value={this.state.percentual_} placeholder="R$ 00,00" onKeyDown={(even) => this.delete_percental(even.keyCode)} onChange={(event) => this.mascara_percentual(event.target.value)} ></input>
-                            <label className="nome">Percentual(%)</label>
+                            <select  value={this.state.tipo_pagamento}  onChange={(event) => this.setState({tipo_pagamento: event.target.value})} >
+                                <option value="A vista">A vista</option>
+                                <option value="Parcelado">Parcelado</option>
+                                <option value="Boleto">Boleto</option>
+                                <option value="Pix">Pix</option>
+                            </select>
+                        </div>
+                        <div className="input">
+                            <input type="text" value={this.state.data} placeholder="R$ 00,00" onChange={(event) => this.setState({data: this.mask_data(event.target.value)})} maxLength="10"></input>
+                            <label className="nome">Data de venda</label>
                         </div>
 
                     </div>
                     <div className="botoes">
-                        <button className="add" onClick={(event) => this.add_produtos()} >Adicionar</button>
+                        <button className="add" onClick={(event) => this.add_venda()} >Adicionar</button>
                         <button  className="cancel" onClick={(event) => this.props.fechar()}>Cancelar</button>
                     </div>
                 </div>
