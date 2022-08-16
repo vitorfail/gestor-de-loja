@@ -8,7 +8,7 @@ export default class PopupDespesas extends Component{
         super(props)
         this.state = {
             mostrar: this.props.exibir,
-            produto_nome_: '',
+            descricao: '',
             produto_valor_: '',
             percentual_: '',
             quantidade_:'',
@@ -16,7 +16,7 @@ export default class PopupDespesas extends Component{
             data:'',
             vencimento:''
         }
-        this.add_produtos = this.add_produtos.bind(this)
+        this.add_despesa = this.add_despesa.bind(this)
         this.mascara_valor = this.mascara_valor.bind(this)
         this.mascara_percentual = this.mascara_percentual.bind(this)
         this.delete_percental = this.delete_percental.bind(this) 
@@ -30,28 +30,28 @@ export default class PopupDespesas extends Component{
         if(dias< 10) dias = '0'+dias
         if(mes< 10) mes = '0'+mes
         this.setState({data: dias+'/'+mes+"/"+data.getFullYear()})
-
+        this.setState({vencimento: dias+'/'+mes+"/"+data.getFullYear()})
         this.setState({preencha: "preencha"})
+        
     }
-    add_produtos(){
+    add_despesa(){
         this.setState({preencha: "preencha"})
-        if(this.state.produto_nome_ ==='' || this.state.produto_valor_ ==='' 
-        || this.state.percentual_ ==='' || this.state.quantidade_ ==='' || this.state.percentual_ ==='%'){
+        if(this.state.descricao ==='' || this.state.produto_valor_ ==='' 
+        || this.state.data ==='' || this.state.vencimento === ''){
             setTimeout(() =>  this.setState({preencha: "preencha mostrar"}), 4);
         }
         else{
             var custo = this.state.produto_valor_.replace('.', '').replace("R$ ", "")
             custo = parseFloat(custo.replace(",", "."))
-            var qtd = parseInt(this.state.quantidade_)
-            Axios.post('index.php?url=inserirdespesa/pesquisa', {
-                valor:this.state.produto_nome_ , data_vencimentor: custo, 
-                data_pagamento:this.state.percentual_ }).then(res =>{
+            Axios.post('index.php?url=inserirdespesa/pesquisa', {nome: this.state.descricao,
+                valor:custo , data_vencimento: this.state.vencimento, 
+                data_pagamento:this.state.data }).then(res =>{
                     if(res.data.data === '1'){
                         this.props.fechar()
                         this.props.reiniciar()
                     }
                     if(res.data.data === '0'){
-    
+                        alert("deu errado")
                     }
                 }).catch(erro =>{
     
@@ -92,7 +92,7 @@ export default class PopupDespesas extends Component{
                             <h3 className={this.state.preencha}>Preencha os dados*</h3>
                         </div>
                         <div className="input">
-                            <input value={this.state.produto_nome_} onChange={(event) => this.setState({produto_nome_: event.target.value})} ></input>
+                            <input value={this.state.descricao} onChange={(event) => this.setState({descricao: event.target.value})} ></input>
                             <label className="nome">Descrição</label>
                         </div>
                         <div className="input">
@@ -110,7 +110,7 @@ export default class PopupDespesas extends Component{
 
                     </div>
                     <div className="botoes">
-                        <button className="add" onClick={(event) => this.add_produtos()} >Adicionar</button>
+                        <button className="add" onClick={(event) => this.add_despesa()} >Adicionar</button>
                         <button  className="cancel" onClick={(event) => this.props.fechar()}>Cancelar</button>
                     </div>
                 </div>

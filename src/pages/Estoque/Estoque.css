@@ -233,8 +233,10 @@ html::-webkit-scrollbar-thumb
     text-align: center;
 }
 .mostrar-estoque .botoes{
+    width: 100%;
     padding-top: 20px;
     display: flex;
+    justify-content: center;
 }
 .mostrar-estoque .botoes .add{
     font-family: Roboto media;
@@ -271,5 +273,48 @@ html::-webkit-scrollbar-thumb
     color: rgba(206, 39, 39, 0.7);
     cursor: pointer;
 }
+.mostrar-estoque .passadores{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mostrar-estoque .passadores img{
+    width: 30px;
+    height: 30px;
+}
+.mostrar-estoque .passadores button{
+    margin: 7px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    justify-items:center ;
+    align-items: center;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    border: 0;
+    background-image: linear-gradient(to right bottom, rgb(46, 8, 151), rgb(162, 0, 255));
+}
+.mostrar-estoque .passadores button:hover{
+    background-image: linear-gradient(to right bottom, rgb(181, 53, 255), rgb(62, 49, 238));
+}
+.mostrar-estoque .passadores button:focus{
+    background-image: linear-gradient(to right bottom, rgb(181, 53, 255), rgb(232, 175, 255));
+    transition: ease-in-out;
+    transition-duration: 0.1s;
+    transition-delay: 0.1s;
+    width: 40px;
+    height: 40px;
+}
+.mostrar-estoque .tabela .vazio{
+    align-items: center;
+    display: flex; 
+    width: 15%; 
+    justify-content: center;
+}
+
+
 
     

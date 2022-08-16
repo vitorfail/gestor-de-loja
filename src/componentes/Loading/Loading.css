@@ -9,7 +9,9 @@
     position: fixed;
     z-index: 400000;
     visibility: visible;
-    transition: visibility 2.0s, opacity 1.2s linear;
+    transition: ease-in-out;
+    transition-duration: 0.1s;
+    transition-delay: 0.1s;
     opacity: 1;
 }
 .configure-border-1 {

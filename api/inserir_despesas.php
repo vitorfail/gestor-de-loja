@@ -14,8 +14,8 @@
                     include_once('conexao.php');
                     $dados_de_usuario_sql = AuthController::dados_de_sql(); 
                     
-                    $venda = "INSERT INTO `user_despesas` (user_id, valor_despesas, data_vencimento, data_pagamento) 
-                    VALUES (:user_id, :valor_despesas, :data_vencimento, :data_pagamento)";
+                    $venda = "INSERT INTO `user_despesas` (user_id, descricao,valor_despesas, data_vencimento, data_pagamento) 
+                    VALUES (:user_id, :descricao ,:valor_despesas, :data_vencimento, :data_pagamento)";
                     $inserir_venda = $conexao->prepare($venda);
                     $inserir_venda->bindValue( ':user_id', $dados_de_usuario_sql->id);
                     $inserir_venda->bindValue(':valor_despesas', floatval($_POST['valor']));

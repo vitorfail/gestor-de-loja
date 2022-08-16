@@ -14,6 +14,10 @@ import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
 import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
 import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
 import Loading from "../../componentes/Loading/Loading";
+import Passador_final_esquerda from "../../icons/passar-final-esquerda.png"
+import Passador_esquerda from "../../icons/passar-esquerda.png"
+import Passador_direita from "../../icons/passar-direita.png"
+import Passador_final_direita from "../../icons/passar-final-direita.png"
 
 export default class Estoque extends Component{
     constructor(){
@@ -29,13 +33,38 @@ export default class Estoque extends Component{
             mostrar_pagar:"popup-pagar",
             mostrar_vencido:"popup-vencido",
             mostrar_prazo: "popup-prazo",
-            isLoading:true
+            isLoading:true,
+            index:0,
+            limite:false
         }
         this.iniciar= this.iniciar.bind(this)
         this.mostrar_estoque = this.mostrar_estoque.bind(this)
         this.abrir_popup = this.abrir_popup.bind(this)
         this.fechar_popup = this.fechar_popup.bind(this)
         this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
+        this.passador = this.passador.bind(this)
+    }
+    passador(direcao){
+        var valor =this.state.index
+        if(direcao === 'esquerda'){
+            if(valor === 0){
+
+            }
+            else{
+                this.setState({index: valor-14})
+                this.iniciar(valor-14)
+                this.setState({limite: false})        
+            }
+        }
+        if(direcao === 'direita'){
+            if(this.state.limite === true){
+
+            }
+            else{
+                this.setState({index: valor+14})
+                this.iniciar(valor+14)            
+            }
+        }
     }
     fechar_popup(){
         this.setState({mostrar: "popup-estoque"})
@@ -50,7 +79,7 @@ export default class Estoque extends Component{
         this.setState({mostrar_vencido: "popup-vencido"})
     }
     componentDidMount(){
-        this.iniciar()
+        this.iniciar(0)
         setTimeout(() =>  this.setState({isLoading: false}), 3);
     }
     abrir_popup() {
@@ -61,13 +90,23 @@ export default class Estoque extends Component{
         if(data === '1' || data === 'Usuário não autenticado'){
             Exit()
         }
+        if(data.length === 0){
+            this.lista = [];
+            this.setState({limite: true})
+            this.lista.push(<div key={"original"} className="entrada"> 
+                <div className="vazio">
+                    <h3>Não há produtos</h3>
+                </div>
+            </div>)
+            this.setState({dados: this.lista})
+        }
         else{
             this.lista = [];
             for(var i=0; i< data.length; i++){
                 var custo = parseFloat(data[i]["produto_valor"])
                 var percentual = parseInt(data[i]["percentual"].replace('%', ''))
                 var preco = (custo +(custo *(percentual/100))).toFixed(2)
-               this.lista.push( <div  key={data[i]['id']+data[i]["produto-nome"]} className="entrada">
+               this.lista.push(<div  key={data[i]['id']+data[i]["produto-nome"]} className="entrada">
                         <div className="descri-2">
                             <h3>{data[i]["produto-nome"]}</h3>
                         </div>
@@ -95,10 +134,10 @@ export default class Estoque extends Component{
         }
     }
     restart(){
-        this.iniciar()
+        this.iniciar(0)
     }
-    iniciar(){
-        Axios.post('index.php?url=estoque/pesquisa', {user:'1', index: 0, tamanho:15})
+    iniciar(inicio){
+        Axios.post('index.php?url=estoque/pesquisa', {user:'1', index: inicio, tamanho:15})
         .then(res => {
 
             if(res.data.data[1] === "Usuário não autenticado"){
@@ -187,6 +226,13 @@ export default class Estoque extends Component{
                                     </div>
                                 </div>
                                 {this.state.dados}
+
+                            </div>
+                            <div className="passadores">
+                                <button onClick={(event) => this.passador('esquerda')}><img alt="Passador_final_esquerda" src={Passador_final_esquerda}/></button>
+                                <button onClick={(event) => this.passador('esquerda')}><img alt="Passador_esquerda" src={Passador_esquerda}/></button>
+                                <button onClick={(event) => this.passador('direita')}><img alt="Passador_direita" src={Passador_direita}/></button>
+                                <button onClick={(event) => this.passador('direita')}><img alt="Passador_final_direita" src={Passador_final_direita}/></button>
 
                             </div>
                             <div className="botoes">

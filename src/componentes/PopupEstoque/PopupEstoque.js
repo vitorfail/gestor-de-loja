@@ -20,6 +20,10 @@ export default class PopupEstoque extends Component{
         this.delete_percental = this.delete_percental.bind(this) 
     }
     componentDidMount(){
+        this.setState({produto_nome_: ''})
+        this.setState({produto_valor_: ''})
+        this.setState({percentual_: ''})
+        this.setState({quantidade_: ''})
         this.setState({preencha: "preencha"})
     }
     add_produtos(){
@@ -38,6 +42,10 @@ export default class PopupEstoque extends Component{
                     if(res.data.data === '1'){
                         this.props.fechar()
                         this.props.reiniciar()
+                        this.setState({produto_nome_: ''})
+                        this.setState({produto_valor_: ''})
+                        this.setState({percentual_: ''})
+                        this.setState({quantidade_: ''})
                     }
                     if(res.data.data === '0'){
     
