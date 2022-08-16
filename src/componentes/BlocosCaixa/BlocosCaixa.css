@@ -30,3 +30,29 @@
     text-align: center;
     border-bottom: 4px solid rgb(225, 225, 225);
 }
+.blocos-caixa .box.saldo{
+    background-image: linear-gradient(to bottom right ,rgb(0, 83, 21), rgb(24, 187, 73));
+}
+.blocos-caixa .box.saldo h1{
+    color: white;
+}
+.blocos-caixa .box.saldo .saldo{
+    color: rgb(255, 255, 255);
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 4px solid rgb(225, 225, 225);   
+}
+.blocos-caixa .box.negativo{
+    background-image: linear-gradient(to bottom right ,rgb(153, 0, 0), rgb(238, 43, 43));
+}
+.blocos-caixa .box.negativo h1{
+    color: white;
+}
+.blocos-caixa .box.negativo .saldo{
+    color: rgb(255, 255, 255);
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 4px solid rgb(225, 225, 225);   
+}

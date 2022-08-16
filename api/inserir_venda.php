@@ -4,6 +4,7 @@
     header("Access-Control-Allow-Credentials: true");
     header("Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT");
     header("Access-Control-Allow-Headers: *");
+    date_default_timezone_set('America/Sao_Paulo');
 
     $_POST= json_decode(file_get_contents('php://input'), true);
     class InserirvendaController{

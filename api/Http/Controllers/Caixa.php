@@ -4,32 +4,10 @@
     header("Access-Control-Allow-Credentials: true");
     header("Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT");
     header("Access-Control-Allow-Headers: *");
+    date_default_timezone_set('America/Sao_Paulo');
     $GLOBALS['a'] = 'Authorization';
     $_POST = json_decode(file_get_contents("php://input"), true);
     class CaixaController{
-        public function recebido_hoje(){
-            if(AuthController::checkAuth()){
-                include('conexao.php');
-                $data_hoje= date('Y-m-d');
-                $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT SUM(valor_venda) AS total FROM `user_vendas` WHERE data_venda = '".$data_hoje."' and `user_id` = ".$dados_de_usuario_sql->id;
-                $pesquisa = $conexao->query($sql);
-                $resultado = $pesquisa->fetchAll();
-                $total_ = 0;
-                $conexao = null;
-                if($resultado[0]['total'] == null){
-                    $total =0;
-                }
-                else{
-                    $total = $resultado[0]['total'];
-                }
-                return floatval($total);            
-            }
-            else{
-                $conexao = null;
-                return 'Usuário não autenticado';              
-            }
-        }
         public function despesas_hoje(){
             if(AuthController::checkAuth()){
                 include('conexao.php');
@@ -93,10 +71,9 @@
         }
         public function pesquisa(){
             $nome = $this->nome();
-            $recebido_hoje = $this->recebido_hoje();
             $despesas_hoje = $this->despesas_hoje();
             $valor_caixa = $this->valor_caixa();
-            return array($despesas_hoje, $recebido_hoje, $nome[0], $nome[1], $nome[2], $valor_caixa);
+            return array($despesas_hoje, $valor_caixa, $nome[0], $nome[1], $nome[2], $valor_caixa);
         }
     }
 ?>

@@ -13,6 +13,7 @@ import PopupEstoque from "../../componentes/PopupEstoque/PopupEstoque"
 import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
 import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
 import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
+import Loading from "../../componentes/Loading/Loading";
 
 export default class Estoque extends Component{
     constructor(){
@@ -27,7 +28,8 @@ export default class Estoque extends Component{
             mostrar: "popup-estoque",
             mostrar_pagar:"popup-pagar",
             mostrar_vencido:"popup-vencido",
-            mostrar_prazo: "popup-prazo"
+            mostrar_prazo: "popup-prazo",
+            isLoading:true
         }
         this.iniciar= this.iniciar.bind(this)
         this.mostrar_estoque = this.mostrar_estoque.bind(this)
@@ -49,6 +51,7 @@ export default class Estoque extends Component{
     }
     componentDidMount(){
         this.iniciar()
+        setTimeout(() =>  this.setState({isLoading: false}), 3);
     }
     abrir_popup() {
         this.setState({mostrar: "popup-estoque mostrar"})
@@ -147,7 +150,7 @@ export default class Estoque extends Component{
         })
     }
     render(){
-        return(
+        return(this.state.isLoading? <Loading></Loading> :
             <div className="tudo">
                 <PopupEstoque exibir={this.state.mostrar} fechar= {this.fechar_popup.bind(this)} reiniciar={this.restart.bind(this)}></PopupEstoque>
                 <PopupVencido exibir={this.state.mostrar_vencido} fechar= {this.fechar_popup_vencido.bind(this)}></PopupVencido>

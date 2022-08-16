@@ -41,6 +41,7 @@ export default class Caixa extends Component{
     }
     componentDidMount(){
         this.iniciar()
+        setTimeout(() =>  this.setState({isLoading: false}), 3);
     }        
     iniciar(){
         Axios.post('index.php?url=caixa/pesquisa', {user:'1'})
@@ -101,8 +102,6 @@ export default class Caixa extends Component{
                     }
                 }
             }
-            this.setState({isLoading:false})
-
         })
     }
     render(){
@@ -115,7 +114,7 @@ export default class Caixa extends Component{
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>
-                        <BlocosCaixa despesas={this.state.despesas} recebido_hoje={this.state.recebido_hoje}></BlocosCaixa>
+                        <BlocosCaixa despesas={this.state.despesas} caixa={this.state.recebido_hoje}></BlocosCaixa>
                         <CaixaMostra></CaixaMostra>      
                     </Conteudo>
                 </LadoDireito>

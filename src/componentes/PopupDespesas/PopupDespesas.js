@@ -43,9 +43,9 @@ export default class PopupDespesas extends Component{
             var custo = this.state.produto_valor_.replace('.', '').replace("R$ ", "")
             custo = parseFloat(custo.replace(",", "."))
             var qtd = parseInt(this.state.quantidade_)
-            Axios.post('index.php?url=inserirprodutos/pesquisa', {
-                produto_nome:this.state.produto_nome_ , produto_valor: custo, 
-                percentual:this.state.percentual_, quantidade:qtd }).then(res =>{
+            Axios.post('index.php?url=inserirdespesa/pesquisa', {
+                valor:this.state.produto_nome_ , data_vencimentor: custo, 
+                data_pagamento:this.state.percentual_ }).then(res =>{
                     if(res.data.data === '1'){
                         this.props.fechar()
                         this.props.reiniciar()

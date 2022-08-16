@@ -16,7 +16,7 @@ function Relogio(){
         var meses = ["Janeiro", "Fevereiro", "Março", "Abril","Maio",
          "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
         if(dia< 10) dia = "0"+dia
-        setdatas(dia+ ", "+meses[data.getMonth()+1]+ ", "+data.getFullYear())
+        setdatas(dia+ ", "+meses[data.getMonth()]+ ", "+data.getFullYear())
         if(data.getHours() >9){
             sethora(data.getHours())
         }
