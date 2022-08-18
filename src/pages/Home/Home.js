@@ -15,8 +15,8 @@ import Loading from "../../componentes/Loading/Loading";
 import SemInternet from "../../componentes/SemInternet/SemInternet";
 
 export default class Home extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             caixa:0,
             estoque: '',
@@ -30,7 +30,7 @@ export default class Home extends Component{
             mostrar_prazo: "popup-prazo",
             tipos_de_pagamento:0,
             isLoading:true,
-            seminternet:"sem-internet"
+            seminternet:"sem-internet",
         }
         this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
         this.iniciar= this.iniciar.bind(this)

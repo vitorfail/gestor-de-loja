@@ -3,6 +3,7 @@ import "./PopupDespesas.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
 
+
 export default class PopupDespesas extends Component{
     constructor(props){
         super(props)
@@ -14,7 +15,7 @@ export default class PopupDespesas extends Component{
             quantidade_:'',
             preencha: "preencha",
             data:'',
-            vencimento:''
+            vencimento:'',
         }
         this.add_despesa = this.add_despesa.bind(this)
         this.mascara_valor = this.mascara_valor.bind(this)
