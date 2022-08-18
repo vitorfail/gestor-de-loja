@@ -18,6 +18,8 @@ import Passador_final_esquerda from "../../icons/passar-final-esquerda.png"
 import Passador_esquerda from "../../icons/passar-esquerda.png"
 import Passador_direita from "../../icons/passar-direita.png"
 import Passador_final_direita from "../../icons/passar-final-direita.png"
+import SemInternet from "../../componentes/SemInternet/SemInternet";
+import Loading1 from "../../componentes/Loading1/Loading1";
 
 export default class Estoque extends Component{
     constructor(){
@@ -34,8 +36,10 @@ export default class Estoque extends Component{
             mostrar_vencido:"popup-vencido",
             mostrar_prazo: "popup-prazo",
             isLoading:true,
+            loading: "loading",
             index:0,
-            limite:false
+            limite:false,
+            seminternet:"sem-internet"
         }
         this.iniciar= this.iniciar.bind(this)
         this.mostrar_estoque = this.mostrar_estoque.bind(this)
@@ -45,24 +49,27 @@ export default class Estoque extends Component{
         this.passador = this.passador.bind(this)
     }
     passador(direcao){
+        this.setState({loading: "loading mostrar"})
         var valor =this.state.index
         if(direcao === 'esquerda'){
             if(valor === 0){
-
+                this.setState({loading: "loading"})
             }
             else{
                 this.setState({index: valor-14})
                 this.iniciar(valor-14)
-                this.setState({limite: false})        
+                this.setState({limite: false})
+                this.setState({loading: "loading"})
             }
         }
         if(direcao === 'direita'){
             if(this.state.limite === true){
-
+                this.setState({loading: "loading"})
             }
             else{
                 this.setState({index: valor+14})
-                this.iniciar(valor+14)            
+                this.iniciar(valor+14)
+                this.setState({loading: "loading"})
             }
         }
     }
@@ -186,11 +193,15 @@ export default class Estoque extends Component{
                     }
                 }
             }
+        }).catch( er => {
+            this.setState({seminternet: "sem-internet mostrar"})
         })
     }
     render(){
         return(this.state.isLoading? <Loading></Loading> :
             <div className="tudo">
+                <Loading1 loading={this.state.loading}></Loading1>
+                <SemInternet exibir={this.state.seminternet}></SemInternet>
                 <PopupEstoque exibir={this.state.mostrar} fechar= {this.fechar_popup.bind(this)} reiniciar={this.restart.bind(this)}></PopupEstoque>
                 <PopupVencido exibir={this.state.mostrar_vencido} fechar= {this.fechar_popup_vencido.bind(this)}></PopupVencido>
                 <PopupPrazo exibir={this.state.mostrar_prazo} fechar= {this.fechar_popup_prazo.bind(this)}></PopupPrazo>
@@ -199,7 +210,7 @@ export default class Estoque extends Component{
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
                     <Conteudo>
-                        <BlocosEstoque estoque={this.state.estoque_valor}></BlocosEstoque>
+                        <BlocosEstoque estoque={this.state.estoque_valor.toFixed(2)}></BlocosEstoque>
                         <div className="mostrar-estoque">
                             <div className="tabela">
                                 <div className="titulo">

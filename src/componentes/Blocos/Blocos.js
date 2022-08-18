@@ -11,7 +11,7 @@ function Blocos(props){
         setestoque(props.estoque)
         setnumero_estoque(props.numero_estoque)
         setcaixa(props.caixa)
-    })
+    }, [props.estoque, props.numero_estoque, props.caixa])
     return(
         <div className="blocos">
             <div className="box">
@@ -20,11 +20,11 @@ function Blocos(props){
             </div>
             <div className="box">
                 <h2 className="titulo">{numero_estoque}</h2>
-                <h1>N° de roupas</h1>
+                <h1>Roupas em estoque</h1>
             </div>
             <div className="box">
                 <h2 className="titulo">R$ {estoque}</h2>
-                <h1>Estoque</h1>
+                <h1>Dinheiro em estoque</h1>
             </div>
             <Relogio></Relogio>
         </div>

@@ -14,7 +14,7 @@
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
                 $datahoje = date('Y-m-d');
                 $datasql = explode('-', $datahoje);
-                $sql = "SELECT SUM(valor_despesas) FROM `user_despesas` WHERE (MONTH(data_vencimento), DAY(data_vencimento), `user_id`)  =  (".$datasql[1]." ,  ".$datasql[2].", ".$dados_de_usuario_sql->id.")";
+                $sql = "SELECT SUM(valor_despesas) FROM `user_despesas` WHERE `user_id` = ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $total = 0;
@@ -26,6 +26,27 @@
                 }
                 $conexao = null;
                 return $total;            
+            }
+            else{
+                return 'Usuário não autenticado';              
+            }
+        }
+        public function caixa(){
+            if(AuthController::checkAuth()){
+                include('conexao.php');
+                $dados_de_usuario_sql = AuthController::dados_de_sql(); 
+                $datahoje = date('Y-m-d');
+                $datasql = explode('-', $datahoje);
+                $sql = "SELECT descricao, valor_despesas AS valor, data_pagamento FROM `user_despesas` WHERE (MONTH(data_pagamento), DAY(data_pagamento), YEAR(data_pagamento), `user_id`)  =  ('".$_POST["mes"]."' ,  '".$_POST["dia"]."', '".$_POST["ano"]."', ".$dados_de_usuario_sql->id.")";
+                $pesquisa = $conexao->query($sql);
+                $resultado = $pesquisa->fetchAll();
+
+                $sql2 = "SELECT CONCAT(produto_nome, '(', quantidade, ')') AS descricao, valor_venda*quantidade AS valor FROM `user_vendas` WHERE (MONTH(data_venda), DAY(data_venda), YEAR(data_venda), `user_id`)  =  ('".$_POST["mes"]."' ,  '".$_POST["dia"]."', '".$_POST["ano"]."',".$dados_de_usuario_sql->id.")";
+                $pesquisa2 = $conexao->query($sql2);
+                $resultado2 = $pesquisa2->fetchAll();
+                $result = [];
+                $conexao = null;
+                return array_merge($resultado, $resultado2);            
             }
             else{
                 return 'Usuário não autenticado';              
@@ -69,11 +90,35 @@
                 return 'Usuário não autenticado';              
             }
         }
+        public function recebido_mes(){
+            if(AuthController::checkAuth()){
+                include('conexao.php');
+                $dados_de_usuario_sql = AuthController::dados_de_sql(); 
+                $datahoje = date('Y-m-d');
+                $datasql = explode('-', $datahoje);
+                $sql = "SELECT SUM(valor_venda) FROM `user_vendas` WHERE (`user_id`, MONTH(data_venda),  YEAR(data_venda)) = (".$dados_de_usuario_sql->id.", '".$_POST["mes"]."', '".$_POST["ano"]."')";
+                $pesquisa = $conexao->query($sql);
+                $resultado = $pesquisa->fetchAll();
+                $total = 0;
+                if($resultado[0]["SUM(valor_venda)"] == null){
+                    $total = 0;
+                }
+                else{
+                    $total = $resultado[0]["SUM(valor_venda)"];
+                }
+                $conexao = null;
+                return $total;            
+            }
+            else{
+                return 'Usuário não autenticado';              
+            }
+        }
         public function pesquisa(){
             $nome = $this->nome();
             $despesas_hoje = $this->despesas_hoje();
             $valor_caixa = $this->valor_caixa();
-            return array($despesas_hoje, $valor_caixa, $nome[0], $nome[1], $nome[2], $valor_caixa);
+            $caixa = $this->caixa();
+            return array(round(floatval($despesas_hoje), 2), round($valor_caixa, 2), $nome[0], $nome[1], $nome[2], $valor_caixa, $caixa, round(floatval($this->recebido_mes()), 2));
         }
     }
 ?>

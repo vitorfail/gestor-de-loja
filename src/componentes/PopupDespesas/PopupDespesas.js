@@ -42,19 +42,22 @@ export default class PopupDespesas extends Component{
         }
         else{
             var custo = this.state.produto_valor_.replace('.', '').replace("R$ ", "")
+            var data_venci =  this.state.vencimento.split('/')
+            data_venci = data_venci[2]+'-'+data_venci[1]+'-'+data_venci[0]
+            var data_hoje =  this.state.data.split('/')
+            data_hoje = data_hoje[2]+'-'+data_hoje[1]+'-'+data_hoje[0]
             custo = parseFloat(custo.replace(",", "."))
             Axios.post('index.php?url=inserirdespesa/pesquisa', {nome: this.state.descricao,
-                valor:custo , data_vencimento: this.state.vencimento, 
-                data_pagamento:this.state.data }).then(res =>{
+                valor:custo , data_vencimento: data_venci, 
+                data:data_hoje }).then(res =>{
                     if(res.data.data === '1'){
                         this.props.fechar()
                         this.props.reiniciar()
                     }
                     if(res.data.data === '0'){
-                        alert("deu errado")
+                        alert("passou aqui")
                     }
                 }).catch(erro =>{
-    
                 })
         }
     }

@@ -1,0 +1,157 @@
+.sem-internet{
+    display: none;
+}
+.sem-internet.mostrar{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(122, 122, 122, 0.63);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.sem-internet .menu{
+    border-radius: 50px;
+    width: 400px;
+    height: 470px;
+    background: white;
+    display: block;
+}
+.sem-internet .menu .inputs{    
+    height: 295px;
+    display: block;
+}
+.sem-internet .menu .inputs .titulo{
+    padding-left: 15px;
+}
+.sem-internet .menu .inputs .titulo h1{
+    text-align: center;
+    font-weight: 700;
+    font-family: Roboto forte;
+    color: #c90c0c;
+}
+.sem-internet .menu .inputs  .licenca {
+    align-content: center;
+    justify-content: center;
+}
+.sem-internet .menu .inputs .licenca .aviso_licenca{
+    font-size: 20px;
+    font-family: Roboto media;
+    text-align: justify;
+    margin:32px
+}
+.sem-internet .menu .inputs .licenca .err-mercado{
+    font-size: 20px;
+    font-family: Roboto media;
+    text-align: justify;
+    margin:32px;
+    color:#cc1313
+}
+.sem-internet .menu .inputs .titulo .preencha{
+    color: red;
+    display: none;
+}
+.sem-internet .menu .inputs .titulo .preencha.mostrar{
+    animation: tremer .4s;
+    display: block;
+}
+.sem-internet .menu .inputs .input{
+    position: relative;
+    height: 40px;
+    padding-left: 5%;
+    margin-top: 5%;
+}
+.sem-internet .menu .inputs .input input{
+    position: absolute;
+    width: 70%;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    outline: none;
+    height: 100%;
+    min-width: 150px;
+    font-size: 16px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-appearance: none;
+}
+.sem-internet .menu .inputs .input input:focus{
+    border: 2px solid #3951b2;
+}
+.sem-internet .menu .inputs .input input::placeholder{
+    color:transparent;
+}
+.sem-internet .menu .inputs .input label{
+    pointer-events: none;
+    position: absolute;
+    font-size: 20px;
+    left: 25px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    background:white;
+    box-sizing: border-box;
+    top: 4px;
+}
+.sem-internet .menu .inputs .input input:focus + .nome,
+.sem-internet .menu .inputs .input input:not(:placeholder-shown) + label{    
+    font-size: 16px;
+    top: -16%;
+    color: #3951b2;
+    background: white;
+    font-weight: 600;
+    z-index: 10;
+}
+.sem-internet .menu .botoes{
+    justify-content: center;
+    justify-items: center;
+    margin-top: 18px;
+    padding-top: 20px;
+    display: flex;
+}
+.sem-internet .menu .botoes .add{
+    font-family: Roboto media;
+    border: none;
+    background: rgb(180, 5, 5);
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    width: 220px;
+    height: 50px;
+    margin-bottom: 8px;
+    margin-right: 10px;
+}
+.sem-internet .menu .botoes .add:hover{
+    background: white;
+    border: 2px solid rgb(180, 5, 5);
+    color: rgb(180, 5, 5);
+    cursor: pointer;
+}
+.sem-internet .menu .botoes .cancel{
+    font-family: Roboto media;
+    border: none;
+    background: rgba(206, 39, 39, 0.7);
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+.sem-internet .menu .botoes .cancel:hover{
+    font-style: Roboto normal;
+    background: white;
+    border: 2px solid rgba(206, 39, 39, 0.7);
+    color: rgba(206, 39, 39, 0.7);
+    cursor: pointer;
+}
+@keyframes tremer{
+    0% {margin-left: 0;}
+    25% {margin-left: 33px;}
+    50% {margin-left: 0;}
+    75% {margin-left: -33px;}
+    100% {margin-left: 0;}
+}

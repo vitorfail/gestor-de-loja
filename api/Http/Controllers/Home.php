@@ -185,7 +185,7 @@
                         if($row['tipo_de_pagamento'] == 'A vista'){
                             $avista = intval($row['SUM(quantidade)']);
                         }
-                        if($row['tipo_de_pagamento'] == 'Cartao'){
+                        if($row['tipo_de_pagamento'] == 'Parcelado'){
                             $cartao = intval($row['SUM(quantidade)']);
                         }
                         if($row['tipo_de_pagamento'] == 'Boleto'){

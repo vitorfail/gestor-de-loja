@@ -37,3 +37,166 @@ html::-webkit-scrollbar-thumb
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: var(--cor--barra);
 }
+.mostrar-caixa{
+    min-height: 80vh;
+    padding: 20px 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.mostrar-caixa h3{
+    margin: 0;
+}
+.mostrar-caixa .botoes{
+    display: grid;
+}
+.mostrar-caixa .botoes .add{
+    font-family: Roboto media;
+    border: none;
+    background: rgb(39, 39, 206);
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+.mostrar-caixa .botoes .add:hover{
+    background: white;
+    border: 2px solid rgb(39, 39, 206);
+    color: rgb(39, 39, 206, 0.7);
+    cursor: pointer;
+}
+.mostrar-caixa .botoes .del{
+    font-family: Roboto media;
+    border: none;
+    background: rgba(206, 39, 39, 0.7);
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+.mostrar-caixa .botoes .del:hover{
+    font-style: Roboto normal;
+    background: white;
+    border: 2px solid rgba(206, 39, 39, 0.7);
+    color: rgba(206, 39, 39, 0.7);
+    cursor: pointer;
+}
+.mostrar-caixa .tabela .descri{
+    padding: 2px 10%;
+    width: 31.5%;
+}
+.mostrar-caixa .tabela{
+    display: block;
+    justify-content: center;
+    justify-items: center;
+    width: 60%;
+    background: white;
+    border-radius: 20px;
+}
+.mostrar-caixa .tabela .titulo{
+    background-image:linear-gradient(to right bottom, rgb(161, 37, 165), rgb(161, 37, 165));
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    display: flex;
+    height: 40%;
+    justify-content: center;
+    justify-items: center;
+    border-bottom: 5px solid rgb(225, 225, 225);
+}
+.mostrar-caixa .tabela .titulo select{
+    display: flex;
+    text-align: center;
+    margin: 3px;
+    border: 1px solid #333;
+    background: url("../../icons/seta2.png") no-repeat center right rgb(161, 37, 165);
+    background-size: 15px;
+    font-family: Roboto normal;
+    min-width: 80px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    color: white;
+    border-bottom:2px solid white;
+    font-size: 22px;
+}
+.mostrar-caixa .tabela .titulo select:hover{
+    cursor: pointer;
+}
+.mostrar-caixa .tabela .titulo button{
+    font-size: 22px;
+    font-family: Roboto media;
+    margin: 3px;
+    border: none;
+    appearance: none;
+    border-radius: 10px;
+    background: white;
+    color: rgb(161, 37, 165);
+}
+.mostrar-caixa .tabela .titulo button:hover{
+    cursor: pointer;
+}
+.mostrar-caixa .tabela .titulo h3{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    color: aliceblue;
+    padding: 0px 7%;
+}
+.mostrar-caixa .tabela .titulo .descricao{
+
+    border-right: 10px solid rgb(225, 225, 225);
+}
+.mostrar-caixa .tabela .saida{
+    border-top: 5px solid rgb(225, 225, 225);
+    display: flex;
+    font-size: 20px;
+    justify-items: center;
+    background: rgb(209, 64, 64);
+    color: rgb(255, 255, 255);
+}
+.mostrar-caixa .tabela .saida .descri{
+    border-right: 10px solid rgb(225, 225, 225);
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.mostrar-caixa .tabela .saida .valor{
+    width: 20%;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+}
+.mostrar-caixa .tabela .saida h3{
+    text-align: center;
+    padding: 2px 10%;
+}
+.mostrar-caixa .tabela .entrada{
+    border-top: 5px solid rgb(225, 225, 225);
+
+    display: flex;
+    font-size: 20px;
+    justify-items: center;
+}
+.mostrar-caixa .tabela .entrada .descri{
+    border-right: 10px solid rgb(225, 225, 225);
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.mostrar-caixa .tabela .entrada .valor{
+    width: 20%;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+}
+.mostrar-caixa .tabela .entrada h3{
+    text-align: center;
+}
+    

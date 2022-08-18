@@ -25,7 +25,6 @@
             }
 
         }
-
         public function estoque_descri(){
             if(AuthController::checkAuth()){
                 include('conexao.php');
