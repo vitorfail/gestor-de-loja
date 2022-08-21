@@ -13,8 +13,8 @@
                 try{
                     include_once('conexao.php');
                     $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                    $sql = "INSERT into `user-produtos` (`user-id`, `produto-nome`, produto_valor , percentual, Vendido, quantidade) 
-                    values ( :user_id, :produto_nome, :produto_valor, :percentual, :Vendido, :quantidade )";
+                    $sql = "INSERT into `user-produtos` (`user-id`, `produto-nome`, produto_valor , percentual, Vendido, quantidade, custo_indireto) 
+                    values ( :user_id, :produto_nome, :produto_valor, :percentual, :Vendido, :quantidade,  :custo_indireto)";
                     $salvar = $conexao->prepare($sql);
                     $salvar->bindValue( ':user_id', $dados_de_usuario_sql->id);
                     $salvar->bindValue(':produto_nome', $_POST['produto_nome']);
@@ -22,6 +22,7 @@
                     $salvar->bindValue(':percentual', $_POST['percentual']);
                     $salvar->bindValue(':Vendido', 'Não');
                     $salvar->bindValue(':quantidade', $_POST['quantidade']);
+                    $salvar->bindValue(':custo_indireto', 0);
                     $salvar->execute();
                     $conexao = null;    
                     return "1";

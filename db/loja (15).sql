@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Ago-2022 às 03:35
+-- Tempo de geração: 21-Ago-2022 às 21:36
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -76,7 +76,9 @@ INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `
 (17, 1, 'Gaita', '34.52', '34%', 'Não', 8, 0),
 (18, 1, 'gelinho', '34.56', '7%', 'Não', 10, 0),
 (19, 1, 'Blusa social', '34.9', '12%', 'Não', 12, 0),
-(20, 1, 'Cinto', '34.9', '34%', 'Não', 3, 0);
+(20, 1, 'Cinto', '34.9', '34%', 'Não', 3, 0),
+(21, 1, 'Toalha vasco', '34.21', '12%', 'Não', 4, 0),
+(22, 1, 'Toalha flamengo', '23.11', '34%', 'Não', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -256,7 +258,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT de tabela `user-produtos`
 --
 ALTER TABLE `user-produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `users_info`
