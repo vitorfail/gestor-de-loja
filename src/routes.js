@@ -7,12 +7,14 @@ import StoreProvider from './componentes/Store/Provider';
 import RoutesPrivate from "./componentes/Routes/Private";
 import Login from "./pages/Login/Login";
 import Registro from "./pages/Registro/Registro";
+import Check from "./pages/Check/Check";
 const Rout = () => (
   <BrowserRouter>
     <StoreProvider>
       <Switch>
         <RoutesPrivate  exact path="/" component={Home}/>
         <Route  exact path="/login" component={Login}/>
+        <Route path="/check/:code" component={Check}/>
         <Route  exact path="/registro" component={Registro}/>
         <RoutesPrivate  exact path="/caixa" component={Caixa}/>
         <RoutesPrivate  exact path="/estoque" component={Estoque}/>

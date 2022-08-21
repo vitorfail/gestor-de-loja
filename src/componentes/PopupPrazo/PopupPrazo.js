@@ -23,14 +23,17 @@ export default class PopupPrazo extends Component{
     }
     Pagamento(){
         this.setState({loading:'loading mostrar'})
-        Axios.post('processarpagamento.php').then(res => {
-            window.open(res.data, '_blank'); 
-            this.setState({loading:'loading'})
-        }).catch(error =>{
-            this.setState({loading:'loading'})
-
-            this.setState({conteudo: <p className="err-mercado">Não foi possível encaminhar você para o Mercado Pago Verifique sua internet e tente donovo</p>})
+        Axios.post('index.php?url=check/pesquisa').then(res =>{
+            window.open('http://localhost:3000/check/'+res.data.data, '_blank').focus();
         })
+        //Axios.post('processarpagamento.php').then(res => {
+        //    window.open(res.data, '_blank'); 
+        //    this.setState({loading:'loading'})
+        //}).catch(error =>{
+        //    this.setState({loading:'loading'})
+//
+  //          this.setState({conteudo: <p className="err-mercado">Não foi possível encaminhar você para o Mercado Pago Verifique sua internet e tente donovo</p>})
+    //    })
     }
     render(){
         return(
