@@ -1,0 +1,97 @@
+.tudo{
+    display: block;
+}
+html
+{
+	float: left;
+	height: 300px;
+	width: 65px;
+	background: #F5F5F5;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+.force-overflow
+{
+	min-height: 450px;
+}
+#wrapper
+{
+	text-align: center;
+	width: 500px;
+	margin: auto;
+}
+html::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+html::-webkit-scrollbar
+{
+    border-radius: 10px;
+	width: 12px;
+	background-color: #F5F5F5;
+}
+html::-webkit-scrollbar-thumb
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: var(--cor--barra);
+}
+.blocos-caixa{
+    padding: 40px 15px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+.blocos-caixa .box{
+    width: 240px;
+    height: 180px;
+    border-radius: 30px;
+    background: white;
+}
+.blocos-caixa .box h1{
+    text-align: center;
+    font-size: 24px;
+    color: rgb(36, 36, 36);
+}
+.blocos-caixa .box .despesas{
+    color: rgb(255, 0, 0);
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 4px solid rgb(225, 225, 225);
+}
+.blocos-caixa .box .receita{
+    color: rgb(4, 105, 4);
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 4px solid rgb(225, 225, 225);
+}
+.blocos-caixa .box.saldo{
+    background-image: linear-gradient(to bottom right ,rgb(0, 83, 21), rgb(24, 187, 73));
+}
+.blocos-caixa .box.saldo h1{
+    color: white;
+}
+.blocos-caixa .box.saldo .saldo{
+    color: rgb(255, 255, 255);
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 4px solid rgb(225, 225, 225);   
+}
+.blocos-caixa .box.negativo{
+    background-image: linear-gradient(to bottom right ,rgb(153, 0, 0), rgb(238, 43, 43));
+}
+.blocos-caixa .box.negativo h1{
+    color: white;
+}
+.blocos-caixa .box.negativo .saldo{
+    color: rgb(255, 255, 255);
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 4px solid rgb(225, 225, 225);   
+}

@@ -118,7 +118,10 @@
             $despesas_hoje = $this->despesas_hoje();
             $valor_caixa = $this->valor_caixa();
             $caixa = $this->caixa();
-            return array(round(floatval($despesas_hoje), 2), round($valor_caixa, 2), $nome[0], $nome[1], $nome[2], $valor_caixa, $caixa, round(floatval($this->recebido_mes()), 2));
+            return array('despesas' => round(floatval($despesas_hoje), 2), 'valor_caixa' => round($valor_caixa, 2), 
+            'nome' => $nome[0], 'situacao' => $nome[1], 
+            'data_vencimento' => $nome[2], 
+            'caixa' => $caixa, round(floatval($this->recebido_mes()), 2));
         }
     }
 ?>

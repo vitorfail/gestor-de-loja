@@ -26,7 +26,7 @@ function BlocosCaixa(props){
         <div className="blocos-caixa">
             <div className="box">
                 <h2 className="receita">R$ {props.recebido}</h2>
-                <h1>Recebido esse mês</h1>
+                <h1>Caixa</h1>
             </div>
             <div className="box">
                 <h2 className="despesas">R$ {props.despesas}</h2>

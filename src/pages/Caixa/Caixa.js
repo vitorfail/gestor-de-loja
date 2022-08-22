@@ -22,7 +22,6 @@ export default class Caixa extends Component{
         this.lista =[];
         this.state = {
             caixa:0,
-            recebido_hoje: '',
             dias: '',
             nome:'',
             despesas:0,
@@ -123,64 +122,47 @@ export default class Caixa extends Component{
     iniciar(mes_, dia_, ano_){
         Axios.post('index.php?url=caixa/pesquisa', {user:'1', mes:mes_, dia:dia_, ano:ano_})
         .then(res => {
-            if(res.data.data[5] === null){
+            var dados = res.data.data
+            if(dados['valor_caixa'] === null){
                 this.setState({caixa:0})
             }
             else{
-                this.setState({caixa: res.data.data[5]})
+                this.setState({recebido_mes: dados['valor_caixa']})
             }
             if(res.data.data[1] === "Usuário não autenticado"){
                 Exit()
             }
             else{
-                this.mostrar_caixa(res.data.data[6])
-                if(res.data.data[3] === "Pago"){
-                    this.setState({recebido_mes: res.data.data[7]})
-                    this.setState({recebido_hoje:res.data.data[1] })
-                    this.setState({nome: res.data.data[2]})
-                    this.setState({despesas: res.data.data[0]})
-                }
-                if(res.data.data[3] === "Aberto"){
-                    var data = res.data.data[4].split('-');
+                this.mostrar_caixa(dados['caixa'])
+                this.setState({recebido_mes: dados['valor_caixa']})
+                this.setState({recebido_hoje:dados['valor_caixa']})
+                this.setState({nome: dados['nome']})
+                this.setState({despesas: dados['despesas']})
+                if(dados['situacao'] === "Aberto"){
+                    var data = dados['data_vencimento'].split('-');
                     var data_vencimento = new Date(parseInt(data[0]), parseInt(data[1])-1, parseInt(data[2]))
                     var data_hoje = new Date();
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);
                     if(dif>0 && dif<7){
-                        this.setState({recebido_mes: res.data.data[7]})
                         this.setState({mostrar_prazo:'popup-prazo mostrar'})
-                        this.setState({recebido_hoje:res.data.data[1] })
                         this.setState({dias: Math.round(dif)})
-                        this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
-                        this.setState({despesas: res.data.data[0]})
                     }
                     if(dif>7){
-                        this.setState({recebido_mes: res.data.data[7]})
                         this.setState({dias: Math.round(dif)})
-                        this.setState({recebido_hoje:res.data.data[1] })
-                        this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
-                        this.setState({despesas: res.data.data[0]})    
                     }
                     else{
                         if(dif<0 && dif>-5){
-                            this.setState({recebido_mes: res.data.data[7]})
                             this.setState({mostrar_pagar:'popup-pagar mostrar'})
                             this.setState({dias: Math.round(dif)})
-                            this.setState({recebido_hoje:res.data.data[1] })
-                            this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({despesas: res.data.data[0]})        
                         }
                         if(dif<-5){
-                            this.setState({recebido_mes: res.data.data[7]})
                             this.setState({mostrar_vencido:"popup-vencido mostrar"})
                             this.setState({dias: Math.round(dif)})
-                            this.setState({recebido_hoje:res.data.data[1] })
-                            this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({despesas: res.data.data[0]})        
                         }
                     }
                 }
