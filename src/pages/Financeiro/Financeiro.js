@@ -10,10 +10,11 @@ import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
 import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
 import Loading from "../../componentes/Loading/Loading";
 import SemInternet from "../../componentes/SemInternet/SemInternet";
+import Relogio from "../../componentes/Relogio/Relogio";
 
 export default class Financeiro extends Component{
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
             caixa:0,
             estoque: '',
@@ -44,6 +45,10 @@ export default class Financeiro extends Component{
         this.setState({mostrar_vencido: "popup-vencido"})
     }
     componentDidMount(){
+        var data = new Date()
+
+        this.setState({mes: data.getFullYear()})
+
         this.iniciar()
         setTimeout(() =>  this.setState({isLoading: false}), 3);
     }
@@ -60,12 +65,14 @@ export default class Financeiro extends Component{
                 Exit()
             }
             else{
+                var dados = res.data.data
+                this.setState({nome: dados['nome']})
+                this.setState({faturamento: dados['caixa']})
+
                 if(res.data.data[3] === "Pago"){
-                    this.setState({nome: res.data.data[2]})
-                    this.setState({faturamento: res.data.data[6]})
                 }
                 if(res.data.data[3] === "Aberto"){
-                    var data = res.data.data[4].split('-');
+                    var data = dados['data_vencimento'].split('-');
                     var data_vencimento = new Date(parseInt(data[0]), parseInt(data[1])-1, parseInt(data[2]))
                     var data_hoje = new Date();
                     var diferenca = data_vencimento - data_hoje 
@@ -73,30 +80,22 @@ export default class Financeiro extends Component{
                     if(dif>0 && dif<7){
                         this.setState({mostrar_prazo: "popup-prazo mostrar"})
                         this.setState({dias: Math.round(dif)})
-                        this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
-                        this.setState({faturamento: res.data.data[6]})
                     }
                     if(dif>7){
                         this.setState({dias: Math.round(dif)})
-                        this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
-                        this.setState({faturamento: res.data.data[6]})
                     }
                     else{
                         if(dif<0 && dif>-5){
                             this.setState({mostrar_pagar: 'popup-pagar mostrar'})
                             this.setState({dias: Math.round(dif)})
-                            this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({faturamento: res.data.data[6]})
                         }
                         if(dif<-5){
                             this.setState({mostrar_vencido:"popup-vencido mostrar"})
                             this.setState({dias: Math.round(dif)})
-                            this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({faturamento: res.data.data[6]})
                         }
                     }
                 }
@@ -115,17 +114,17 @@ export default class Financeiro extends Component{
                 <Lateral dias={this.state.dias} nome={this.state.nome} vencimento={this.state.vencimento} ></Lateral>
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
-                    <div className="blocos-caixa">
+                    <div className="blocos-financeiro">
                         <div className="box">
-                            <h2 className="receita">R$ {props.recebido}</h2>
+                            <h2 className="receita">R$ {this.state.faturamento}</h2>
                             <h1>Recebido em {this.state.mes}</h1>
                         </div>
                         <div className="box">
-                            <h2 className="despesas">R$ {props.despesas}</h2>
+                            <h2 className="despesas">R$ {0}</h2>
                             <h1 >Despesas  em {this.state.mes}</h1>
                         </div>
                         <div className={this.state.s}>
-                            <h2 className="saldo">R$ {props.caixa}</h2>
+                            <h2 className="saldo">R$ {0}</h2>
                             <h1>Saldo {this.state.mes}</h1>
                         </div>
                         <Relogio></Relogio>

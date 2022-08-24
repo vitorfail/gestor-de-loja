@@ -51,68 +51,47 @@ export default class Home extends Component{
     iniciar(){
         Axios.post('index.php?url=home/pesquisa', {user:'1'})
         .then(res => {
-            if(res.data.data[5] === null){
+            var dados = res.data.data
+            if(dados['valor_caixa'] === null){
                 this.setState({caixa:0})
             }
             else{
-                this.setState({caixa: res.data.data[5]})
+                this.setState({caixa: dados['valor_caixa']})
             }
-            if(res.data.data[1] === "Usuário não autenticado"){
+            if(dados['valor_estoque'] === "Usuário não autenticado"){
                 Exit()
             }
             else{
-                if(res.data.data[3] === "Pago"){
-                    this.setState({estoque:res.data.data[1].toFixed(2)})
-                    this.setState({nome: res.data.data[2]})
-                    this.setState({numero_estoque: res.data.data[0]})
-                    this.setState({faturamento: res.data.data[6]})
-                    this.setState({tipos_de_pagamento: res.data.data[7]})
-                }
-                if(res.data.data[3] === "Aberto"){
-                    var data = res.data.data[4].split('-');
+                this.setState({estoque:dados['valor_estoque'].toFixed(2)})
+                this.setState({nome: dados['nome']})
+                this.setState({numero_estoque: dados['numero_roupas']})
+                this.setState({faturamento: dados['faturamento']})
+                this.setState({tipos_de_pagamento: dados['tipos_de_pagamento']})
+                if(dados['situacao'] === "Aberto"){
+                    var data = dados['data_vencimento'].split('-');
                     var data_vencimento = new Date(parseInt(data[0]), parseInt(data[1])-1, parseInt(data[2]))
                     var data_hoje = new Date();
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);
                     if(dif>0 && dif<7){
                         this.setState({mostrar_prazo: "popup-prazo mostrar"})
-                        this.setState({estoque:res.data.data[1] })
                         this.setState({dias: Math.round(dif)})
-                        this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
-                        this.setState({numero_estoque: res.data.data[0]})
-                        this.setState({faturamento: res.data.data[6]})
-                        this.setState({tipos_de_pagamento: res.data.data[7]})
                     }
                     if(dif>7){
                         this.setState({dias: Math.round(dif)})
-                        this.setState({estoque:res.data.data[1] })
-                        this.setState({nome: res.data.data[2]})
                         this.setState({vencimento: 'prazo'})
-                        this.setState({numero_estoque: res.data.data[0]}) 
-                        this.setState({faturamento: res.data.data[6]})
-                        this.setState({tipos_de_pagamento: res.data.data[7]})   
                     }
                     else{
                         if(dif<0 && dif>-5){
                             this.setState({mostrar_pagar: 'popup-pagar mostrar'})
                             this.setState({dias: Math.round(dif)})
-                            this.setState({estoque:res.data.data[1] })
-                            this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({numero_estoque: res.data.data[0]})
-                            this.setState({faturamento: res.data.data[6]})
-                            this.setState({tipos_de_pagamento: res.data.data[7]})        
                         }
                         if(dif<-5){
                             this.setState({mostrar_vencido:"popup-vencido mostrar"})
                             this.setState({dias: Math.round(dif)})
-                            this.setState({estoque:res.data.data[1] })
-                            this.setState({nome: res.data.data[2]})
                             this.setState({vencimento: 'vencido'})
-                            this.setState({numero_estoque: res.data.data[0]})
-                            this.setState({faturamento: res.data.data[6]})
-                            this.setState({tipos_de_pagamento: res.data.data[7]})        
                         }
                     }
                 }

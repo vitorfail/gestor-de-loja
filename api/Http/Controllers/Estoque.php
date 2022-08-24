@@ -69,7 +69,7 @@
             $nome = $this->nome();
             $valor_estoque = $this->valor_estoque();
             $estoque_descri = $this->estoque_descri();
-            return array($valor_estoque, $estoque_descri, $nome[0], $nome[1], $nome[2]);
+            return array('valor_estoque' => $valor_estoque, 'descricao' => $estoque_descri, 'nome' => $nome[0],'situacao' =>  $nome[1], 'data_vencimento' =>  $nome[2]);
         }
     }
 ?>

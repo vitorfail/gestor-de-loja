@@ -1,6 +1,11 @@
-<? // Inclui o arquivo class.phpmailer.php localizado na mesma pasta do arquivo php 
+<?php
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT");
+    header("Access-Control-Allow-Headers: *");
+    
+// Inclui o arquivo class.phpmailer.php localizado na mesma pasta do arquivo php 
 include "PHPMailer/PHPMailerAutoload.php"; 
-
 if(isset($_REQUEST) && !empty($_REQUEST)){
     $email = $_POST["email"];
     $mail = new PHPMailer(); 
@@ -12,7 +17,7 @@ if(isset($_REQUEST) && !empty($_REQUEST)){
     $mail->Host = "smtp.gmail.com"; 
 
     // Você pode alterar este parametro para o endereço de SMTP do seu provedor 
-    $mail->Port = "465"; 
+    $mail->Port = "587"; 
 
 
     // Usar autenticação SMTP (obrigatório) 
@@ -24,7 +29,7 @@ if(isset($_REQUEST) && !empty($_REQUEST)){
     $mail->Password = 'Inuyashacrashc0m'; 
 
     // Configurações de compatibilidade para autenticação em TLS 
-    $mail->SMTPOptions = array( 'ssl' => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ) ); 
+    $mail->SMTPSecure = 'tsl';
 
     // Você pode habilitar esta opção caso tenha problemas. Assim pode identificar mensagens de erro. 
     // $mail->SMTPDebug = 2; 
@@ -73,6 +78,9 @@ if(isset($_REQUEST) && !empty($_REQUEST)){
         echo "Houve um erro enviando o email: ".$mail->ErrorInfo; 
     } 
 
+}
+else{
+    echo 'erro';
 }
 
 ?>

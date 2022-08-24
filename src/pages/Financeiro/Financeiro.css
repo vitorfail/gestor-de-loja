@@ -37,58 +37,59 @@ html::-webkit-scrollbar-thumb
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: var(--cor--barra);
 }
-.blocos-caixa{
+.blocos-financeiro{
+    margin-top: 62px;
     padding: 40px 15px;
     align-items: center;
     justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
 }
-.blocos-caixa .box{
+.blocos-financeiro .box{
     width: 240px;
     height: 180px;
     border-radius: 30px;
     background: white;
 }
-.blocos-caixa .box h1{
+.blocos-financeiro .box h1{
     text-align: center;
     font-size: 24px;
     color: rgb(36, 36, 36);
 }
-.blocos-caixa .box .despesas{
+.blocos-financeiro .box .despesas{
     color: rgb(255, 0, 0);
     margin-top: 40px;
     font-size: 30px;
     text-align: center;
     border-bottom: 4px solid rgb(225, 225, 225);
 }
-.blocos-caixa .box .receita{
+.blocos-financeiro .box .receita{
     color: rgb(4, 105, 4);
     margin-top: 40px;
     font-size: 30px;
     text-align: center;
     border-bottom: 4px solid rgb(225, 225, 225);
 }
-.blocos-caixa .box.saldo{
+.blocos-financeiro .box.saldo{
     background-image: linear-gradient(to bottom right ,rgb(0, 83, 21), rgb(24, 187, 73));
 }
-.blocos-caixa .box.saldo h1{
+.blocos-financeiro .box.saldo h1{
     color: white;
 }
-.blocos-caixa .box.saldo .saldo{
+.blocos-financeiro .box.saldo .saldo{
     color: rgb(255, 255, 255);
     margin-top: 40px;
     font-size: 30px;
     text-align: center;
     border-bottom: 4px solid rgb(225, 225, 225);   
 }
-.blocos-caixa .box.negativo{
+.blocos-financeiro .box.negativo{
     background-image: linear-gradient(to bottom right ,rgb(153, 0, 0), rgb(238, 43, 43));
 }
-.blocos-caixa .box.negativo h1{
+.blocos-financeiro .box.negativo h1{
     color: white;
 }
-.blocos-caixa .box.negativo .saldo{
+.blocos-financeiro .box.negativo .saldo{
     color: rgb(255, 255, 255);
     margin-top: 40px;
     font-size: 30px;

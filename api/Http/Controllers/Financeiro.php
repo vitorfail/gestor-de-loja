@@ -8,31 +8,14 @@
     $GLOBALS['a'] = 'Authorization';
     $_POST = json_decode(file_get_contents("php://input"), true);
     class FinanceiroController{
-        public function valor_estoque(){
+        public function despesas(){
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT SUM((produto_valor+ custo_indireto) * quantidade) FROM `user-produtos` WHERE `user-id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT SUM(valor_despesas) AS total FROM `user_despesas` WHERE YEAR(data_pagamento) = ".$_POST['ano']." AND `user_id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
-                $total = 0;
-                $array = array();
-                $conexao = null;
-                return floatval($resultado[0]['SUM((produto_valor+ custo_indireto) * quantidade)']);            
-            }
-            else{
-                return 'Usuário não autenticado';              
-            }
-
-        }
-        public function numero_de_roupas(){
-            if(AuthController::checkAuth()){
-                include('conexao.php');
-                $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT SUM(quantidade) FROM `user-produtos` WHERE Vendido='Não' AND `user-id`= ".$dados_de_usuario_sql->id;
-                $pesquisa = $conexao->query($sql);
-                $resultado = $pesquisa->fetchAll();
-                $total = $resultado[0]["SUM(quantidade)"];
+                $total = $resultado[0]["total"];
                 $conexao = null;
                 return $total;            
             }
@@ -64,15 +47,15 @@
             }
 
         }
-        public function valor_caixa(){
+        public function recebido_ano(){
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql();
-                $sql = "SELECT caixa FROM user_financeiro WHERE `id`= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT SUM(valor_venda*quantidade) AS total FROM `user_vendas` WHERE YEAR(data_venda)  = ".$_POST['ano']." and `user_id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 
-                return floatval($resultado[0]['caixa']);            
+                return floatval($resultado[0]['total']);            
             }
             else{
                 return 'Usuário não autenticado';              
@@ -160,43 +143,15 @@
             }
 
         }
-        public function tipos_de_pagamento(){
+        public function produto_mais_vendido(){
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT tipo_de_pagamento, SUM(quantidade) FROM user_vendas WHERE `user_id`= ".$dados_de_usuario_sql->id." GROUP BY tipo_de_pagamento";
+                $sql = "SELECT produto_nome, COUNT(produto_id) AS Qtd FROM user_vendas WHERE user_id= ".$dados_de_usuario_sql->id." GROUP BY produto_id ORDER BY COUNT(produto_id) DESC LIMIT 1";
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
-                $array = array();
-                $avista = 0;
-                $cartao = 0;
-                $boleto = 0;
-                $pix = 0;  
-
-                $conexao = null;
-                if(count($resultado) == 0){
-                    $avista = 0;
-                    $cartao = 0;
-                    $boleto = 0;
-                    $pix = 0;  
-                }
-                else{
-                    foreach($resultado as $row){
-                        if($row['tipo_de_pagamento'] == 'A vista'){
-                            $avista = intval($row['SUM(quantidade)']);
-                        }
-                        if($row['tipo_de_pagamento'] == 'Parcelado'){
-                            $cartao = intval($row['SUM(quantidade)']);
-                        }
-                        if($row['tipo_de_pagamento'] == 'Boleto'){
-                            $boleto = intval($row['SUM(quantidade)']);
-                        }
-                        if($row['tipo_de_pagamento'] == 'Pix'){
-                            $pix = intval($row['SUM(quantidade)']);
-                        }
-                    }
-                }
-                return array($avista, $cartao, $boleto, $pix);            
+                
+                return array('produto_nome' => $resultado[0]["produto_nome"], 'quantidade' => $resultado[0]["Qtd"]);            
             }
             else{
                 return 'Usuário não autenticado';              
@@ -204,12 +159,12 @@
         }
         public function pesquisa(){
             $nome = $this->nome();
-            $valor_estoque = $this->valor_estoque();
-            $numero_de_roupas = $this->numero_de_roupas();
-            $valor_caixa = $this->valor_caixa();
-            $faturamento_mensal = $this->faturamento_mensal();
-            $tipos_de_pagamento = $this->tipos_de_pagamento();
-            return array( 'nome' => $nome[0], 'situacao' => $nome[1], 'data_nascimento' => $nome[2], 'caixa' => $valor_caixa);
+            $recebido_ano = $this->recebido_ano();
+            $despesas = $this->despesas();
+            $produto_mais_vendido = $this->produto_mais_vendido();
+            return array( 'nome' => $nome[0], 'situacao' => $nome[1], 
+            'data_vencimento' => $nome[2], 'recebido' => $recebido_ano, 'produto_mais_vendido' => $produto_mais_vendido,
+             'despesas' => $despesas);
         }
     }
 ?>

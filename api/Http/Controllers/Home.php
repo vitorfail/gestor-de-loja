@@ -209,7 +209,9 @@
             $valor_caixa = $this->valor_caixa();
             $faturamento_mensal = $this->faturamento_mensal();
             $tipos_de_pagamento = $this->tipos_de_pagamento();
-            return array($numero_de_roupas, $valor_estoque, $nome[0], $nome[1], $nome[2], $valor_caixa, $faturamento_mensal, $tipos_de_pagamento);
+            return array('numero_roupas' => $numero_de_roupas, 'valor_estoque' => $valor_estoque, 
+            'nome' => $nome[0], 'situacao' => $nome[1], 'data_vencimento' => $nome[2], 
+            'valor_caixa' => $valor_caixa, 'faturamento' => $faturamento_mensal, 'tipos_de_pagamento' => $tipos_de_pagamento);
         }
     }
 ?>
