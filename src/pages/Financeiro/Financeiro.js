@@ -29,7 +29,7 @@ export default class Financeiro extends Component{
             tipos_de_pagamento:0,
             isLoading:true,
             seminternet:"sem-internet",
-            mes: '',
+            ano: '',
             s:0
         }
         this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
@@ -47,13 +47,13 @@ export default class Financeiro extends Component{
     componentDidMount(){
         var data = new Date()
 
-        this.setState({mes: data.getFullYear()})
+        this.setState({ano: data.getFullYear()})
 
-        this.iniciar()
+        this.iniciar(String(data.getFullYear()))
         setTimeout(() =>  this.setState({isLoading: false}), 3);
     }
-    iniciar(){
-        Axios.post('index.php?url=home/pesquisa', {user:'1'})
+    iniciar(ano_){
+        Axios.post('index.php?url=home/financeiro', {user:'1', ano:ano_})
         .then(res => {
             if(res.data.data[5] === null){
                 this.setState({caixa:0})
@@ -117,15 +117,20 @@ export default class Financeiro extends Component{
                     <div className="blocos-financeiro">
                         <div className="box">
                             <h2 className="receita">R$ {this.state.faturamento}</h2>
-                            <h1>Recebido em {this.state.mes}</h1>
+                            <h1>Recebido em {this.state.ano}</h1>
                         </div>
                         <div className="box">
                             <h2 className="despesas">R$ {0}</h2>
-                            <h1 >Despesas  em {this.state.mes}</h1>
+                            <h1 >Despesas  em {this.state.ano}</h1>
                         </div>
                         <div className={this.state.s}>
                             <h2 className="saldo">R$ {0}</h2>
-                            <h1>Saldo {this.state.mes}</h1>
+                            <h1>Saldo {this.state.ano}</h1>
+                        </div>
+                        <div>
+                            <div>
+                                
+                            </div>
                         </div>
                         <Relogio></Relogio>
                     </div>

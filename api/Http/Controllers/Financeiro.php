@@ -143,11 +143,36 @@
             }
 
         }
+        public function produto_menos_vendido(){
+            if(AuthController::checkAuth()){
+                include('conexao.php');
+                $dados_de_usuario_sql = AuthController::dados_de_sql(); 
+                $sql = "SELECT produto_nome, COUNT(produto_id) * SUM(quantidade) AS Qtd FROM user_vendas WHERE user_id= ".$dados_de_usuario_sql->id." GROUP BY produto_id ORDER BY COUNT(produto_id) ASC LIMIT 5";
+                $pesquisa = $conexao->query($sql);
+                $produto_nome = array();
+                $Qtd = array();
+
+                if($pesquisa == false){
+                    return 0;
+                }
+                else{
+                    $resultado = $pesquisa->fetchAll();
+                    foreach ($resultado as $row) {
+                        array_push($produto_nome, $row['produto_nome']);
+                        array_push($Qtd, $row['Qtd']);
+                    }
+                    return array('produto_nome' => $produto_nome, 'Qtd' => $Qtd);            
+                }                
+            }
+            else{
+                return 'Usuário não autenticado';              
+            }
+        }
         public function produto_mais_vendido(){
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT produto_nome, COUNT(produto_id) AS Qtd FROM user_vendas WHERE user_id= ".$dados_de_usuario_sql->id." GROUP BY produto_id ORDER BY COUNT(produto_id) DESC LIMIT 1";
+                $sql = "SELECT produto_nome, COUNT(produto_id) * SUM(quantidade) AS Qtd FROM user_vendas WHERE user_id= ".$dados_de_usuario_sql->id." GROUP BY produto_id ORDER BY COUNT(produto_id) DESC LIMIT 1";
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 
@@ -161,10 +186,11 @@
             $nome = $this->nome();
             $recebido_ano = $this->recebido_ano();
             $despesas = $this->despesas();
+            $produto_menos_vendido = $this->produto_menos_vendido();
             $produto_mais_vendido = $this->produto_mais_vendido();
             return array( 'nome' => $nome[0], 'situacao' => $nome[1], 
             'data_vencimento' => $nome[2], 'recebido' => $recebido_ano, 'produto_mais_vendido' => $produto_mais_vendido,
-             'despesas' => $despesas);
+             'despesas' => $despesas, 'produto_menos_vendido' => $produto_menos_vendido);
         }
     }
 ?>
