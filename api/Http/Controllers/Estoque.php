@@ -33,7 +33,6 @@
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $total = 0;
-                $array = array();
                 $conexao = null;
                 return array_slice($resultado, $_POST['index'], $_POST['tamanho'] );            
             }

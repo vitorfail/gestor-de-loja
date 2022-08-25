@@ -95,4 +95,26 @@ html::-webkit-scrollbar-thumb
     font-size: 30px;
     text-align: center;
     border-bottom: 4px solid rgb(225, 225, 225);   
+
+}
+.notific{
+    width: 100%;
+    height: 100%;
+}
+.notific .info{
+    width: 100%;
+    min-height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    background: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    display: flex;
+}
+.notific .info p{
+    margin-left: 10px;
+}
+.notific .info p strong{
+    color: rgb(98, 8, 150);
 }

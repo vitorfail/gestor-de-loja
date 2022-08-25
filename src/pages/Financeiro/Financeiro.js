@@ -15,6 +15,7 @@ import Relogio from "../../componentes/Relogio/Relogio";
 export default class Financeiro extends Component{
     constructor(){
         super()
+        this.dados = [];
         this.state = {
             caixa:0,
             estoque: '',
@@ -23,6 +24,7 @@ export default class Financeiro extends Component{
             numero_estoque:0,
             vencimento:'',
             faturamento:0,
+            despesas:0,
             mostrar_pagar:"popup-pagar",
             mostrar_vencido:"popup-vencido",
             mostrar_prazo: "popup-prazo",
@@ -30,8 +32,11 @@ export default class Financeiro extends Component{
             isLoading:true,
             seminternet:"sem-internet",
             ano: '',
-            s:0
+            s:0,
+            saldo:0
         }
+        this.criar_avisos = this.criar_avisos.bind(this)
+        this.formatar_data = this.formatar_data.bind(this) 
         this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
         this.iniciar= this.iniciar.bind(this)
     }
@@ -44,6 +49,70 @@ export default class Financeiro extends Component{
     fechar_popup_vencido(){
         this.setState({mostrar_vencido: "popup-vencido"})
     }
+    formatar_data(data){
+        var list= data.split('-')
+        var meses = ["Janeiro", "Fevereiro", "Março", "Abril","Maio",
+        "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+        data = list[2]+', de '+meses[(parseInt(list[1])-1)]+', '+list[0]
+        return data
+    }
+    criar_avisos(dados){
+        this.dados = [];
+        if(dados.produto_mais_vendido !==0){
+            if(dados.produto_mais_vendido.produto_nome !== 0){
+                this.dados.push(<div key={Math.random()} className="info">
+                                    <p>O produto mais vendido é <strong>{dados.produto_mais_vendido.produto_nome}</strong>. 
+                                    Vendendo ao todo <strong>{dados.produto_mais_vendido.quantidade}</strong> peças</p>
+                                </div>)
+            }
+        }
+        if(dados.produto_menos_vendido !==0){
+            if(dados.produto_menos_vendido.produto_nome !== 0){
+                this.dados.push(<div key={Math.random()} className="info">
+                                    <p>Os produtos menos vendidos são <strong>{dados.produto_menos_vendido.produto_nome[0]}</strong>,
+                                    <strong>{dados.produto_menos_vendido.produto_nome[1]}</strong>, 
+                                    <strong>{dados.produto_menos_vendido.produto_nome[2]}</strong>,
+                                    <strong>{dados.produto_menos_vendido.produto_nome[3]}</strong>, 
+                                    <strong>{dados.produto_menos_vendido.produto_nome[4]}</strong>. 
+                                    Vendendo ao todo <strong>{dados.produto_menos_vendido.Qtd[0]}</strong>,
+                                    <strong>{dados.produto_menos_vendido.Qtd[1]}</strong>,
+                                    <strong>{dados.produto_menos_vendido.Qtd[2]}</strong>,
+                                    <strong>{dados.produto_menos_vendido.Qtd[3]}</strong>,
+                                    <strong>{dados.produto_menos_vendido.Qtd[4]}</strong> peças</p>
+                                </div>)
+            }
+        }
+        if(dados.maior_venda !==0){
+            if(dados.maior_venda.Qtd > 1){
+                this.dados.push(<div key={Math.random()} className="info">
+                                    <p>O produtivo vendido pelo maior preço 
+                                        foi <strong>{dados.maior_venda.produto_nome}</strong>. 
+                                        Foram <strong>{dados.maior_venda.Qtd}</strong> peças cada uma vendida
+                                         por <strong>R$ {dados.maior_venda.valor}</strong>. No dia <strong>{this.formatar_data(dados.maior_venda.data)}</strong> </p>
+                                </div>)
+            }
+            else{
+                this.dados.push(<div key={Math.random()} className="info">
+                <p>O produtivo vendido pelo maior preço 
+                    foi <strong>{dados.maior_venda.produto_nome}</strong>. 
+                    Foi <strong>uma</strong> peça vendida
+                     por <strong>R$ {dados.maior_venda.valor}</strong>. No dia <strong>{this.formatar_data(dados.maior_venda.data)}</strong> </p>
+                </div>)
+            }
+        }
+        if(dados.melhor_dia !==0){
+                this.dados.push(<div key={Math.random()} className="info">
+                                    <p>O dia com mais vendas foi em <strong>{this.formatar_data(dados.melhor_dia.data)}</strong>. O dia fechou 
+                                    com <strong>{dados.melhor_dia.Qtd}</strong> vendas</p>
+                                </div>)
+        }
+        if(dados.maior_despesa !==0){
+            this.dados.push(<div key={Math.random()} className="info">
+                                <p>A maior dívida paga foi a de <strong>{dados.maior_despesa.descricao}</strong> de <strong>R$ {dados.maior_despesa.valor}</strong> no
+                                 dia <strong>{this.formatar_data(dados.maior_despesa.data)}</strong></p>
+                            </div>)
+        }
+    }
     componentDidMount(){
         var data = new Date()
 
@@ -53,23 +122,29 @@ export default class Financeiro extends Component{
         setTimeout(() =>  this.setState({isLoading: false}), 3);
     }
     iniciar(ano_){
-        Axios.post('index.php?url=home/financeiro', {user:'1', ano:ano_})
+        Axios.post('index.php?url=financeiro/pesquisa', {user:'1', ano:ano_})
         .then(res => {
-            if(res.data.data[5] === null){
+            var dados = res.data.data
+            if(dados['recebido'] === null){
                 this.setState({caixa:0})
             }
             else{
-                this.setState({caixa: res.data.data[5]})
+                this.setState({caixa: dados['recebido']})
             }
-            if(res.data.data[1] === "Usuário não autenticado"){
+            if(dados['situacao'] === "Usuário não autenticado"){
                 Exit()
             }
             else{
-                var dados = res.data.data
+                this.criar_avisos(dados['notificacao'])
                 this.setState({nome: dados['nome']})
-                this.setState({faturamento: dados['caixa']})
-
-                if(res.data.data[3] === "Pago"){
+                this.setState({faturamento: dados['recebido']})
+                this.setState({despesas: dados['despesas']})
+                this.setState({saldo: dados['recebido']- dados['despesas']})
+                if(dados['recebido']- dados['despesas'] <0){
+                    this.setState({s: 'box negativo'})
+                }
+                else{
+                    this.setState({s: 'box saldo'})
                 }
                 if(res.data.data[3] === "Aberto"){
                     var data = dados['data_vencimento'].split('-');
@@ -101,6 +176,7 @@ export default class Financeiro extends Component{
                 }
             }
         }).catch( er => {
+            console.log(er)
             this.setState({seminternet: "sem-internet mostrar"})
         })
     }
@@ -120,19 +196,17 @@ export default class Financeiro extends Component{
                             <h1>Recebido em {this.state.ano}</h1>
                         </div>
                         <div className="box">
-                            <h2 className="despesas">R$ {0}</h2>
+                            <h2 className="despesas">R$ {this.state.despesas}</h2>
                             <h1 >Despesas  em {this.state.ano}</h1>
                         </div>
                         <div className={this.state.s}>
                             <h2 className="saldo">R$ {0}</h2>
                             <h1>Saldo {this.state.ano}</h1>
                         </div>
-                        <div>
-                            <div>
-                                
-                            </div>
-                        </div>
                         <Relogio></Relogio>
+                        <div className="notific">
+                            {this.dados}
+                        </div>
                     </div>
                 </LadoDireito>
             </div>

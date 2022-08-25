@@ -157,11 +157,16 @@
                 }
                 else{
                     $resultado = $pesquisa->fetchAll();
-                    foreach ($resultado as $row) {
-                        array_push($produto_nome, $row['produto_nome']);
-                        array_push($Qtd, $row['Qtd']);
+                    if($resultado == null){
+                        return 0;
                     }
-                    return array('produto_nome' => $produto_nome, 'Qtd' => $Qtd);            
+                    else{
+                        foreach ($resultado as $row) {
+                            array_push($produto_nome, $row['produto_nome']);
+                            array_push($Qtd, $row['Qtd']);
+                        }
+                        return array('produto_nome' => $produto_nome, 'Qtd' => $Qtd);                
+                    }
                 }                
             }
             else{
@@ -175,22 +180,117 @@
                 $sql = "SELECT produto_nome, COUNT(produto_id) * SUM(quantidade) AS Qtd FROM user_vendas WHERE user_id= ".$dados_de_usuario_sql->id." GROUP BY produto_id ORDER BY COUNT(produto_id) DESC LIMIT 1";
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
-                
-                return array('produto_nome' => $resultado[0]["produto_nome"], 'quantidade' => $resultado[0]["Qtd"]);            
+                if($resultado == null){
+                    return 0;
+                }
+                else{
+                    $t = array();
+                    $t['produto_nome'] = $resultado[0]["produto_nome"];
+                    $t['quantidade'] = $resultado[0]["Qtd"];
+                    
+                    return $t;            
+    
+                }
             }
             else{
                 return 'Usuário não autenticado';              
             }
         }
+        public function maior_venda(){
+            if(AuthController::checkAuth()){
+                include('conexao.php');
+                $dados_de_usuario_sql = AuthController::dados_de_sql();
+                $sql = "SELECT produto_nome, quantidade,valor_venda, data_venda FROM `user_vendas` 
+                WHERE user_id = ".$dados_de_usuario_sql->id." ORDER BY valor_venda DESC LIMIT 1"; 
+                $pesquisa = $conexao->query($sql);
+
+                if($pesquisa == false){
+                    return 0;
+                }
+                else{
+                    $resultado = $pesquisa->fetchAll();
+                    if($resultado[0] == null){
+                        return 0;
+                    }
+                    else{
+                        return array('produto_nome' => $resultado[0]['produto_nome'], 
+                        'Qtd' => $resultado[0]['quantidade'],
+                        'valor' =>$resultado[0]['valor_venda'],
+                        'data' => $resultado[0]['data_venda']);                
+                    }
+                }                
+            }
+            else{
+                return 'Usuário não autenticado';              
+            }
+        }
+        public function melhor_dia(){
+            if(AuthController::checkAuth()){
+                include('conexao.php');
+                $dados_de_usuario_sql = AuthController::dados_de_sql();
+                $sql = "SELECT data_venda, COUNT(data_venda) AS Qtd FROM user_vendas WHERE user_id= ".$dados_de_usuario_sql->id." GROUP BY data_venda ORDER BY COUNT(data_venda) DESC LIMIT 1"; 
+                $pesquisa = $conexao->query($sql);
+
+                if($pesquisa == false){
+                    return 0;
+                }
+                else{
+                    $resultado = $pesquisa->fetchAll();
+                    if($resultado[0] == null){
+                        return 0;
+                    }
+                    else{
+                        return array('data' => $resultado[0]['data_venda'], 
+                        'Qtd' => $resultado[0]['Qtd']);                
+                    }
+                }                
+            }
+            else{
+                return 'Usuário não autenticado';              
+            }
+        }
+        public function maior_despesa(){
+            if(AuthController::checkAuth()){
+                include('conexao.php');
+                $dados_de_usuario_sql = AuthController::dados_de_sql();
+                $sql = "SELECT descricao, data_pagamento, valor_despesas FROM `user_despesas` WHERE user_id = ".$dados_de_usuario_sql->id." ORDER BY valor_despesas DESC LIMIT 1";
+                $pesquisa = $conexao->query($sql);
+
+                if($pesquisa == false){
+                    return 0;
+                }
+                else{
+                    $resultado = $pesquisa->fetchAll();
+                    if($resultado[0] == null){
+                        return 0;
+                    }
+                    else{
+                        return array('descricao' => $resultado[0]['descricao'], 
+                        'data' => $resultado[0]['data_pagamento'],
+                        'valor' => $resultado[0]['valor_despesas']);                
+                    }
+                }                
+            }
+            else{
+                return 'Usuário não autenticado';              
+            }
+        }
+        public function notificacao(){
+            $todo = array();
+            $todo['produto_mais_vendido'] = $this->produto_mais_vendido();
+            $todo['produto_menos_vendido'] = $this->produto_menos_vendido();
+            $todo['maior_venda'] = $this->maior_venda();
+            $todo['melhor_dia'] = $this->melhor_dia();
+            $todo['maior_despesa'] = $this->maior_despesa();
+            return $todo;
+        }
         public function pesquisa(){
             $nome = $this->nome();
             $recebido_ano = $this->recebido_ano();
             $despesas = $this->despesas();
-            $produto_menos_vendido = $this->produto_menos_vendido();
-            $produto_mais_vendido = $this->produto_mais_vendido();
             return array( 'nome' => $nome[0], 'situacao' => $nome[1], 
-            'data_vencimento' => $nome[2], 'recebido' => $recebido_ano, 'produto_mais_vendido' => $produto_mais_vendido,
-             'despesas' => $despesas, 'produto_menos_vendido' => $produto_menos_vendido);
+            'data_vencimento' => $nome[2], 'recebido' => $recebido_ano, 'despesas' => floatval($despesas), 
+            'notificacao' => $this->notificacao());
         }
     }
 ?>
