@@ -3,36 +3,26 @@ import "./PopupVenda.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
 import Exit from "../../Exit";
+import { useState } from "react";
+import { Authcontext } from "../Store/Context";
 
-export default class PopupVenda extends Component{
-    constructor(props){
-        super(props)
-        this.lista = []
-        this.state = {
-            mostrar: this.props.exibir,
-            produto_nome_: '',
-            id_produto:'',
-            valor_venda: '',
-            percentual_: '',
-            quantidade_:'',
-            preencha: "preencha",
-            dados:[],
-            tipo_pagamento:'A vista',
-            maximo_quantidade:0,
-            maximo_largura:0,
-            valor_venda_recomendado:0,
-            data:''
-        }
-        this.add_venda = this.add_venda.bind(this)
-        this.puxar_produtos = this.puxar_produtos.bind(this)
-        this.mascara_valor = this.mascara_valor.bind(this)
-        this.mascara_percentual = this.mascara_percentual.bind(this)
-        this.delete_percental = this.delete_percental.bind(this)
-        this.identificar_produto = this.identificar_produto.bind(this)
-        this.mask_data = this.mask_data.bind(this) 
-    }
+export default function PopupVenda(){
+            const [mostrar, setmostrar]= React.useContext(Authcontext)
+            const [produto_nome_, setproduto_nome_]= useState('')
+            const [id_produto, setid_produto]= useState('')
+            const [valor_venda, setvalor_venda]= useState('')
+            const [percentual_, setpercentual_]= useState('')
+            const [quantidade_, setquantidade_]=useState('')
+            const [preencha, setpreencha]= "preencha"
+            const [dados, setdados]=[]
+            const [tipo_pagamento, settipo_pagamento]= 'A vista'
+            const [maximo_quantidade, setmaximo_quantidade]= 0
+            const [maximo_largura, setmaximo_largura]= 0
+            const [valor_venda_recomendado, setvalor_venda_recomendado]= 0
+            const [data, setdata]= ''
+        
 
-    puxar_produtos(){
+    function puxar_produtos(){
         var data_ = new Date()
         var dias = data_.getDate()
         var mes = data_.getMonth()+1
@@ -143,49 +133,49 @@ export default class PopupVenda extends Component{
         e = e.replace(/^(\d{2})(\d)/, '$1/$2');
         return e;
     }
-    render(){
-        return(
-            <div className={this.props.exibir}>
-                <div className="menu">
-                    <div className="inputs">
-                        <div className="titulo">
-                            <h1>VENDA</h1>
-                            <h3 className={this.state.preencha}>Preencha os dados*</h3>
-                        </div>
-                        <div className="input">
-                            <select onChange={(event) => this.identificar_produto(event.target.value, event.currentTarget.id, event.target.name)} >
-                                {this.state.dados}
-                            </select>
-                        </div>
-                        <div className="input">
-                            <input value={this.state.valor_venda} onChange={(event) => this.mascara_valor(event.target.value)} placeholder="R$ 00,00"></input>
-                            <label className="nome">Valor de venda Mínimo(R${this.state.valor_venda_recomendado})</label>
-                        </div>
-                        <div className="input">
-                            <input type="number" value={this.state.quantidade_} placeholder="R$ 00,00"  max={this.state.maximo_quantidade} onChange={(event) => this.quantidade(event.target.value)} ></input>
-                            <label className="nome">Quantidade</label>
-                        </div>
-                        <div className="input">
-                            <select  value={this.state.tipo_pagamento}  onChange={(event) => this.setState({tipo_pagamento: event.target.value})} >
-                                <option value="A vista">A vista</option>
-                                <option value="Parcelado">Parcelado</option>
-                                <option value="Boleto">Boleto</option>
-                                <option value="Pix">Pix</option>
-                            </select>
-                        </div>
-                        <div className="input">
-                            <input type="text" value={this.state.data} placeholder="R$ 00,00" onChange={(event) => this.setState({data: this.mask_data(event.target.value)})} maxLength="10"></input>
-                            <label className="nome">Data de venda</label>
-                        </div>
 
+    return(
+        <div className={this.props.exibir}>
+            <div className="menu">
+                <div className="inputs">
+                    <div className="titulo">
+                        <h1>VENDA</h1>
+                        <h3 className={this.state.preencha}>Preencha os dados*</h3>
                     </div>
-                    <div className="botoes">
-                        <button className="add" onClick={(event) => this.add_venda()} >Adicionar</button>
-                        <button  className="cancel" onClick={(event) => this.props.fechar()}>Cancelar</button>
+                    <div className="input">
+                        <select onChange={(event) => this.identificar_produto(event.target.value, event.currentTarget.id, event.target.name)} >
+                            {this.state.dados}
+                        </select>
                     </div>
+                    <div className="input">
+                        <input value={this.state.valor_venda} onChange={(event) => this.mascara_valor(event.target.value)} placeholder="R$ 00,00"></input>
+                        <label className="nome">Valor de venda Mínimo(R${this.state.valor_venda_recomendado})</label>
+                    </div>
+                    <div className="input">
+                        <input type="number" value={this.state.quantidade_} placeholder="R$ 00,00"  max={this.state.maximo_quantidade} onChange={(event) => this.quantidade(event.target.value)} ></input>
+                        <label className="nome">Quantidade</label>
+                    </div>
+                    <div className="input">
+                        <select  value={this.state.tipo_pagamento}  onChange={(event) => this.setState({tipo_pagamento: event.target.value})} >
+                            <option value="A vista">A vista</option>
+                            <option value="Parcelado">Parcelado</option>
+                            <option value="Boleto">Boleto</option>
+                            <option value="Pix">Pix</option>
+                        </select>
+                    </div>
+                    <div className="input">
+                        <input type="text" value={this.state.data} placeholder="R$ 00,00" onChange={(event) => this.setState({data: this.mask_data(event.target.value)})} maxLength="10"></input>
+                        <label className="nome">Data de venda</label>
+                    </div>
+
+                </div>
+                <div className="botoes">
+                    <button className="add" onClick={(event) => this.add_venda()} >Adicionar</button>
+                    <button  className="cancel" onClick={(event) => this.props.fechar()}>Cancelar</button>
                 </div>
             </div>
-        )    
-    }
+        </div>
+    )    
+
 
 }

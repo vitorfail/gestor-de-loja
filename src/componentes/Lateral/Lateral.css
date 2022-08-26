@@ -156,3 +156,6 @@
     height: 50px;
     background: whitesmoke;
 }
+.barralateral .user .icon_user:hover{
+    cursor: pointer;
+}

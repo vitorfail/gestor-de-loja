@@ -5,15 +5,15 @@ import {  useParams } from "react-router-dom";
 function Check(){
     const code = useParams()
     const [link, setlink]= useState('')
-    function testarcode(){
-        Axios.post('/index.php?url=checkcode/pesquisa', {code:code['code']})
-        .then(res => {
-            if(res.data.data = '1'){
-                setlink("http://localhost:3000/");
-            }
-        })
-    }
+    
     useEffect(() =>{
+        function testarcode(){
+            Axios.post('/index.php?url=checkcode/pesquisa', {code:code['code']}).then(res => {
+                if(res.data.data === '1'){
+                    setlink("http://localhost:3000/");
+                }
+            })
+        }
         testarcode()
     }, [code])
 

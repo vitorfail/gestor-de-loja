@@ -1,24 +1,15 @@
 import React from "react"
 import { useState } from "react";
 import "./CaixaMostra.css";
-import PopupVenda from "../PopupVenda/PopupVenda";
 import PopupDespesas from "../PopupDespesas/PopupDespesas";
+import { Authcontext } from "../Store/Context";
 
 function CaixaMostra(){
-    const [mostrar_venda, setmostrar_venda] = useState('popup-venda');
     const [mostrar_despesa, setmostrar_despesa] = useState('popup-despesa');
-
-
-    const fechar_popup_venda = () => {
-        setmostrar_venda('popup-venda')
-    }
-    const fechar_popup_despesa = () =>{
-        setmostrar_despesa('popup-despesa')
-    }
+    const {setpp_venda} = React.useContext(Authcontext)
     return(
         <div className="mostrar-caixa">
             <PopupDespesas exibir={mostrar_despesa} fechar= {fechar_popup_despesa}></PopupDespesas>
-            <PopupVenda exibir={mostrar_venda} fechar={fechar_popup_venda}></PopupVenda>
             <div className="tabela">
                 <div className="titulo">
                     <h3 className="descricao">Descrição</h3>
@@ -50,7 +41,7 @@ function CaixaMostra(){
                 </div>
             </div>
             <div className="botoes">
-                <button className="add" onClick={(event) => setmostrar_venda('popup-venda mostrar')}>Adicionar venda</button>
+                <button className="add" onClick={(event) => setpp_venda('popup-venda mostrar')}>Adicionar venda</button>
                 <button className="del" onClick={(event) => setmostrar_despesa('popup-despesa mostrar')}>Adicionar despesas</button>
             </div>
         </div>

@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./Lateral.css";
 import { Link } from "react-router-dom";
+import { Authcontext } from "../Store/Context";
 function Lateral(props){
+    const {setpp_imagem} = React.useContext(Authcontext)
     const [nome, setnome] = useState('')
     const [dias, setdias] = useState('')
     const [vencimento, setvencimento] = useState('')
     const [situacao, setsituacao] = useState('user')
+    const mudar_imagine = () => {
+        setpp_imagem("popup-imagem mostrar")
+    }
 
     useEffect(() => {
         setnome(props.nome)
@@ -28,10 +33,12 @@ function Lateral(props){
             }
         }
     }, [props.nome, props.vencimento, props.dias, vencimento])
+
+
     return(<div className="barralateral">
                     <div className={situacao}> 
                         <div className="info">
-                            <div className="icon_user">
+                            <div className="icon_user" onClick={(event) => mudar_imagine()}>
                             </div>
                             <h3>{nome}</h3>
                         </div>
