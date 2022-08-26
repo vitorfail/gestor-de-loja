@@ -15,9 +15,14 @@
                 $sql = "SELECT SUM(valor_despesas) AS total FROM `user_despesas` WHERE YEAR(data_pagamento) = ".$_POST['ano']." AND `user_id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
-                $total = $resultado[0]["total"];
-                $conexao = null;
-                return $total;            
+                if($resultado == null){
+                    return 0;
+                }
+                else{
+                    $total = $resultado[0]["total"];
+                    $conexao = null;
+                    return $total;                
+                }
             }
             else{
                 return 'Usuário não autenticado';              
@@ -54,8 +59,12 @@
                 $sql = "SELECT SUM(valor_venda*quantidade) AS total FROM `user_vendas` WHERE YEAR(data_venda)  = ".$_POST['ano']." and `user_id`= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
-                
-                return floatval($resultado[0]['total']);            
+                if($resultado == null){
+                    return 0;
+                }
+                else{
+                    return floatval($resultado[0]['total']);            
+                }                
             }
             else{
                 return 'Usuário não autenticado';              

@@ -11,6 +11,7 @@ import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
 import Loading from "../../componentes/Loading/Loading";
 import SemInternet from "../../componentes/SemInternet/SemInternet";
 import Relogio from "../../componentes/Relogio/Relogio";
+import Loading1 from "../../componentes/Loading1/Loading1";
 
 export default class Financeiro extends Component{
     constructor(){
@@ -30,11 +31,14 @@ export default class Financeiro extends Component{
             mostrar_prazo: "popup-prazo",
             tipos_de_pagamento:0,
             isLoading:true,
+            loading: "loading",
             seminternet:"sem-internet",
             ano: '',
+            ano_pesquisa:'',
             s:0,
             saldo:0
         }
+        this.pesquisa = this.pesquisa.bind(this)
         this.criar_avisos = this.criar_avisos.bind(this)
         this.formatar_data = this.formatar_data.bind(this) 
         this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
@@ -117,7 +121,7 @@ export default class Financeiro extends Component{
         var data = new Date()
 
         this.setState({ano: data.getFullYear()})
-
+        this.setState({ano_pesquisa: data.getFullYear()})
         this.iniciar(String(data.getFullYear()))
         setTimeout(() =>  this.setState({isLoading: false}), 3);
     }
@@ -180,9 +184,16 @@ export default class Financeiro extends Component{
             this.setState({seminternet: "sem-internet mostrar"})
         })
     }
+    pesquisa(){
+        this.setState({loading: "loading mostrar"})
+        this.setState({ano: String(this.state.ano_pesquisa)})
+        this.iniciar(String(this.state.ano_pesquisa))
+        setTimeout(()=> this.setState({loading: "loading"}), 2000)
+    }
     render(){
         return(this.state.isLoading? <Loading></Loading> :
             <div className="tudo">
+                <Loading1 loading={this.state.loading}></Loading1>
                 <SemInternet exibir={this.state.seminternet}></SemInternet>
                 <PopupVencido exibir={this.state.mostrar_vencido} fechar= {this.fechar_popup_vencido.bind(this)}></PopupVencido>
                 <PopupPrazo exibir={this.state.mostrar_prazo} fechar= {this.fechar_popup_prazo.bind(this)}></PopupPrazo>
@@ -192,19 +203,82 @@ export default class Financeiro extends Component{
                     <BarraSuperior></BarraSuperior>
                     <div className="blocos-financeiro">
                         <div className="box">
-                            <h2 className="receita">R$ {this.state.faturamento}</h2>
+                            <h2 className="receita">R$ {this.state.faturamento.toFixed(2)}</h2>
                             <h1>Recebido em {this.state.ano}</h1>
                         </div>
                         <div className="box">
-                            <h2 className="despesas">R$ {this.state.despesas}</h2>
+                            <h2 className="despesas">R$ {this.state.despesas.toFixed(2)}</h2>
                             <h1 >Despesas  em {this.state.ano}</h1>
                         </div>
                         <div className={this.state.s}>
-                            <h2 className="saldo">R$ {0}</h2>
+                            <h2 className="saldo">R$ {this.state.saldo.toFixed(2)}</h2>
                             <h1>Saldo {this.state.ano}</h1>
                         </div>
                         <Relogio></Relogio>
                         <div className="notific">
+                            <div className="pesquisa">
+                                <h3>ANO</h3>
+                                <select value={this.state.ano_pesquisa} onChange={(event) => this.setState({ano_pesquisa: event.target.value})}>
+                                    <option value="1984">1984</option>
+                                    <option value="1985">1985</option>
+                                    <option value="1986">1986</option>
+                                    <option value="1987">1987</option>
+                                    <option value="1988">1988</option>
+                                    <option value="1989">1989</option>
+                                    <option value="1990">1990</option>
+                                    <option value="1991">1991</option>
+                                    <option value="1992">1992</option>
+                                    <option value="1993">1993</option>
+                                    <option value="1994">1994</option>
+                                    <option value="1995">1995</option>
+                                    <option value="1996">1996</option>
+                                    <option value="1997">1997</option>
+                                    <option value="1998">1998</option>
+                                    <option value="1999">1999</option>
+                                    <option value="2001">2001</option>
+                                    <option value="2002">2002</option>
+                                    <option value="2003">2003</option>
+                                    <option value="2004">2004</option>
+                                    <option value="2005">2005</option>
+                                    <option value="2006">2006</option>
+                                    <option value="2007">2007</option>
+                                    <option value="2008">2008</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                    <option value="2031">2031</option>
+                                    <option value="2032">2032</option>
+                                    <option value="2033">2033</option>
+                                    <option value="2034">2034</option>
+                                    <option value="2035">2035</option>
+                                    <option value="2036">2036</option>
+                                    <option value="2037">2037</option>
+                                    <option value="2038">2038</option>
+                                    <option value="2039">2039</option>
+                                    <option value="2040">2040</option>
+                                </select>
+                                <button onClick={(event) => this.pesquisa()}>PESQUISAR</button>
+                            </div>
+                            <h2>Informações gerais:</h2>
                             {this.dados}
                         </div>
                     </div>
