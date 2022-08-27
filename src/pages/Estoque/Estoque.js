@@ -17,6 +17,7 @@ import Passador_direita from "../../icons/passar-direita.png"
 import Passador_final_direita from "../../icons/passar-final-direita.png"
 import Loading1 from "../../componentes/Loading1/Loading1";
 import { Authcontext } from "../../componentes/Store/Context";
+import Server from "../../Servidor";
 
 export default class Estoque extends Component{
     constructor(){
@@ -120,7 +121,7 @@ export default class Estoque extends Component{
         this.iniciar(0)
     }
     iniciar(inicio){
-        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet} = this.context
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage} = this.context
         Axios.post('index.php?url=estoque/pesquisa', {user:'1', index: inicio, tamanho:15})
         .then(res => {
             var dados = res.data.data
@@ -128,6 +129,9 @@ export default class Estoque extends Component{
                 Exit()
             }
             else{
+                if(dados['foto_perfil'] !== '' && dados['foto_perfil'] !== null)
+                    {seturlimage(Server+dados['foto_perfil']) 
+                } 
                 this.mostrar_estoque(dados['descricao'])
                 this.setState({estoque_valor:dados['valor_estoque'] })
                 this.setState({nome: dados['nome']})

@@ -12,6 +12,7 @@ import PopupDespesas from "../../componentes/PopupDespesas/PopupDespesas";
 import Loading from "../../componentes/Loading/Loading";
 import Loading1 from "../../componentes/Loading1/Loading1";
 import { Authcontext } from "../../componentes/Store/Context";
+import Server from "../../Servidor";
 
 export default class Caixa extends Component{
     constructor(){
@@ -98,7 +99,7 @@ export default class Caixa extends Component{
     }
     
     iniciar(mes_, dia_, ano_){
-        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet} = this.context
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage} = this.context
         Axios.post('index.php?url=caixa/pesquisa', {user:'1', mes:mes_, dia:dia_, ano:ano_})
         .then(res => {
             var dados = res.data.data
@@ -112,6 +113,9 @@ export default class Caixa extends Component{
                 Exit()
             }
             else{
+                if(dados['foto_perfil'] !== '' && dados['foto_perfil'] !== null)
+                    {seturlimage(Server+dados['foto_perfil']) 
+                } 
                 this.mostrar_caixa(dados['caixa'])
                 this.setState({recebido_mes: dados['valor_caixa']})
                 this.setState({recebido_hoje:dados['valor_caixa']})

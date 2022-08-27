@@ -10,6 +10,7 @@ import Axios from "../../Axios.js";
 import Exit from "../../Exit";
 import Loading from "../../componentes/Loading/Loading";
 import { Authcontext } from "../../componentes/Store/Context";
+import Server from "../../Servidor";
 
 export default class Home extends Component{
     constructor(props){
@@ -35,7 +36,7 @@ export default class Home extends Component{
         setTimeout(() =>  this.setState({isLoading: false}), 3);
     }
     iniciar(){
-        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet} = this.context
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage} = this.context
         Axios.post('index.php?url=home/pesquisa', {user:'1'})
         .then(res => {
             var dados = res.data.data
@@ -49,6 +50,9 @@ export default class Home extends Component{
                 Exit()
             }
             else{
+                if(dados['foto_perfil'] !== '' && dados['foto_perfil'] !== null)
+                    {seturlimage(Server+dados['foto_perfil']) 
+                } 
                 this.setState({estoque:dados['valor_estoque'].toFixed(2)})
                 this.setState({nome: dados['nome']})
                 this.setState({numero_estoque: dados['numero_roupas']})

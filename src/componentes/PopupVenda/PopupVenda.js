@@ -46,16 +46,17 @@ export default class PopupVenda extends Component{
         this.lista =[]
         Axios.post('index.php?url=produtos/pesquisa').then(
             res => {
-                if(res.data.data === 'Usuário não autenticado'){
+                var dados = res.data.data
+                if( dados=== 'Usuário não autenticado'){
                     Exit()
                 }
                 else{
-                    var id_roupas = res.data.data[0]
-                    var lista_roupas = res.data.data[1]
-                    var qtd = res.data.data[2]
-                    var custo_direto = res.data.data[3]
-                    var custo_indireto = res.data.data[4]
-                    var percentual = res.data.data[5]
+                    var id_roupas = dados['id']
+                    var lista_roupas = dados['nomes']
+                    var qtd = dados['qtd']
+                    var custo_direto = dados['produto_valor']
+                    var custo_indireto = dados['custo_indireto']
+                    var percentual = dados['percentual']
                     for(var i = 0; i < lista_roupas.length; i++){
                         var lucro = parseFloat(percentual[i].replace("%", ''))/ 100
                         var custo = ((parseFloat(custo_direto[i]) + parseFloat(custo_indireto[i]))*lucro) + (parseFloat(custo_direto[i]) + parseFloat(custo_indireto[i]))

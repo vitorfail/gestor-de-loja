@@ -12,6 +12,7 @@
     require_once('inserir_produtos.php');
     require_once('inserir_despesas.php');
     require_once('inserir_venda.php');
+    require_once('inserir_imagem.php');
     require_once('produtos.php');
     require_once('criarcheck.php');
     require_once('check.php');

@@ -2,6 +2,7 @@ import "./Check.css";
 import React, { useEffect, useState} from "react";
 import Axios from "../../Axios.js";
 import {  useParams } from "react-router-dom";
+import { BaseURL } from "../../Servidor";
 function Check(){
     const code = useParams()
     const [link, setlink]= useState('')
@@ -10,7 +11,7 @@ function Check(){
         function testarcode(){
             Axios.post('/index.php?url=checkcode/pesquisa', {code:code['code']}).then(res => {
                 if(res.data.data === '1'){
-                    setlink("http://localhost:3000/");
+                    setlink(BaseURL);
                 }
             })
         }

@@ -1,6 +1,7 @@
 import axios from "axios";
+import Server from "./Servidor";
 const Axios = axios.create({
-  baseURL: 'http://localhost/api'
+  baseURL: Server
 });
 
 Axios.interceptors.request.use(async config => {

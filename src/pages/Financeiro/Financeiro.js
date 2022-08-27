@@ -9,6 +9,7 @@ import Loading from "../../componentes/Loading/Loading";
 import Relogio from "../../componentes/Relogio/Relogio";
 import Loading1 from "../../componentes/Loading1/Loading1";
 import { Authcontext } from "../../componentes/Store/Context";
+import Server from "../../Servidor";
 
 export default class Financeiro extends Component{
     constructor(){
@@ -110,7 +111,7 @@ export default class Financeiro extends Component{
         setTimeout(() =>  this.setState({isLoading: false}), 3);
     }
     iniciar(ano_){
-        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet} = this.context
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage} = this.context
         Axios.post('index.php?url=financeiro/pesquisa', {user:'1', ano:ano_})
         .then(res => {
             var dados = res.data.data
@@ -124,6 +125,9 @@ export default class Financeiro extends Component{
                 Exit()
             }
             else{
+                if(dados['foto_perfil'] !== ''&& dados['foto_perfil'] !== null)
+                    {seturlimage(Server+dados['foto_perfil']) 
+                } 
                 this.criar_avisos(dados['notificacao'])
                 this.setState({nome: dados['nome']})
                 this.setState({faturamento: dados['recebido']})

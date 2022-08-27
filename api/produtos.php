@@ -42,12 +42,15 @@
                             array_push($percentual, $linha['percentual']);
                         }
                     }    
-                    return array($ids, $nomes, $qtd, $produto_valor, $custo_indireto, $percentual);
+                    return array('id'=> $ids, 'nomes' => $nomes, 'qtd' => $qtd, 'produto_valor' => $produto_valor, 'custo_indireto' => $custo_indireto, 'percentual' => $percentual);
                 }
                 catch(Exception $ex){
                     $conexao = null;  
                     return '0';
                 }
+            }
+            else{
+                return 'Usuário não autenticado';
             }
         }
     }

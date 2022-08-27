@@ -10,11 +10,12 @@ export const StoreContext = (props) =>{
     const [pp_vencido, setpp_vencido] = useState('popup-vencido')
     const [pp_venda, setpp_venda] = useState('popup-venda')
     const [sem_internet, setsem_internet] = useState('sem-internet')
+    const [urlimage, seturlimage] = useState('')
     return(
         <Authcontext.Provider value={{pp_despesa, setpp_despesa, 
             pp_estoque, setpp_estoque, pp_imagem, setpp_imagem, 
             pp_pagar, setpp_pagar, pp_prazo, setpp_prazo,
-             pp_vencido, setpp_vencido, pp_venda, setpp_venda, sem_internet, setsem_internet}}>
+             pp_vencido, setpp_vencido, pp_venda, setpp_venda, sem_internet, setsem_internet, urlimage, seturlimage}}>
             {props.children}
         </Authcontext.Provider>
     )

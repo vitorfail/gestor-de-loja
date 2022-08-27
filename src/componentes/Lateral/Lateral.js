@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Authcontext } from "../Store/Context";
 function Lateral(props){
     const {setpp_imagem} = React.useContext(Authcontext)
+    const {urlimage} =React.useContext(Authcontext)
+    const [imagem, setimagem] = useState(null)
     const [nome, setnome] = useState('')
     const [dias, setdias] = useState('')
     const [vencimento, setvencimento] = useState('')
@@ -15,6 +17,9 @@ function Lateral(props){
     useEffect(() => {
         setnome(props.nome)
         setvencimento(props.vencimento)
+        if(urlimage !== ''){
+            setimagem(<img alt="perfil" src={urlimage}/>)
+        }
         if(vencimento ===''){
             setsituacao("user")
         }
@@ -32,13 +37,14 @@ function Lateral(props){
                 setdias(props.dias.toString()+ " DIAS PARA PAGAR")    
             }
         }
-    }, [props.nome, props.vencimento, props.dias, vencimento])
+    }, [props.nome, props.vencimento, props.dias, vencimento, urlimage])
 
 
     return(<div className="barralateral">
                     <div className={situacao}> 
                         <div className="info">
                             <div className="icon_user" onClick={(event) => mudar_imagine()}>
+                                {imagem}
                             </div>
                             <h3>{nome}</h3>
                         </div>

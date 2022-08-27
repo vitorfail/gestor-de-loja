@@ -32,25 +32,26 @@
             if(AuthController::checkAuth()){
                 include('conexao.php');
                 $dados_de_usuario_sql = AuthController::dados_de_sql(); 
-                $sql = "SELECT nome, situacao, data_vencimento FROM `users_info` WHERE id= ".$dados_de_usuario_sql->id;
+                $sql = "SELECT nome, situacao, data_vencimento, foto_perfil FROM `users_info` WHERE id= ".$dados_de_usuario_sql->id;
                 $pesquisa = $conexao->query($sql);
                 $resultado = $pesquisa->fetchAll();
                 $nome = '';
                 $situacao = '';
                 $vencimento = '';
+                $foto_perfil = '';
                 $conexao = null;
                 foreach($resultado as $row){
                     $nome = $row['nome'];
                     $situacao = $row['situacao'];
                     $vencimento = $row["data_vencimento"];
+                    $foto_perfil = $row["foto_perfil"];
                 }
                 $conexao = null;
-                return array($nome, $situacao, $vencimento);            
+                return array($nome, $situacao, $vencimento, $foto_perfil);            
             }
             else{
                 return 'Usuário não autenticado';              
             }
-
         }
         public function recebido_ano(){
             if(AuthController::checkAuth()){
@@ -298,7 +299,7 @@
             $recebido_ano = $this->recebido_ano();
             $despesas = $this->despesas();
             return array( 'nome' => $nome[0], 'situacao' => $nome[1], 
-            'data_vencimento' => $nome[2], 'recebido' => $recebido_ano, 'despesas' => floatval($despesas), 
+            'data_vencimento' => $nome[2], 'foto_perfil' => $nome[3],'recebido' => $recebido_ano, 'despesas' => floatval($despesas), 
             'notificacao' => $this->notificacao());
         }
     }
