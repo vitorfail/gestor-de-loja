@@ -2,6 +2,7 @@
 import "./PopupDespesas.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
+import { Authcontext } from "../Store/Context";
 
 
 export default class PopupDespesas extends Component{
@@ -23,6 +24,7 @@ export default class PopupDespesas extends Component{
         this.delete_percental = this.delete_percental.bind(this) 
         this.mask_data = this.mask_data.bind(this) 
     }
+    static contextType = Authcontext
     componentDidMount(){
         var data = new Date()
         var dias = data.getDate()
@@ -36,6 +38,7 @@ export default class PopupDespesas extends Component{
         
     }
     add_despesa(){
+        const {setpp_despesa} = this.context
         this.setState({preencha: "preencha"})
         if(this.state.descricao ==='' || this.state.produto_valor_ ==='' 
         || this.state.data ==='' || this.state.vencimento === ''){
@@ -52,7 +55,7 @@ export default class PopupDespesas extends Component{
                 valor:custo , data_vencimento: data_venci, 
                 data:data_hoje }).then(res =>{
                     if(res.data.data === '1'){
-                        this.props.fechar()
+                        setpp_despesa('popup-despesa')
                         this.props.reiniciar()
                     }
                     if(res.data.data === '0'){
@@ -87,8 +90,9 @@ export default class PopupDespesas extends Component{
         return e;
     }
     render(){
+        const {pp_despesa, setpp_despesa} = this.context
         return(
-            <div className={this.props.exibir}>
+            <div className={pp_despesa}>
                 <div className="menu">
                     <div className="inputs">
                         <div className="titulo">
@@ -115,7 +119,7 @@ export default class PopupDespesas extends Component{
                     </div>
                     <div className="botoes">
                         <button className="add" onClick={(event) => this.add_despesa()} >Adicionar</button>
-                        <button  className="cancel" onClick={(event) => this.props.fechar()}>Cancelar</button>
+                        <button  className="cancel" onClick={(event) => setpp_despesa('popup-despesa')}>Cancelar</button>
                     </div>
                 </div>
             </div>

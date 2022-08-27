@@ -10,16 +10,13 @@ import Exit from '../../Exit'
 import Editar from "../../icons/editar.png";
 import Excluir from "../../icons/excluir.png";
 import PopupEstoque from "../../componentes/PopupEstoque/PopupEstoque"
-import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
-import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
-import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
 import Loading from "../../componentes/Loading/Loading";
 import Passador_final_esquerda from "../../icons/passar-final-esquerda.png"
 import Passador_esquerda from "../../icons/passar-esquerda.png"
 import Passador_direita from "../../icons/passar-direita.png"
 import Passador_final_direita from "../../icons/passar-final-direita.png"
-import SemInternet from "../../componentes/SemInternet/SemInternet";
 import Loading1 from "../../componentes/Loading1/Loading1";
+import { Authcontext } from "../../componentes/Store/Context";
 
 export default class Estoque extends Component{
     constructor(){
@@ -31,23 +28,17 @@ export default class Estoque extends Component{
             nome:'',
             vencimento:'',
             dados:[],
-            mostrar: "popup-estoque",
-            mostrar_pagar:"popup-pagar",
-            mostrar_vencido:"popup-vencido",
-            mostrar_prazo: "popup-prazo",
             isLoading:true,
             loading: "loading",
             index:0,
             limite:false,
-            seminternet:"sem-internet"
         }
         this.iniciar= this.iniciar.bind(this)
         this.mostrar_estoque = this.mostrar_estoque.bind(this)
-        this.abrir_popup = this.abrir_popup.bind(this)
-        this.fechar_popup = this.fechar_popup.bind(this)
-        this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
         this.passador = this.passador.bind(this)
     }
+    static contextType = Authcontext
+
     passador(direcao){
         this.setState({loading: "loading mostrar"})
         var valor =this.state.index
@@ -73,24 +64,9 @@ export default class Estoque extends Component{
             }
         }
     }
-    fechar_popup(){
-        this.setState({mostrar: "popup-estoque"})
-    } 
-    fechar_popup_pagar(){
-        this.setState({mostrar_pagar: "popup-pagar"})
-    } 
-    fechar_popup_prazo(){
-        this.setState({mostrar_prazo: "popup-prazo"})
-    }
-    fechar_popup_vencido(){
-        this.setState({mostrar_vencido: "popup-vencido"})
-    }
     componentDidMount(){
         this.iniciar(0)
         setTimeout(() =>  this.setState({isLoading: false}), 3);
-    }
-    abrir_popup() {
-        this.setState({mostrar: "popup-estoque mostrar"})
     }
     mostrar_estoque(props){
         var data = props
@@ -144,6 +120,7 @@ export default class Estoque extends Component{
         this.iniciar(0)
     }
     iniciar(inicio){
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet} = this.context
         Axios.post('index.php?url=estoque/pesquisa', {user:'1', index: inicio, tamanho:15})
         .then(res => {
             var dados = res.data.data
@@ -161,7 +138,7 @@ export default class Estoque extends Component{
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);
                     if(dif>0 && dif<7){
-                        this.setState({mostrar_prazo: "popup-prazo mostrar"})
+                        setpp_prazo("popup-prazo mostrar")
                         this.setState({dias: Math.round(dif)})
                         this.setState({vencimento: 'prazo'})
                     }
@@ -171,12 +148,12 @@ export default class Estoque extends Component{
                     }
                     else{
                         if(dif<0 && dif>-5){
-                            this.setState({mostrar_pagar: 'popup-pagar mostrar'})
+                            setpp_pagar('popup-pagar mostrar')
                             this.setState({dias: Math.round(dif)})
                             this.setState({vencimento: 'vencido'})
                         }
                         if(dif<-5){
-                            this.setState({mostrar_vencido:"popup-vencido mostrar"})
+                            setpp_vencido("popup-vencido mostrar")
                             this.setState({dias: Math.round(dif)})
                             this.setState({vencimento: 'vencido'})
                         }
@@ -185,18 +162,15 @@ export default class Estoque extends Component{
             }
         }).catch( er => {
             console.log(er)
-            this.setState({seminternet: "sem-internet mostrar"})
+            setsem_internet("sem-internet mostrar")
         })
     }
     render(){
+        const { setpp_estoque} = this.context
         return(this.state.isLoading? <Loading></Loading> :
             <div className="tudo">
                 <Loading1 loading={this.state.loading}></Loading1>
-                <SemInternet exibir={this.state.seminternet}></SemInternet>
-                <PopupEstoque exibir={this.state.mostrar} fechar= {this.fechar_popup.bind(this)} reiniciar={this.restart.bind(this)}></PopupEstoque>
-                <PopupVencido exibir={this.state.mostrar_vencido} fechar= {this.fechar_popup_vencido.bind(this)}></PopupVencido>
-                <PopupPrazo exibir={this.state.mostrar_prazo} fechar= {this.fechar_popup_prazo.bind(this)}></PopupPrazo>
-                <PopupPagar exibir={this.state.mostrar_pagar} fechar= {this.fechar_popup_pagar.bind(this)}></PopupPagar>
+                <PopupEstoque  reiniciar={this.restart.bind(this)}></PopupEstoque>
                 <Lateral dias={this.state.dias} nome={this.state.nome} vencimento={this.state.vencimento} ></Lateral>
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
@@ -238,7 +212,7 @@ export default class Estoque extends Component{
 
                             </div>
                             <div className="botoes">
-                                <button className="add" onClick={(event)=> this.abrir_popup()}>Adicionar</button>
+                                <button className="add" onClick={(event)=> setpp_estoque('popup-estoque mostrar')}>Adicionar</button>
                                 <button className="del">Excluir</button>
                             </div>
                         </div>

@@ -3,12 +3,12 @@ import "./PopupVencido.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
 import Loading1 from "../Loading1/Loading1";
+import { Authcontext } from "../Store/Context";
 
 export default class PopupVencido extends Component{
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
-            mostrar: this.props.exibir,
             produto_nome_: '',
             produto_valor_: '',
             percentual_: '',
@@ -19,6 +19,7 @@ export default class PopupVencido extends Component{
         }
         this.Pagamento = this.Pagamento.bind(this)
     }
+    static contextType = Authcontext
     componentDidMount(){
     }
     Pagamento(){
@@ -33,8 +34,9 @@ export default class PopupVencido extends Component{
         })
     }
     render(){
+        const {pp_vencido} = this.context
         return(
-            <div className={this.props.exibir}>
+            <div className={pp_vencido}>
                 <Loading1 loading={this.state.loading}></Loading1>
                 <div className="menu">
                     <div className="inputs">

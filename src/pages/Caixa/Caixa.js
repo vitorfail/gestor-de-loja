@@ -7,14 +7,11 @@ import BarraSuperior from "../../componentes/BarraSuperior/BarraSuperior"
 import BlocosCaixa from "../../componentes/BlocosCaixa/BlocosCaixa";
 import Exit from '../../Exit'
 import Axios from "../../Axios"
-import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
-import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
-import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
 import PopupVenda from "../../componentes/PopupVenda/PopupVenda";
 import PopupDespesas from "../../componentes/PopupDespesas/PopupDespesas";
 import Loading from "../../componentes/Loading/Loading";
 import Loading1 from "../../componentes/Loading1/Loading1";
-import SemInternet from "../../componentes/SemInternet/SemInternet";
+import { Authcontext } from "../../componentes/Store/Context";
 
 export default class Caixa extends Component{
     constructor(){
@@ -27,14 +24,8 @@ export default class Caixa extends Component{
             despesas:0,
             vencimento:'',
             recebido_mes:0,
-            mostrar_pagar:"popup-pagar",
-            mostrar_vencido:"popup-vencido",
-            mostrar_prazo: "popup-prazo",
             isLoading: true,
             loading: "loading",
-            seminternet:"sem-internet",
-            mostrar_venda:"popup-venda",
-            mostrar_despesa:"popup-despesa",
             dados: <div key={"original"} className="entrada"> 
                         <div className="vazio">
                             <h3>Sem entradas ou saidas hoje</h3>
@@ -48,21 +39,21 @@ export default class Caixa extends Component{
         this.mostrar_caixa = this.mostrar_caixa.bind(this)
         this.pesquisar = this.pesquisar.bind(this) 
     }
-    fechar_popup_venda(){
-        this.setState({mostrar_venda:'popup-venda'})
-    }
-    fechar_popup_despesa(){
-        this.setState({mostrar_despesa: 'popup-despesa'})
-    }
-    fechar_popup_pagar(){
-        this.setState({mostrar_pagar: "popup-pagar"})
-    } 
-    fechar_popup_prazo(){
-        this.setState({mostrar_prazo: "popup-prazo"})
-    }
-    fechar_popup_vencido(){
-        this.setState({mostrar_vencido: "popup-vencido"})
-    }
+    static contextType = Authcontext
+    componentDidMount(){
+        var data = new Date()
+        var dias = data.getDate()
+        if(dias < 10) dias = "0"+dias
+        var mes = data.getMonth()+1
+        if(mes < 10) mes = "0"+mes
+        this.setState({dia:String(dias)})
+        this.setState({mes:String(mes)})
+        this.setState({ano: String(data.getFullYear())})
+
+
+        this.iniciar(String(mes), String(dias), String(data.getFullYear()))
+        setTimeout(() =>  this.setState({isLoading: false}), 3);
+    }    
     mostrar_caixa(props){
         var data = props
         if(data === '1' || data === 'Usuário não autenticado'){
@@ -105,21 +96,9 @@ export default class Caixa extends Component{
             this.setState({dados: this.lista})
         }
     }
-    componentDidMount(){
-        var data = new Date()
-        var dias = data.getDate()
-        if(dias < 10) dias = "0"+dias
-        var mes = data.getMonth()+1
-        if(mes < 10) mes = "0"+mes
-        this.setState({dia:String(dias)})
-        this.setState({mes:String(mes)})
-        this.setState({ano: String(data.getFullYear())})
-
-
-        this.iniciar(String(mes), String(dias), String(data.getFullYear()))
-        setTimeout(() =>  this.setState({isLoading: false}), 3);
-    }        
+    
     iniciar(mes_, dia_, ano_){
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet} = this.context
         Axios.post('index.php?url=caixa/pesquisa', {user:'1', mes:mes_, dia:dia_, ano:ano_})
         .then(res => {
             var dados = res.data.data
@@ -145,7 +124,7 @@ export default class Caixa extends Component{
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);
                     if(dif>0 && dif<7){
-                        this.setState({mostrar_prazo:'popup-prazo mostrar'})
+                        setpp_prazo('popup-prazo mostrar')
                         this.setState({dias: Math.round(dif)})
                         this.setState({vencimento: 'prazo'})
                     }
@@ -155,12 +134,12 @@ export default class Caixa extends Component{
                     }
                     else{
                         if(dif<0 && dif>-5){
-                            this.setState({mostrar_pagar:'popup-pagar mostrar'})
+                            setpp_pagar('popup-pagar mostrar')
                             this.setState({dias: Math.round(dif)})
                             this.setState({vencimento: 'vencido'})
                         }
                         if(dif<-5){
-                            this.setState({mostrar_vencido:"popup-vencido mostrar"})
+                            setpp_vencido("popup-vencido mostrar")
                             this.setState({dias: Math.round(dif)})
                             this.setState({vencimento: 'vencido'})
                         }
@@ -168,7 +147,7 @@ export default class Caixa extends Component{
                 }
             }
         }).catch( er => {
-            this.setState({seminternet: "sem-internet mostrar"})
+            setsem_internet("sem-internet mostrar")
         })
     }
     restart(){
@@ -185,16 +164,13 @@ export default class Caixa extends Component{
         setTimeout(()=> this.setState({loading: "loading"}), 2000)
     }
     render(){
+        const {setpp_venda, setpp_despesa} =this.context
         return(this.state.isLoading? <Loading></Loading>:
             <div className="tudo">
                 <Loading1 loading={this.state.loading}></Loading1>
-                <SemInternet exibir={this.state.seminternet}></SemInternet>
-                <PopupDespesas exibir={this.state.mostrar_despesa} reiniciar={this.restart.bind(this)} fechar= {this.fechar_popup_despesa.bind(this)}></PopupDespesas>
-                <PopupVenda exibir={this.state.mostrar_venda} reiniciar={this.restart.bind(this)} fechar={this.fechar_popup_venda.bind(this)}></PopupVenda>
+                <PopupDespesas  reiniciar={this.restart.bind(this)} ></PopupDespesas>
+                <PopupVenda  reiniciar={this.restart.bind(this)} ></PopupVenda>
 
-                <PopupVencido exibir={this.state.mostrar_vencido} fechar= {this.fechar_popup_vencido.bind(this)}></PopupVencido>
-                <PopupPrazo exibir={this.state.mostrar_prazo} fechar= {this.fechar_popup_prazo.bind(this)}></PopupPrazo>
-                <PopupPagar exibir={this.state.mostrar_pagar} fechar= {this.fechar_popup_pagar.bind(this)}></PopupPagar>
                 <Lateral dias={this.state.dias} nome={this.state.nome} vencimento={this.state.vencimento} ></Lateral>
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>
@@ -317,8 +293,8 @@ export default class Caixa extends Component{
                                 {this.state.dados}                               
                             </div>
                             <div className="botoes">
-                                <button className="add" onClick={(event) => this.setState({mostrar_venda: 'popup-venda mostrar'})}>Adicionar venda</button>
-                                <button className="del" onClick={(event) => this.setState({mostrar_despesa: 'popup-despesa mostrar'})}>Adicionar despesas</button>
+                                <button className="add" onClick={(event) => setpp_venda('popup-venda mostrar')}>Adicionar venda</button>
+                                <button className="del" onClick={(event) => setpp_despesa('popup-despesa mostrar')}>Adicionar despesas</button>
                             </div>
                         </div>
                     </Conteudo>

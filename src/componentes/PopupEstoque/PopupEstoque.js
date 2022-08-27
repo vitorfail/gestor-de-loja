@@ -2,6 +2,7 @@
 import "./PopupEstoque.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
+import { Authcontext } from "../Store/Context";
 
 export default class PopupEstoque extends Component{
     constructor(props){
@@ -19,6 +20,7 @@ export default class PopupEstoque extends Component{
         this.mascara_percentual = this.mascara_percentual.bind(this)
         this.delete_percental = this.delete_percental.bind(this) 
     }
+    static contextType = Authcontext
     componentDidMount(){
         this.setState({produto_nome_: ''})
         this.setState({produto_valor_: ''})
@@ -27,6 +29,7 @@ export default class PopupEstoque extends Component{
         this.setState({preencha: "preencha"})
     }
     add_produtos(){
+        const {setpp_estoque} = this.context
         this.setState({preencha: "preencha"})
         if(this.state.produto_nome_ ==='' || this.state.produto_valor_ ==='' 
         || this.state.percentual_ ==='' || this.state.quantidade_ ==='' || this.state.percentual_ ==='%'){
@@ -40,7 +43,7 @@ export default class PopupEstoque extends Component{
                 produto_nome:this.state.produto_nome_ , produto_valor: custo, 
                 percentual:this.state.percentual_, quantidade:qtd }).then(res =>{
                     if(res.data.data === '1'){
-                        this.props.fechar()
+                        setpp_estoque('popup-estoque')
                         this.props.reiniciar()
                         this.setState({produto_nome_: ''})
                         this.setState({produto_valor_: ''})
@@ -74,8 +77,9 @@ export default class PopupEstoque extends Component{
         }
     }
     render(){
+        const {pp_estoque, setpp_estoque} = this.context
         return(
-            <div className={this.props.exibir}>
+            <div className={pp_estoque}>
                 <div className="menu">
                     <div className="inputs">
                         <div className="titulo">
@@ -102,7 +106,7 @@ export default class PopupEstoque extends Component{
                     </div>
                     <div className="botoes">
                         <button className="add" onClick={(event) => this.add_produtos()} >Adicionar</button>
-                        <button  className="cancel" onClick={(event) => this.props.fechar()}>Cancelar</button>
+                        <button  className="cancel" onClick={(event) => setpp_estoque('popup-estoque')}>Cancelar</button>
                     </div>
                 </div>
             </div>

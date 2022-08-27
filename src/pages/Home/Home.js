@@ -8,11 +8,8 @@ import Blocos from "../../componentes/Blocos/Blocos";
 import Faturamento from "../../componentes/Faturamento/Faturamento";
 import Axios from "../../Axios.js";
 import Exit from "../../Exit";
-import PopupPagar from "../../componentes/PopupPagar/PopupPagar";
-import PopupPrazo from "../../componentes/PopupPrazo/PopupPrazo";
-import PopupVencido from "../../componentes/PopupVencido/PopupVencido";
 import Loading from "../../componentes/Loading/Loading";
-import SemInternet from "../../componentes/SemInternet/SemInternet";
+import { Authcontext } from "../../componentes/Store/Context";
 
 export default class Home extends Component{
     constructor(props){
@@ -25,30 +22,20 @@ export default class Home extends Component{
             numero_estoque:0,
             vencimento:'',
             faturamento:0,
-            mostrar_pagar:"popup-pagar",
-            mostrar_vencido:"popup-vencido",
-            mostrar_prazo: "popup-prazo",
             tipos_de_pagamento:0,
             isLoading:true,
-            seminternet:"sem-internet",
         }
-        this.fechar_popup_pagar = this.fechar_popup_pagar.bind(this)
         this.iniciar= this.iniciar.bind(this)
     }
-    fechar_popup_pagar(){
-        this.setState({mostrar_pagar: "popup-pagar"})
-    } 
-    fechar_popup_prazo(){
-        this.setState({mostrar_prazo: "popup-prazo"})
-    }
-    fechar_popup_vencido(){
-        this.setState({mostrar_vencido: "popup-vencido"})
-    }
+    static contextType = Authcontext
+
+
     componentDidMount(){
         this.iniciar()
         setTimeout(() =>  this.setState({isLoading: false}), 3);
     }
     iniciar(){
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet} = this.context
         Axios.post('index.php?url=home/pesquisa', {user:'1'})
         .then(res => {
             var dados = res.data.data
@@ -74,7 +61,7 @@ export default class Home extends Component{
                     var diferenca = data_vencimento - data_hoje 
                     var dif = diferenca / (1000 * 60 * 60 * 24);
                     if(dif>0 && dif<7){
-                        this.setState({mostrar_prazo: "popup-prazo mostrar"})
+                        setpp_prazo("popup-prazo mostrar")
                         this.setState({dias: Math.round(dif)})
                         this.setState({vencimento: 'prazo'})
                     }
@@ -84,12 +71,12 @@ export default class Home extends Component{
                     }
                     else{
                         if(dif<0 && dif>-5){
-                            this.setState({mostrar_pagar: 'popup-pagar mostrar'})
+                            setpp_pagar('popup-pagar mostrar')
                             this.setState({dias: Math.round(dif)})
                             this.setState({vencimento: 'vencido'})
                         }
                         if(dif<-5){
-                            this.setState({mostrar_vencido:"popup-vencido mostrar"})
+                            setpp_vencido("popup-vencido mostrar")
                             this.setState({dias: Math.round(dif)})
                             this.setState({vencimento: 'vencido'})
                         }
@@ -97,16 +84,12 @@ export default class Home extends Component{
                 }
             }
         }).catch( er => {
-            this.setState({seminternet: "sem-internet mostrar"})
+            setsem_internet("sem-internet mostrar")
         })
     }
     render(){
         return(this.state.isLoading? <Loading></Loading> :
             <div className="tudo">
-                <SemInternet exibir={this.state.seminternet}></SemInternet>
-                <PopupVencido exibir={this.state.mostrar_vencido} fechar= {this.fechar_popup_vencido.bind(this)}></PopupVencido>
-                <PopupPrazo exibir={this.state.mostrar_prazo} fechar= {this.fechar_popup_prazo.bind(this)}></PopupPrazo>
-                <PopupPagar exibir={this.state.mostrar_pagar} fechar= {this.fechar_popup_pagar.bind(this)}></PopupPagar>
                 <Lateral dias={this.state.dias} nome={this.state.nome} vencimento={this.state.vencimento} ></Lateral>
                 <LadoDireito>
                     <BarraSuperior></BarraSuperior>

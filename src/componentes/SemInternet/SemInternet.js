@@ -1,6 +1,7 @@
 
 import "./SemInternet.css";
 import React, {Component} from "react";
+import { Authcontext } from "../Store/Context";
 
 export default class SemInternet extends Component{
     constructor(props){
@@ -10,14 +11,16 @@ export default class SemInternet extends Component{
         }
         this.Recarregar = this.Recarregar.bind(this)
     }
+    static contextType = Authcontext
     Recarregar(){
         window.location.reload()
     }
     componentDidMount(){
     }
     render(){
+        const {sem_internet} = this.context
         return(
-            <div className={this.props.exibir}>
+            <div className={sem_internet}>
                 <div className="menu">
                     <div className="inputs">
                         <div className="titulo">

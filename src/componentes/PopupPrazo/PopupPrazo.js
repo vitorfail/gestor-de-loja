@@ -3,12 +3,12 @@ import "./PopupPrazo.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
 import Loading1 from "../Loading1/Loading1";
+import { Authcontext } from "../Store/Context";
 
 export default class PopupPrazo extends Component{
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
-            mostrar: this.props.exibir,
             produto_nome_: '',
             produto_valor_: '',
             percentual_: '',
@@ -19,6 +19,7 @@ export default class PopupPrazo extends Component{
         }
         this.Pagamento = this.Pagamento.bind(this)
     }
+    static contextType = Authcontext
     componentDidMount(){
     }
     Pagamento(){
@@ -26,18 +27,11 @@ export default class PopupPrazo extends Component{
         Axios.post('index.php?url=check/pesquisa').then(res =>{
             window.open('http://localhost:3000/check/'+res.data.data, '_blank').focus();
         })
-        //Axios.post('processarpagamento.php').then(res => {
-        //    window.open(res.data, '_blank'); 
-        //    this.setState({loading:'loading'})
-        //}).catch(error =>{
-        //    this.setState({loading:'loading'})
-//
-  //          this.setState({conteudo: <p className="err-mercado">Não foi possível encaminhar você para o Mercado Pago Verifique sua internet e tente donovo</p>})
-    //    })
     }
     render(){
+        const {pp_prazo, setpp_prazo} = this.context
         return(
-            <div className={this.props.exibir}>
+            <div className={pp_prazo}>
                 <Loading1 loading={this.state.loading}></Loading1>
                 <div className="menu">
                     <div className="inputs">
@@ -50,7 +44,7 @@ export default class PopupPrazo extends Component{
                     </div>
                     <div className="botoes">
                         <button className="add"  onClick={(event) => this.Pagamento()}>Pagar</button>
-                        <button  className="cancel" onClick={(event) => this.props.fechar()}>Mais tarde</button>
+                        <button  className="cancel" onClick={(event) => setpp_prazo('popup-prazo')}>Mais tarde</button>
                     </div>
                 </div>
             </div>

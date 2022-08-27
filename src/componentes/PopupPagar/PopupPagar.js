@@ -3,12 +3,12 @@ import "./PopupPagar.css";
 import React, {Component} from "react";
 import Axios from "../../Axios";
 import Loading1 from "../Loading1/Loading1";
+import { Authcontext } from "../Store/Context";
 
 export default class PopupPagar extends Component{
     constructor(props){
         super(props)
         this.state = {
-            mostrar: this.props.exibir,
             produto_nome_: '',
             produto_valor_: '',
             percentual_: '',
@@ -21,6 +21,7 @@ export default class PopupPagar extends Component{
         }
         this.Pagamento = this.Pagamento.bind(this)
     }
+    static contextType = Authcontext
     componentDidMount(){
     }
     Pagamento(){
@@ -35,8 +36,9 @@ export default class PopupPagar extends Component{
         })
     }
     render(){
+        const {pp_pagar, setpp_pagar} = this.context
         return(
-            <div className={this.props.exibir}>
+            <div className={pp_pagar}>
                 <Loading1 loading={this.state.loading}></Loading1>
                 <div className="menu">
                     <div className="inputs">
@@ -49,7 +51,7 @@ export default class PopupPagar extends Component{
                     </div>
                     <div className="botoes">
                         <button className="add"  onClick={(event) => this.Pagamento()}>Pagar</button>
-                        <button  className="cancel" onClick={(event) => this.props.fechar()}>Mais tarde</button>
+                        <button  className="cancel" onClick={(event) => setpp_pagar('popup-pagar')}>Mais tarde</button>
                     </div>
                 </div>
             </div>
