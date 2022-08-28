@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Lateral.css";
 import { Link } from "react-router-dom";
 import { Authcontext } from "../Store/Context";
+import Exit from "../../Exit";
+import { useHistory } from "react-router-dom";
 function Lateral(props){
     const {setpp_imagem} = React.useContext(Authcontext)
     const {urlimage} =React.useContext(Authcontext)
@@ -10,10 +12,14 @@ function Lateral(props){
     const [dias, setdias] = useState('')
     const [vencimento, setvencimento] = useState('')
     const [situacao, setsituacao] = useState('user')
+    const history = useHistory()
     const mudar_imagine = () => {
         setpp_imagem("popup-imagem mostrar")
     }
-
+    const sair = () =>{
+        Exit()
+        history.push('/login')
+    }
     useEffect(() => {
         setnome(props.nome)
         setvencimento(props.vencimento)
@@ -58,6 +64,7 @@ function Lateral(props){
                         <Link className="li" to="/caixa"><div className="caixa" ></div>Caixa</Link>
                         <Link className="li" to="/estoque"><div className="produtos" ></div>Produtos</Link>
                         <Link className="li" to="/financeiro"><div className="vendas" ></div>Financeiro</Link>
+                        <div className="li" onClick={() => sair()}><div className="sair" ></div>Sair</div>
                     </ul>
             </div>)
 }

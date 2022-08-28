@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export const Authcontext = React.createContext({}); 
 export const StoreContext = (props) =>{
+    const [nome_user, setnome_user] = useState('')
     const [pp_despesa, setpp_despesa] = useState('popup-despesa')
     const [pp_estoque, setpp_estoque] = useState('popup-estoque')
     const [pp_imagem, setpp_imagem] = useState('popup-imagem')
@@ -15,7 +16,8 @@ export const StoreContext = (props) =>{
         <Authcontext.Provider value={{pp_despesa, setpp_despesa, 
             pp_estoque, setpp_estoque, pp_imagem, setpp_imagem, 
             pp_pagar, setpp_pagar, pp_prazo, setpp_prazo,
-             pp_vencido, setpp_vencido, pp_venda, setpp_venda, sem_internet, setsem_internet, urlimage, seturlimage}}>
+             pp_vencido, setpp_vencido, pp_venda, setpp_venda, sem_internet,
+              setsem_internet, urlimage, seturlimage, nome_user, setnome_user}}>
             {props.children}
         </Authcontext.Provider>
     )

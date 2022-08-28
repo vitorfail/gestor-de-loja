@@ -8,10 +8,11 @@ import Server from "../../Servidor";
 
 export default function PopupImagem(){
     const [preencha, setpreencha] = useState('preencha')
+    const [nome, setnome] = useState('')
     const[image, setImage] = useState(null);
     const [conteudo, setconteudo] = useState(null)
     const[previewUrl, setPreviewUrl] = useState("");     
-    const {pp_imagem, setpp_imagem} = React.useContext(Authcontext)
+    const {pp_imagem, setpp_imagem, nome_user} = React.useContext(Authcontext)
     const {urlimage} = React.useContext(Authcontext)
     function mudar_imagem(e){
         if(e !== undefined){
@@ -57,16 +58,17 @@ export default function PopupImagem(){
         if(urlimage !== ''){
             if(image ===null){
                 setconteudo(<img alt="perfil1" src={urlimage}></img>)
+                setnome(nome_user)
             }
         }
         setpreencha("preencha") 
-    }, [setpreencha, image, previewUrl, setconteudo, urlimage])
+    }, [setpreencha, image, previewUrl, setconteudo, urlimage, nome_user])
     return(
         <div className={pp_imagem}>
             <div className="menu">
                 <div className="inputs">
                     <div className="titulo">
-                        <h1>VENDA</h1>
+                        <h1>{nome}</h1>
                         <h3 className={preencha}>Selecione uma imagem</h3>
                     </div>
                     <div className="perfil">
