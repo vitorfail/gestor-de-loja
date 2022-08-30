@@ -4,11 +4,12 @@ import React, { useEffect, useState} from "react";
 import Axios from "../../Axios";
 import Exit from "../../Exit";
 import { Authcontext } from "../Store/Context";
+import Editar from '../../icons/editar.png'
 import Server from "../../Servidor";
 
 export default function PopupImagem(){
     const [preencha, setpreencha] = useState('preencha')
-    const [nome, setnome] = useState('')
+    const [disabled_nome, setdisabled_nome]= useState(false)
     const[image, setImage] = useState(null);
     const [conteudo, setconteudo] = useState(null)
     const[previewUrl, setPreviewUrl] = useState("");     
@@ -40,15 +41,14 @@ export default function PopupImagem(){
             }}
         ).then(res =>{
             var dados = res.data.data
-            console.log(res.data)
-                if(dados === "Usuário não autenticado"){
-                    Exit()
+            if(dados === "Usuário não autenticado"){
+                Exit()
+            }
+            else{
+                if(dados === '1'){
+                    setpp_imagem('popup-imagem')
                 }
-                else{
-                    if(dados === '1'){
-                        setpp_imagem('popup-imagem')
-                    }
-                }
+            }
             }
         ).catch(erro =>{
             console.log(erro)
@@ -58,7 +58,6 @@ export default function PopupImagem(){
         if(urlimage !== ''){
             if(image ===null){
                 setconteudo(<img alt="perfil1" src={urlimage}></img>)
-                setnome(nome_user)
             }
         }
         setpreencha("preencha") 
@@ -68,7 +67,11 @@ export default function PopupImagem(){
             <div className="menu">
                 <div className="inputs">
                     <div className="titulo">
-                        <h1>{nome}</h1>
+                        <input type="text"
+                            readOnly={(disabled_nome)? false : true}
+                            value= {nome_user}>
+                        </input>
+                        <img src={Editar}></img>
                         <h3 className={preencha}>Selecione uma imagem</h3>
                     </div>
                     <div className="perfil">
