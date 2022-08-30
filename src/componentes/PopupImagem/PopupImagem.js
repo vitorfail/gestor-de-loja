@@ -1,6 +1,6 @@
 
 import "./PopupImagem.css";
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useRef, useState} from "react";
 import Axios from "../../Axios";
 import Exit from "../../Exit";
 import { Authcontext } from "../Store/Context";
@@ -10,6 +10,7 @@ import Server from "../../Servidor";
 export default function PopupImagem(){
     const [preencha, setpreencha] = useState('preencha')
     const [disabled_nome, setdisabled_nome]= useState(false)
+    const focus_nome = useRef(null)
     const[image, setImage] = useState(null);
     const [conteudo, setconteudo] = useState(null)
     const[previewUrl, setPreviewUrl] = useState("");     
@@ -54,6 +55,16 @@ export default function PopupImagem(){
             console.log(erro)
         })
     }
+    function Editar_nome(){
+        if(disabled_nome === true){
+            setdisabled_nome(false)
+        }
+        else{
+            focus_nome.current.focus();
+            setdisabled_nome(true)
+        }
+    }
+
     useEffect(() => {
         if(urlimage !== ''){
             if(image ===null){
@@ -69,9 +80,10 @@ export default function PopupImagem(){
                     <div className="titulo">
                         <input type="text"
                             readOnly={(disabled_nome)? false : true}
-                            value= {nome_user}>
+                            value= {nome_user}
+                            ref={focus_nome}>
                         </input>
-                        <img src={Editar}></img>
+                        <img src={Editar} onClick={() => Editar_nome()}></img>
                         <h3 className={preencha}>Selecione uma imagem</h3>
                     </div>
                     <div className="perfil">
@@ -82,6 +94,11 @@ export default function PopupImagem(){
                     <div className="selecionar">
                         <input placeholder="Selecionar" type="file" onChange={(e) => mudar_imagem(e.target.files[0])}></input>
                     </div>
+                    <input type="text"
+                            readOnly={(disabled_nome)? false : true}
+                            value= {nome_user}
+                            ref={focus_nome}>
+                        </input>
                 </div>
                 <div className="botoes">
                     <button className="add" onClick={(e) => enviar_imagem()} >Adicionar</button>
