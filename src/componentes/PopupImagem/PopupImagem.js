@@ -86,7 +86,7 @@ export default function PopupImagem(){
                             value= {nome_user}
                             ref={focus_nome}>
                         </input>
-                        <img src={Editar} alt="editar" onClick={() => Editar_nome()}></img>
+                        <img src={Editar} alt="editar" id='nome' onClick={(event) => Editar_nome(event.target.id)}></img>
                         <h3 className={preencha}>Selecione uma imagem</h3>
                     </div>
                     <div className="perfil">
@@ -103,7 +103,7 @@ export default function PopupImagem(){
                             value= {nome_user}
                             ref={focus_endereco}>
                         </input>
-                        <img src={Editar} alt="editar" onClick={() => Editar_nome()}></img>
+                        <img src={Editar} alt="editar" id='endereco' onClick={(event) => Editar_nome(event.target.id)}></img>
                     </div>
                     <div className="dados-user">
                         <input type="text"
@@ -111,7 +111,7 @@ export default function PopupImagem(){
                             value= {nome_user}
                             ref={focus_nome}>
                         </input>
-                        <img src={Editar} alt="editar" onClick={() => Editar_nome()}></img>
+                        <img src={Editar} alt="editar" id='numero' onClick={(event) => Editar_nome(event.target.id)}></img>
                     </div>
                 </div>
                 <div className="botoes">
