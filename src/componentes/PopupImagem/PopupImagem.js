@@ -11,12 +11,16 @@ export default function PopupImagem(){
     const [preencha, setpreencha] = useState('preencha')
     const [disabled_nome, setdisabled_nome]= useState(false)
     const [disabled_endereco, setdisabled_endereco]= useState(false)
+    const [disabled_email, setdisabled_email]= useState(false)
+    const [disabled_numero, setdisabled_numero]= useState(false)
     const focus_nome = useRef(null)
     const focus_endereco = useRef(null)
+    const focus_email = useRef(null)
+    const focus_numero = useRef(null)
     const[image, setImage] = useState(null);
     const [conteudo, setconteudo] = useState(null)
     const[previewUrl, setPreviewUrl] = useState("");     
-    const {pp_imagem, setpp_imagem, nome_user} = React.useContext(Authcontext)
+    const {pp_imagem, setpp_imagem, nome_user, end_user, email_user, numero_user} = React.useContext(Authcontext)
     const {urlimage} = React.useContext(Authcontext)
     function mudar_imagem(e){
         if(e !== undefined){
@@ -30,7 +34,6 @@ export default function PopupImagem(){
             else{
                 setpreencha("preencha mostrar")
             }
-    
         }
     }
     function enviar_imagem(){
@@ -57,18 +60,29 @@ export default function PopupImagem(){
             console.log(erro)
         })
     }
-    function Editar_nome(){
-        if(disabled_nome === true){
-            setdisabled_nome(false)
-        }
-        else{
+    function Editar_nome(id){
+        setdisabled_nome(false)
+        setdisabled_endereco(false)
+        setdisabled_email(false)
+        setdisabled_numero(false)
+        if(id === 'nome'){
             focus_nome.current.focus();
             setdisabled_nome(true)
         }
+        if(id === 'endereco'){
+            focus_endereco.current.focus();
+            setdisabled_endereco(true)
+        }
+        if(id === 'email'){
+            focus_email.current.focus();
+            setdisabled_email(true)
+        }
+        if(id === 'numero'){
+            focus_numero.current.focus();
+            setdisabled_numero(true)
+        }
     }
-
     useEffect(() => {
-        setdisabled_nome(false)
         if(urlimage !== ''){
             if(image ===null){
                 setconteudo(<img alt="perfil1" src={urlimage}></img>)
@@ -100,16 +114,24 @@ export default function PopupImagem(){
                     <div className="dados-user">
                         <input type="text"
                             readOnly={(disabled_endereco)? false : true}
-                            value= {nome_user}
+                            value= {end_user}
                             ref={focus_endereco}>
                         </input>
                         <img src={Editar} alt="editar" id='endereco' onClick={(event) => Editar_nome(event.target.id)}></img>
                     </div>
                     <div className="dados-user">
                         <input type="text"
-                            readOnly={(disabled_nome)? false : true}
-                            value= {nome_user}
-                            ref={focus_nome}>
+                            readOnly={(disabled_email)? false : true}
+                            value= {email_user}
+                            ref={focus_email}>
+                        </input>
+                        <img src={Editar} alt="editar" id='email' onClick={(event) => Editar_nome(event.target.id)}></img>
+                    </div>
+                    <div className="dados-user">
+                        <input type="text"
+                            readOnly={(disabled_numero)? false : true}
+                            value= {numero_user}
+                            ref={focus_numero}>
                         </input>
                         <img src={Editar} alt="editar" id='numero' onClick={(event) => Editar_nome(event.target.id)}></img>
                     </div>

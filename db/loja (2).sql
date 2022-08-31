@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Ago-2022 às 03:35
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 7.3.33
+-- Tempo de geração: 31-Ago-2022 às 19:58
+-- Versão do servidor: 10.4.21-MariaDB
+-- versão do PHP: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,14 +69,16 @@ INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `
 (4, 1, 'Calça Jean', '45.68', '2%', 'Não', 7, 0),
 (11, 1, 'Calaça leag', '12.41', '34%', 'Não', 7, 0),
 (12, 1, 'Saia infantil', '45.21', '12%', 'Não', 5, 0),
-(13, 1, 'Camiseta masculina', '56.53', '32%', 'Não', 6, 0),
+(13, 1, 'Camiseta masculina', '56.53', '32%', 'Não', 5, 0),
 (14, 1, 'Camisa social', '34.31', '34%', 'Não', 4, 0),
-(15, 1, 'Camisa do flamengo', '56.9', '45%', 'Não', 4, 0),
+(15, 1, 'Camisa do flamengo', '56.9', '45%', 'Não', 3, 0),
 (16, 1, 'Vestido transparente', '12.56', '12%', 'Não', 11, 0),
 (17, 1, 'Gaita', '34.52', '34%', 'Não', 8, 0),
 (18, 1, 'gelinho', '34.56', '7%', 'Não', 10, 0),
 (19, 1, 'Blusa social', '34.9', '12%', 'Não', 12, 0),
-(20, 1, 'Cinto', '34.9', '34%', 'Não', 3, 0);
+(20, 1, 'Cinto', '34.9', '34%', 'Não', 3, 0),
+(21, 1, 'Toalha vasco', '34.21', '12%', 'Não', 4, 0),
+(22, 1, 'Toalha flamengo', '23.11', '34%', 'Não', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -88,6 +90,7 @@ CREATE TABLE `users_info` (
   `id` int(11) NOT NULL,
   `nome` varchar(1400) DEFAULT NULL,
   `email` varchar(1300) DEFAULT NULL,
+  `endereco` varchar(130) DEFAULT NULL,
   `telefone` varchar(1300) DEFAULT NULL,
   `ip` varchar(1300) DEFAULT NULL,
   `plano` varchar(1300) DEFAULT NULL,
@@ -96,18 +99,19 @@ CREATE TABLE `users_info` (
   `data-contratacao` varchar(1300) DEFAULT NULL,
   `situacao` varchar(1300) DEFAULT NULL,
   `senha` varchar(130) DEFAULT NULL,
-  `check_pay` varchar(130) DEFAULT NULL
+  `check_pay` varchar(130) DEFAULT NULL,
+  `foto_perfil` varchar(130) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `users_info`
 --
 
-INSERT INTO `users_info` (`id`, `nome`, `email`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`, `check_pay`) VALUES
-(1, 'Loja teste', 'failcreator0.0@gmail.com', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-23', '2022-03-12', 'Pago', 'e8d95a51f3af4a3b134bf6bb680a213a', '392f34b26e2a3a3f3012edfd6b91a242199dc615ac0f9bcdfd9623fcc658954b1'),
-(2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', '8989090', '192.168.1.2', 'Normal', '20', '2022-09-03', '2022-08-03', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL),
-(4, 'Tudo é 10', 'vitor@gmail.com', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL),
-(5, 'Tudo é 20', 'valesca@hotmail.com', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL);
+INSERT INTO `users_info` (`id`, `nome`, `email`, `endereco`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`, `check_pay`, `foto_perfil`) VALUES
+(1, 'Loja tste', 'failcreator0.0@gmail.com', 'Rua bela vista', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-23', '2022-03-12', 'Pago', 'e8d95a51f3af4a3b134bf6bb680a213a', '392f34b26e2a3a3f3012edfd6b91a242199dc615ac0f9bcdfd9623fcc658954b1', 'fotos_perfil/630b756b0fb7b.png'),
+(2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', 'Ruas salesiano', '8989090', '192.168.1.2', 'Normal', '20', '2022-09-03', '2022-08-03', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL),
+(4, 'Tudo é 10', 'vitor@gmail.com', 'Rua dolores', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL),
+(5, 'Tudo é 20', 'valesca@hotmail.com', 'Rua algusta', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -134,7 +138,9 @@ INSERT INTO `user_despesas` (`id`, `user_id`, `valor_despesas`, `data_vencimento
 (3, 1, 67.89, '2022-08-17', '2022-08-17', 'energia'),
 (4, 1, 34.9, '2022-08-17', '2022-08-17', 'Galão de água'),
 (5, 1, 12, '2022-08-17', '2022-08-17', 'Canetas'),
-(6, 1, 12, '2022-08-17', '2022-08-17', 'Canetas');
+(6, 1, 12, '2022-08-17', '2022-08-17', 'Canetas'),
+(7, 1, 130, '2022-08-27', '2022-08-27', 'água'),
+(8, 1, 130, '2022-08-27', '2022-08-27', 'água');
 
 -- --------------------------------------------------------
 
@@ -155,7 +161,7 @@ CREATE TABLE `user_financeiro` (
 --
 
 INSERT INTO `user_financeiro` (`id`, `user_email`, `caixa`, `custos_fixos`, `user_id`) VALUES
-(1, 'failcreator0.0@gmail.com', 4022.9999999999995, 0, NULL),
+(1, 'failcreator0.0@gmail.com', 4054.3999999999996, 0, NULL),
 (2, 'vitor_andrademanoel@hotmail.com', 0, 0, NULL),
 (4, 'vitor@gmail.com', 0, 0, NULL),
 (5, 'valesca@hotmail.com', 0, 0, NULL);
@@ -200,7 +206,9 @@ INSERT INTO `user_vendas` (`id`, `user_id`, `produto_nome`, `data_venda`, `produ
 (16, 1, 'Vestido transparente', '2022-02-10', 16, 60.57, 'A vista', 1),
 (17, 1, 'Camiseta masculina', '2022-02-18', 13, 89.67, 'Parcelado', 3),
 (18, 1, 'Gaita', '2022-01-13', 17, 67.89, 'A vista', 1),
-(19, 1, 'Camiseta masculina', '2022-02-18', 13, 98.7, 'A vista', 1);
+(19, 1, 'Camiseta masculina', '2022-02-18', 13, 98.7, 'A vista', 1),
+(20, 1, 'Camisa do flamengo', '2022-08-25', 15, 192.5, 'A vista', 1),
+(21, 1, 'Camiseta masculina', '2022-08-27', 13, 98.9, 'Boleto', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -256,7 +264,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT de tabela `user-produtos`
 --
 ALTER TABLE `user-produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `users_info`
@@ -268,7 +276,7 @@ ALTER TABLE `users_info`
 -- AUTO_INCREMENT de tabela `user_despesas`
 --
 ALTER TABLE `user_despesas`
-  MODIFY `id` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `user_financeiro`
@@ -280,7 +288,7 @@ ALTER TABLE `user_financeiro`
 -- AUTO_INCREMENT de tabela `user_vendas`
 --
 ALTER TABLE `user_vendas`
-  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

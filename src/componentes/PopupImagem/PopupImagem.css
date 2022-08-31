@@ -15,7 +15,7 @@
 }
 .popup-imagem .menu{
     border-radius: 50px;
-    width: 400px;
+    width: 540px;
     height: 570px;
     background: white;
     display: block;
@@ -52,8 +52,8 @@
     padding: 3px;
     border-radius: 20%;
     background: #1e9b06;
-    width: 26px;
-    height: 26px;
+    width: 36px;
+    height: 36px;
 }
 .popup-imagem .menu .inputs .dados-user img:hover{
     cursor: pointer;
@@ -77,10 +77,18 @@
     color: #1e9b06;
     width: 200px;
 }
-.popup-imagem .menu .inputs .titulo input[type=text]:read-only{
-    border: none;
+.popup-imagem .menu .inputs .dados-user input[type=text]{
+    min-width: 328px;
+    height: 45px;
+    border: 2px solid rgb(55, 128, 55);
+    font-size: 20px;
+    font-family: Roboto normal;
 }
 .popup-imagem .menu .inputs .dados-user input[type=text]:read-only{
+    background: #bbbbbb;
+    border: none;
+}
+.popup-imagem .menu .inputs .titulo input[type=text]:read-only{
     border: none;
 }
 .popup-imagem .menu .inputs .titulo .preencha{

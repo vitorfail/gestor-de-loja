@@ -9,7 +9,7 @@
     function Check_user($usuario, $senha){
         include_once("./conexao.php");
 
-        $sql = "SELECT id, nome, situacao FROM users_info WHERE email=:usuario and senha=:senha ";
+        $sql = "SELECT id, nome, situacao, email, telefone, endereco FROM users_info WHERE email=:usuario and senha=:senha ";
         $pesquisa = $conexao->prepare($sql);
         $pesquisa->execute(array(
             ':usuario'=> $usuario
@@ -20,6 +20,10 @@
         $id = null;
         $nome = null;
         $situacao = null;
+        $email = null;
+        $telefone = null;
+        $endereco = null;
+
         $check = 0;
         if(count($puxar) >0 ){
             $check = 1;
@@ -27,9 +31,13 @@
                 $id= $row['id'];
                 $nome = $row['nome'];
                 $situacao = $row['situacao'];
+                $email = $row['email'];
+                $telefone = $row['telefone'];
+                $endereco = $row['endereco'];
+
             }
         }
-        return array($check, $id, $nome, $situacao);
+        return array($check, $id, $nome, $situacao, 'email' => $email, 'telefone' => $telefone, 'endereco' => $endereco);
     }
     function Check_user_email($usuario){
         include("./conexao.php");
@@ -43,6 +51,7 @@
         $id = null;
         $nome = null;
         $situacao = null;
+
         $check = 0;
         if(count($puxar) >0 ){
             $check = 1;
@@ -88,7 +97,7 @@
             
                     //Token
                     $token = $header . '.' . $payload . '.' . $sign;
-                    return array($token, $resultado[2], $resultado[3]);  
+                    return array($token, $resultado[2], $resultado[3],  'email' => $resultado['email'], 'telefone' => $resultado['telefone'], 'endereco' => $resultado['endereco']);  
                 }
                 else{
                     return 'Usuário não encontrado';

@@ -5,7 +5,7 @@ import Axios from "../../Axios.js";
 import { useHistory } from "react-router-dom";
 import { Authcontext } from "../../componentes/Store/Context";
 function Login(){
-    const {setnome_user} = React.useContext(Authcontext)
+    const {setnome_user, setend_user, setemail_user, setnumero_user} = React.useContext(Authcontext)
     const [email, setemail] = useState('');
     const [senha, setsenha] = useState('');
     const [aviso, setaviso] = useState('aviso');
@@ -38,6 +38,9 @@ function Login(){
                 else{
                     localStorage.setItem('token_jwt', res.data.data[0])
                     setnome_user(res.data.data[1])
+                    setend_user(res.data.data['endereco'])
+                    setemail_user(res.data.data['email'])
+                    setnumero_user(res.data.data['telefone'])
                     console.log(res.data.data[1])
                     setTimeout(() =>{ history.push('/')}, 3000);
                 }
