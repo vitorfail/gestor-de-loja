@@ -108,10 +108,10 @@ export default class Financeiro extends Component{
         this.setState({ano: data.getFullYear()})
         this.setState({ano_pesquisa: data.getFullYear()})
         this.iniciar(String(data.getFullYear()))
-        setTimeout(() =>  this.setState({isLoading: false}), 3);
+        setTimeout(() =>  this.setState({isLoading: false}), 400);
     }
     iniciar(ano_){
-        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage} = this.context
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage, setnome_user, setend_user, setemail_user, setnumero_user} = this.context
         Axios.post('index.php?url=financeiro/pesquisa', {user:'1', ano:ano_})
         .then(res => {
             var dados = res.data.data
@@ -127,7 +127,11 @@ export default class Financeiro extends Component{
             else{
                 if(dados['foto_perfil'] !== ''&& dados['foto_perfil'] !== null)
                     {seturlimage(Server+dados['foto_perfil']) 
-                } 
+                }
+                setnome_user(dados['nome'])
+                setend_user(dados['endereco'])
+                setemail_user(dados['email'])
+                setnumero_user(dados['telefone'])  
                 this.criar_avisos(dados['notificacao'])
                 this.setState({nome: dados['nome']})
                 this.setState({faturamento: dados['recebido']})

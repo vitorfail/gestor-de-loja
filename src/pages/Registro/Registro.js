@@ -21,13 +21,6 @@ function Registro(){
     const [loading_, setloading] = useState('loading')
 
     const history = useHistory()
-    function ip_teste(){
-        axios.get('https://geolocation-db.com/json/').then(
-            res =>{
-                setip(res.data.IPv4);        
-            }
-        )
-    }
     function telefone_mask(tel){
         tel = tel.replace(/\D/g, "");
         tel = tel.replace(/(\d)(\d{4})$/,'$1-$2')
@@ -35,7 +28,6 @@ function Registro(){
         return tel
     }
     function register(){
-        ip_teste()
         setloading('loading mostrar')
         setaviso_senha('aviso_senha')
         setaviso_erro('aviso_erro')

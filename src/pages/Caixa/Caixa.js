@@ -53,7 +53,7 @@ export default class Caixa extends Component{
 
 
         this.iniciar(String(mes), String(dias), String(data.getFullYear()))
-        setTimeout(() =>  this.setState({isLoading: false}), 3);
+        setTimeout(() =>  this.setState({isLoading: false}), 400);
     }    
     mostrar_caixa(props){
         var data = props
@@ -97,9 +97,8 @@ export default class Caixa extends Component{
             this.setState({dados: this.lista})
         }
     }
-    
     iniciar(mes_, dia_, ano_){
-        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage} = this.context
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage, setnome_user, setend_user, setemail_user, setnumero_user} = this.context
         Axios.post('index.php?url=caixa/pesquisa', {user:'1', mes:mes_, dia:dia_, ano:ano_})
         .then(res => {
             var dados = res.data.data
@@ -115,7 +114,11 @@ export default class Caixa extends Component{
             else{
                 if(dados['foto_perfil'] !== '' && dados['foto_perfil'] !== null)
                     {seturlimage(Server+dados['foto_perfil']) 
-                } 
+                }
+                setnome_user(dados['nome'])
+                setend_user(dados['endereco'])
+                setemail_user(dados['email'])
+                setnumero_user(dados['telefone']) 
                 this.mostrar_caixa(dados['caixa'])
                 this.setState({recebido_mes: dados['valor_caixa']})
                 this.setState({recebido_hoje:dados['valor_caixa']})

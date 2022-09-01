@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../Loading/Loading.css';
+import '../Loading/Loading.scss';
 export default class Loading extends Component{
     constructor(props){
         super(props)
@@ -8,13 +8,8 @@ export default class Loading extends Component{
     }
     render(){
         return(
-            <div className='spinner-box'>
-                <div className="configure-border-1">  
-                    <div className="configure-core"></div>
-                </div>  
-                <div className="configure-border-2">
-                    <div className="configure-core"></div>
-                </div> 
+            <div className='corpo'>
+                <div className="clock-loader"></div>
             </div>
         )
     }

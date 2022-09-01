@@ -39,7 +39,6 @@ export default class Estoque extends Component{
         this.passador = this.passador.bind(this)
     }
     static contextType = Authcontext
-
     passador(direcao){
         this.setState({loading: "loading mostrar"})
         var valor =this.state.index
@@ -67,7 +66,7 @@ export default class Estoque extends Component{
     }
     componentDidMount(){
         this.iniciar(0)
-        setTimeout(() =>  this.setState({isLoading: false}), 3);
+        setTimeout(() =>  this.setState({isLoading: false}), 400);
     }
     mostrar_estoque(props){
         var data = props
@@ -121,7 +120,7 @@ export default class Estoque extends Component{
         this.iniciar(0)
     }
     iniciar(inicio){
-        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage} = this.context
+        const {setpp_pagar, setpp_prazo, setpp_vencido, setsem_internet, seturlimage, setnome_user, setend_user, setemail_user, setnumero_user} = this.context
         Axios.post('index.php?url=estoque/pesquisa', {user:'1', index: inicio, tamanho:15})
         .then(res => {
             var dados = res.data.data
@@ -131,7 +130,11 @@ export default class Estoque extends Component{
             else{
                 if(dados['foto_perfil'] !== '' && dados['foto_perfil'] !== null)
                     {seturlimage(Server+dados['foto_perfil']) 
-                } 
+                }
+                setnome_user(dados['nome'])
+                setend_user(dados['endereco'])
+                setemail_user(dados['email'])
+                setnumero_user(dados['telefone']) 
                 this.mostrar_estoque(dados['descricao'])
                 this.setState({estoque_valor:dados['valor_estoque'] })
                 this.setState({nome: dados['nome']})
