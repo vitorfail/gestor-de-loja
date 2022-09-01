@@ -8,7 +8,7 @@ function Relogio(){
     const [minutos, setminutos] = useState(0)
     useEffect(() => {
         hora_atualizar()
-        setInterval(() => hora_atualizar(), 30000);
+        setInterval(() => hora_atualizar(), 3);
     })
     function hora_atualizar(){
         var data = new Date()

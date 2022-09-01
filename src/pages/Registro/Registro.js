@@ -1,7 +1,6 @@
 import "./Registro.css";
 import React, { useState } from "react";
 import Axios from "../../Axios.js";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Loading1 from "../../componentes/Loading1/Loading1";
 function Registro(){
@@ -13,7 +12,7 @@ function Registro(){
     const [aviso_erro, setaviso_erro] = useState('aviso_erro');
     const [aviso_net, setaviso_net] = useState('aviso_net')
     const [nome, setnome] = useState('');
-    const [ipv4, setip] =useState('');
+    const [ipv4] =useState('');
     const [end, setend] = useState('');
     const [plano, setplano] = useState('Normal');
     const [tel, settel] = useState('');
