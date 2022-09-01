@@ -22,7 +22,9 @@ export default class PopupDespesas extends Component{
         this.mascara_valor = this.mascara_valor.bind(this)
         this.mascara_percentual = this.mascara_percentual.bind(this)
         this.delete_percental = this.delete_percental.bind(this) 
-        this.mask_data = this.mask_data.bind(this) 
+        this.mask_data = this.mask_data.bind(this)
+        this.mask_data_vencimento = this.mask_data_vencimento.bind(this) 
+ 
     }
     static contextType = Authcontext
     componentDidMount(){
@@ -87,7 +89,13 @@ export default class PopupDespesas extends Component{
         e = e.replace(/\D/g, '');
         e = e.replace(/(\d)(\d{4})$/, '$1/$2');
         e = e.replace(/^(\d{2})(\d)/, '$1/$2');
-        return e;
+        this.setState({data: e})
+    }
+    mask_data_vencimento(e){
+        e = e.replace(/\D/g, '');
+        e = e.replace(/(\d)(\d{4})$/, '$1/$2');
+        e = e.replace(/^(\d{2})(\d)/, '$1/$2');
+        this.setState({vencimento: e})
     }
     render(){
         const {pp_despesa, setpp_despesa} = this.context
@@ -108,11 +116,11 @@ export default class PopupDespesas extends Component{
                             <label className="nome">Valor(R$)</label>
                         </div>
                         <div className="input">
-                            <input  value={this.state.data} onChange={(even) => this.mask_data(even.target.value)}  ></input>
+                            <input maxLength={10} value={this.state.data} onChange={(even) => this.mask_data(even.target.value)}  ></input>
                             <label className="nome">Data</label>
                         </div>
                         <div className="input">
-                            <input  value={this.state.vencimento} onChange={(even) => this.mask_data(even.target.value)}  ></input>
+                            <input maxLength={10} value={this.state.vencimento} onChange={(even) => this.mask_data_vencimento(even.target.value)}  ></input>
                             <label className="nome">Vencimento</label>
                         </div>
 
