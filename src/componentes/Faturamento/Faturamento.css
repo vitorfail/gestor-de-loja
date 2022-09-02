@@ -6,11 +6,10 @@
     width: 99%;
 }
 .grafico_faturamento .anos{
-    margin-left: 23px;
     margin-bottom: 10px;
     font-family: Roboto media;
     font-size: 21px;
-    width: 76%;
+    width: 100%;
     color: #fff;
     text-align: center;
     border-radius: 10px;
@@ -21,13 +20,10 @@
     cursor: pointer;
 }
 .grafico_faturamento .planilha{
-    margin: 0;
+    background: white;
     display: flex;
     justify-content: center;
-    position:relative;
-    background: #fff;
-    width: 76%;
-    margin-left: 23px;
+    justify-items: center;
     border-radius: 20px;
     margin-bottom: 20px;
 }

@@ -18,7 +18,8 @@ export default class PopupDespesas extends Component{
             data:'',
             vencimento:'',
             pago:false,
-            aberto: false
+            aberto: false,
+            data_pagamento:'none'
         }
         this.add_despesa = this.add_despesa.bind(this)
         this.mascara_valor = this.mascara_valor.bind(this)
@@ -102,10 +103,14 @@ export default class PopupDespesas extends Component{
         this.setState({vencimento: e})
     }
     selecionarpago(){
-        this.setState({pago: !this.state.pago})
+        this.setState({pago: true})
+        this.setState({aberto: false})
+        this.setState({data_pagamento: 'flex'})
     }
     selecionaraberto(){
-        this.setState({aberto: !this.state.aberto})
+        this.setState({aberto: true})
+        this.setState({pago: false})
+        this.setState({data_pagamento: 'none'})
     } 
  
     render(){
@@ -129,14 +134,14 @@ export default class PopupDespesas extends Component{
                         <div className="input">
                             <div className="check">
                                 <input type='checkbox' checked={this.state.pago} onChange={() => this.selecionarpago()} ></input>
-                                <p>Pago</p>
+                                <p>Paga</p>
                             </div>
                             <div className="check">
-                                <input type='checkbox' onChange={() => this.selecionaraberto()}></input>
+                                <input type='checkbox' checked={this.state.aberto} onChange={() => this.selecionaraberto()}></input>
                                 <p>Aberta</p>
                             </div>
                         </div>
-                        <div className="input">
+                        <div style={{display:this.state.data_pagamento}} className="input">
                             <input type="text" maxLength={10} value={this.state.data} onChange={(even) => this.mask_data(even.target.value)}  ></input>
                             <label className="nome">Data de pagamento</label>
                         </div>

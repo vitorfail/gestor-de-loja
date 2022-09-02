@@ -10,7 +10,8 @@ function Faturamento(props){
     //const { setsem_internet} = React.useContext()
     const [loading_, setloading_] = useState('loading')
 
-    const [ano, setano] = useState('')
+    const [ano_faturamento, setano_faturamento] = useState('')
+    const [ano_tipo_pagamento, setano_tipo_pagamento] = useState('')
 
     const [janeiro, setjaneiro] = useState(0)
     const [fevereiro, setfevereiro] = useState(0)
@@ -32,14 +33,13 @@ function Faturamento(props){
 
     useEffect(() =>{
         var data = new Date()
-        if(ano === ''){
-            iniciar()
+        if(ano_faturamento === '' && ano_tipo_pagamento === ''){
             faturamento_ano(String(data.getFullYear()))
+            tipos_de_pagamento(String(data.getFullYear()))
         }
     })
     function faturamento_ano(e){
-        setano(e)
-        setloading_('loading mostrar')
+        setano_faturamento(e)
         Axios.post('index.php?url=faturamento/pesquisa', {ano:e})
         .then(res => {
             if(res.data.data === 'Usuário não autenticado'){
@@ -58,24 +58,33 @@ function Faturamento(props){
                 setoutubro(res.data.data[9])
                 setnovembro(res.data.data[10])
                 setdezembro(res.data.data[11])
-                setTimeout(() => setloading_('loading') ,2000)
                        
             }
         }).catch(er =>{
             //setsem_internet('sem-internet mostrar')
         })
     }
-    function iniciar(){
-        setavista(props.tipos_de_pagamento[0])
-        setcartao(props.tipos_de_pagamento[1])
-        setboleto(props.tipos_de_pagamento[2])
-        setpix(props.tipos_de_pagamento[3])
+    function tipos_de_pagamento(e){
+        setano_tipo_pagamento(e)
+        Axios.post('index.php?url=tipopagamento/pesquisa', {ano:e})
+        .then(res => {
+            if(res.data.data === 'Usuário não autenticado'){
+                Exit()
+            }
+            else{
+                setavista(res.data.data[0])
+                setcartao(res.data.data[1])
+                setboleto(res.data.data[2])
+                setpix(res.data.data[3])        
+            }
+        }).catch(er =>{
+            //setsem_internet('sem-internet mostrar')
+        })
     }
     return(
         <div className="grafico_faturamento">
-            <Loading1 loading={loading_}></Loading1>
-            <div>
-                <select className="anos" value={ano} onChange={(event) => faturamento_ano(event.target.value)}>
+            <div style={{"width":"80%",  "margin-left":"34px"}}>
+                <select className="anos" value={ano_faturamento} onChange={(event) => faturamento_ano(event.target.value)}>
                     <option value="Todos os anos">Todos</option>
                     <option value="1984">1984</option>
                     <option value="1985">1985</option>
@@ -175,29 +184,89 @@ function Faturamento(props){
                         }
                     }}
                 />
-            </div>
-
-            </div>
-            <div className="area">
-                <PolarArea data={{labels: [
-                                "A vista",
-                                "Cartão",
-                                "Boleto",
-                                "Pix"
-                            ],datasets: [{
-                                    label: 'Tipos de pagamento',
-                                    data: [avista, 
-                                        cartao, 
-                                        boleto, 
-                                        pix],
-                                    backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(75, 192, 192)',
-                                    'rgb(255, 205, 86)',
-                                    'rgb(201, 203, 207)'
-                                    ]}]
-                                }}/>   
                 </div>
+            </div>
+            <div>
+                <select className="anos" value={ano_tipo_pagamento} onChange={(event) => tipos_de_pagamento(event.target.value)}>
+                    <option value="Todos os anos">Todos</option>
+                    <option value="1984">1984</option>
+                    <option value="1985">1985</option>
+                    <option value="1986">1986</option>
+                    <option value="1987">1987</option>
+                    <option value="1988">1988</option>
+                    <option value="1989">1989</option>
+                    <option value="1990">1990</option>
+                    <option value="1991">1991</option>
+                    <option value="1992">1992</option>
+                    <option value="1993">1993</option>
+                    <option value="1994">1994</option>
+                    <option value="1995">1995</option>
+                    <option value="1996">1996</option>
+                    <option value="1997">1997</option>
+                    <option value="1998">1998</option>
+                    <option value="1999">1999</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                    <option value="2031">2031</option>
+                    <option value="2032">2032</option>
+                    <option value="2033">2033</option>
+                    <option value="2034">2034</option>
+                    <option value="2035">2035</option>
+                    <option value="2036">2036</option>
+                    <option value="2037">2037</option>
+                    <option value="2038">2038</option>
+                    <option value="2039">2039</option>
+                    <option value="2040">2040</option>
+                </select>
+                <div className="area">
+                    <PolarArea data={{labels: [
+                                    "A vista",
+                                    "Cartão",
+                                    "Boleto",
+                                    "Pix"
+                                ],datasets: [{
+                                        label: 'Tipos de pagamento',
+                                        data: [avista, 
+                                            cartao, 
+                                            boleto, 
+                                            pix],
+                                        backgroundColor: [
+                                        'rgb(255, 99, 132)',
+                                        'rgb(75, 192, 192)',
+                                        'rgb(255, 205, 86)',
+                                        'rgb(201, 203, 207)'
+                                        ]}]
+                                    }}/>   
+                </div>
+            </div>
         </div>
     )
 }
