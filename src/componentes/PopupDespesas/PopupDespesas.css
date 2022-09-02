@@ -16,7 +16,7 @@
 .popup-despesa .menu{
     border-radius: 50px;
     width: 400px;
-    height: 470px;
+    height: 570px;
     background: white;
     display: block;
 }
@@ -47,7 +47,14 @@
     padding-left: 5%;
     margin-top: 5%;
 }
-.popup-despesa .menu .inputs .input input{
+.popup-despesa .menu .inputs .input .check{
+    display: flex;
+    flex-wrap: wrap;
+}
+.popup-despesa .menu .inputs .input input[type=checkbox]{
+    height: 23px;
+}
+.popup-despesa .menu .inputs .input input[type=text]{
     position: absolute;
     width: 70%;
     border: 1px solid lightgrey;
@@ -61,10 +68,10 @@
     -moz-transition: all .1s linear;
     -webkit-appearance: none;
 }
-.popup-despesa .menu .inputs .input input:focus{
+.popup-despesa .menu .inputs .input input[type=text]:focus{
     border: 2px solid #3951b2;
 }
-.popup-despesa .menu .inputs .input input::placeholder{
+.popup-despesa .menu .inputs .input input[type=text]::placeholder{
     color:transparent;
 }
 .popup-despesa .menu .inputs .input label{
@@ -79,8 +86,20 @@
     box-sizing: border-box;
     top: 4px;
 }
-.popup-despesa .menu .inputs .input input:focus + .nome,
-.popup-despesa .menu .inputs .input input:not(:placeholder-shown) + label{    
+.popup-despesa .menu .inputs .input p{
+    margin: 0;
+    pointer-events: none;
+    font-size: 20px;
+    left: 25px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    background:white;
+    box-sizing: border-box;
+    top: 4px;
+}
+.popup-despesa .menu .inputs .input input[type=text]:focus + .nome,
+.popup-despesa .menu .inputs .input input[type=text]:not(:placeholder-shown) + label{    
     font-size: 16px;
     top: -16%;
     color: #3951b2;

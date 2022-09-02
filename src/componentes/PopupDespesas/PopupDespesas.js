@@ -17,13 +17,17 @@ export default class PopupDespesas extends Component{
             preencha: "preencha",
             data:'',
             vencimento:'',
+            pago:false,
+            aberto: false
         }
         this.add_despesa = this.add_despesa.bind(this)
         this.mascara_valor = this.mascara_valor.bind(this)
         this.mascara_percentual = this.mascara_percentual.bind(this)
         this.delete_percental = this.delete_percental.bind(this) 
         this.mask_data = this.mask_data.bind(this)
-        this.mask_data_vencimento = this.mask_data_vencimento.bind(this) 
+        this.mask_data_vencimento = this.mask_data_vencimento.bind(this)
+        this.selecionarpago = this.selecionarpago.bind(this)
+        this.selecionaraberto = this.selecionaraberto.bind(this) 
  
     }
     static contextType = Authcontext
@@ -97,6 +101,13 @@ export default class PopupDespesas extends Component{
         e = e.replace(/^(\d{2})(\d)/, '$1/$2');
         this.setState({vencimento: e})
     }
+    selecionarpago(){
+        this.setState({pago: !this.state.pago})
+    }
+    selecionaraberto(){
+        this.setState({aberto: !this.state.aberto})
+    } 
+ 
     render(){
         const {pp_despesa, setpp_despesa} = this.context
         return(
@@ -108,19 +119,29 @@ export default class PopupDespesas extends Component{
                             <h3 className={this.state.preencha}>Preencha os dados*</h3>
                         </div>
                         <div className="input">
-                            <input value={this.state.descricao} onChange={(event) => this.setState({descricao: event.target.value})} ></input>
+                            <input type="text" value={this.state.descricao} onChange={(event) => this.setState({descricao: event.target.value})} ></input>
                             <label className="nome">Descrição</label>
                         </div>
                         <div className="input">
-                            <input value={this.state.produto_valor_} onChange={(event) => this.mascara_valor(event.target.value)}></input>
+                            <input type="text" value={this.state.produto_valor_} onChange={(event) => this.mascara_valor(event.target.value)}></input>
                             <label className="nome">Valor(R$)</label>
                         </div>
                         <div className="input">
-                            <input maxLength={10} value={this.state.data} onChange={(even) => this.mask_data(even.target.value)}  ></input>
-                            <label className="nome">Data</label>
+                            <div className="check">
+                                <input type='checkbox' checked={this.state.pago} onChange={() => this.selecionarpago()} ></input>
+                                <p>Pago</p>
+                            </div>
+                            <div className="check">
+                                <input type='checkbox' onChange={() => this.selecionaraberto()}></input>
+                                <p>Aberta</p>
+                            </div>
                         </div>
                         <div className="input">
-                            <input maxLength={10} value={this.state.vencimento} onChange={(even) => this.mask_data_vencimento(even.target.value)}  ></input>
+                            <input type="text" maxLength={10} value={this.state.data} onChange={(even) => this.mask_data(even.target.value)}  ></input>
+                            <label className="nome">Data de pagamento</label>
+                        </div>
+                        <div className="input">
+                            <input type="text" maxLength={10} value={this.state.vencimento} onChange={(even) => this.mask_data_vencimento(even.target.value)}  ></input>
                             <label className="nome">Vencimento</label>
                         </div>
 
