@@ -225,18 +225,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(85, 85, 85);
-    height: 250px;
-    width: 250px;
-    border-radius: 50%;   
+    background: linear-gradient(to right bottom,rgb(0, 255, 170), rgb(52, 160, 52) ,green);
+    height: 272px;
+    width: 272px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px 4px rgba(0, 0, 0, 0.288) inset;
 }
 .popup-imagem .menu .perfil .foto img{
+    box-shadow: 1px 1px 5px 4px rgba(0, 0, 0, 0.288) inset;
     height: 250px;
     width: 250px;
     border-radius: 50%;   
 }
 .popup-imagem .menu input{
-    border: 2px solid red;
+    font-size: 20px;
+    height: 40px;
+    width: 70%;
+    border: 2px solid rgb(5, 109, 45);
 }
 .popup-imagem .menu .selecionar{
     margin-top: 34px;
@@ -252,13 +257,13 @@
 }
 ::-webkit-file-upload-button {
     border: none;
-    background: red;
-    color: white;
+    background: rgb(5, 109, 45);
+    color: rgb(255, 255, 255);
     padding: 0.5em;
 }
 ::-webkit-file-upload-button:hover{
     background: white;
-    color: red;
+    color: rgb(5, 109, 45);
     cursor: pointer;
 }
 @keyframes tremer{

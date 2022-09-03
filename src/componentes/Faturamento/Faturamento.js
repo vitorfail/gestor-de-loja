@@ -10,6 +10,9 @@ function Faturamento(props){
     //const { setsem_internet} = React.useContext()
     const [loading_, setloading_] = useState('loading')
 
+    const [ano_contas, setano_contas] = useState('')
+    const [mes_contas, setmes_contas] = useState('')
+
     const [ano_faturamento, setano_faturamento] = useState('')
     const [ano_tipo_pagamento, setano_tipo_pagamento] = useState('')
 
@@ -76,6 +79,20 @@ function Faturamento(props){
                 setcartao(res.data.data[1])
                 setboleto(res.data.data[2])
                 setpix(res.data.data[3])        
+            }
+        }).catch(er =>{
+            //setsem_internet('sem-internet mostrar')
+        })
+    }
+    function contas_ano(e){
+        setano_contas(e)
+        Axios.post('index.php?url=contas/pesquisa', {ano:e, mes:mes_contas})
+        .then(res => {
+            if(res.data.data === 'Usuário não autenticado'){
+                Exit()
+            }
+            else{
+                       
             }
         }).catch(er =>{
             //setsem_internet('sem-internet mostrar')
@@ -268,9 +285,10 @@ function Faturamento(props){
                 </div>
             </div>
             <div>
-                <div style={{"display":"block"}}>
+                <div style={{"display":"block", "width":"80%",  "marginLeft":"34px", "marginBottom":"45px"}}>
                     <div style={{"display":"flex", "justifyContent":"center"}}>
-                        <select className="datas">
+                        <select onChange={(event) => contas_ano(event.target.value)} className="datas">
+                            <option value="Todos os meses">Todos</option>
                             <option value='01'>Janeiro</option>
                             <option value='02'>Fevereiro</option>
                             <option value='03'>Março</option>
@@ -347,7 +365,7 @@ function Faturamento(props){
                     <div style={{"display": "flex", "justifyContent":"center"}}>
                         <div className="conta">
                             <h3 style={{"margin":"0"}}>Conta de luz</h3>
-                            <h3 className="situacao" style={{"margin":"0"}}>Pago</h3>
+                            <h3 className="vencido" style={{"margin":"0"}}>Pago</h3>
                             <label className="switch" >
                                 <input type="checkbox"></input>
                                 <span className="slider round"></span>

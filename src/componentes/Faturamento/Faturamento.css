@@ -12,7 +12,24 @@
     display: flex; 
     justify-content: center;
 }
-
+.grafico_faturamento .conta h3{
+    width: 223px;
+    text-align: center;
+}
+.grafico_faturamento .conta .vencido{
+    background: red;
+}
+.grafico_faturamento .conta .prazo{
+    background: rgb(6, 109, 40);
+}
+.grafico_faturamento .conta .prazo-final{
+    background: rgb(123, 143, 8);
+}
+.grafico_faturamento .conta label{
+    margin-left: 34px;
+    margin-right: 34px;
+    text-align: center;
+}
 .grafico_faturamento .anos{
     margin-bottom: 10px;
     font-family: Roboto media;
