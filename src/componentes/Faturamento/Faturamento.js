@@ -10,8 +10,9 @@ function Faturamento(props){
     //const { setsem_internet} = React.useContext()
     const [loading_, setloading_] = useState('loading')
 
-    const [ano_contas, setano_contas] = useState('')
+    const [ano_contas, setano_contas] = useState('2022')
     const [mes_contas, setmes_contas] = useState('')
+    const [ contas, setcontas] = useState(<div className="conta"><h3>Sem contas esse mês</h3></div>)
 
     const [ano_faturamento, setano_faturamento] = useState('')
     const [ano_tipo_pagamento, setano_tipo_pagamento] = useState('')
@@ -37,8 +38,18 @@ function Faturamento(props){
     useEffect(() =>{
         var data = new Date()
         if(ano_faturamento === '' && ano_tipo_pagamento === ''){
+            setano_contas(String(data.getFullYear()))
+
             faturamento_ano(String(data.getFullYear()))
             tipos_de_pagamento(String(data.getFullYear()))
+            var mes = ''
+            if(data.getMonth()+1 <10){
+                mes = '0'+String(data.getMonth()+1)
+            }
+            else{
+                mes = String(data.getMonth()+1)
+            }
+            contas_mes(mes)
         }
     })
     function faturamento_ano(e){
@@ -75,10 +86,62 @@ function Faturamento(props){
                 Exit()
             }
             else{
-                setavista(res.data.data[0])
-                setcartao(res.data.data[1])
-                setboleto(res.data.data[2])
-                setpix(res.data.data[3])        
+                var dados = res.data.data 
+                if(dados === 0){
+
+                }
+                else{
+                    setavista(dados[0])
+                    setcartao(dados[1])
+                    setboleto(dados[2])
+                    setpix(dados[3])
+                }
+            }
+        }).catch(er =>{
+            //setsem_internet('sem-internet mostrar')
+        })
+    }
+    function contas_mes(e){
+        setmes_contas(e)
+        Axios.post('index.php?url=contas/pesquisa', {ano:ano_contas, mes:e})
+        .then(res => {
+            if(res.data.data === 'Usuário não autenticado'){
+                Exit()
+            }
+            else{
+                var dados = res.data.data
+                if(dados === 0){
+                    setcontas(<div className="conta"><h3>Sem contas esse mês</h3></div>)
+                }
+                else{
+                    var contas = []
+                    for(var i =0; i < dados.length; i++){
+                        var data_conta = new Date(dados[i]["data_vencimento"])
+                        var data_hoje = new Date()
+                        var situacao = ''
+                        if(dados[i]["situacao"] === "Aberto"){
+                            if(data_hoje.getTime() === data_conta.getTime()){
+                                situacao = 'prazo-final'
+                            }
+                            if(data_hoje.getTime() > data_conta.getTime()){
+                                situacao = 'vencido'
+                            }
+                            if(data_hoje.getTime() < data_conta.getTime()){
+                                situacao = 'prazo'
+                            }
+                        }
+                        contas.push(<div className="conta">
+                                        <h3 style={{"margin":"0"}}>{dados[i]["descricao"]}</h3>
+                                        <h3 className={situacao} style={{"margin":"0"}}>{dados[i]["data_vencimento"]}</h3>
+                                        <label className="switch" >
+                                            <input type="checkbox"></input>
+                                            <span className="slider round"></span>
+                                        </label>
+                                    </div>)
+       
+                    }   
+                    setcontas(contas)
+                }
             }
         }).catch(er =>{
             //setsem_internet('sem-internet mostrar')
@@ -92,7 +155,39 @@ function Faturamento(props){
                 Exit()
             }
             else{
-                       
+                var dados = res.data.data
+                if(dados === 0){
+                    setcontas(<div className="conta"><h3>Sem contas esse mês</h3></div>)
+                }
+                else{
+                    var contas = []
+                    for(var i =0; i < dados.length; i++){
+                        var data_conta = new Date(dados[i]["data_vencimento"])
+                        var data_hoje = new Date()
+                        var situacao = ''
+                        if(dados[i]["situacao"] === "Aberto"){
+                            if(data_hoje.getTime() === data_conta.getTime()){
+                                situacao = 'prazo-final'
+                            }
+                            if(data_hoje.getTime() > data_conta.getTime()){
+                                situacao = 'vencido'
+                            }
+                            if(data_hoje.getTime() < data_conta.getTime()){
+                                situacao = 'prazo'
+                            }
+                        }
+                        contas.push(<div className="conta">
+                                        <h3 style={{"margin":"0"}}>{dados[i]["descricao"]}</h3>
+                                        <h3 className={situacao} style={{"margin":"0"}}>{dados[i]["data_vencimento"]}</h3>
+                                        <label className="switch" >
+                                            <input type="checkbox"></input>
+                                            <span className="slider round"></span>
+                                        </label>
+                                    </div>)
+       
+                    }   
+                    setcontas(contas)
+                }
             }
         }).catch(er =>{
             //setsem_internet('sem-internet mostrar')
@@ -287,7 +382,7 @@ function Faturamento(props){
             <div>
                 <div style={{"display":"block", "width":"80%",  "marginLeft":"34px", "marginBottom":"45px"}}>
                     <div style={{"display":"flex", "justifyContent":"center"}}>
-                        <select onChange={(event) => contas_ano(event.target.value)} className="datas">
+                        <select value={mes_contas} onChange={(event) => contas_mes(event.target.value)} className="datas">
                             <option value="Todos os meses">Todos</option>
                             <option value='01'>Janeiro</option>
                             <option value='02'>Fevereiro</option>
@@ -302,8 +397,7 @@ function Faturamento(props){
                             <option value='11'>Novembro</option>
                             <option value='12'>Dezembro</option>
                         </select>
-                        <select className="datas">
-                            <option value="Todos os anos">Todos</option>
+                        <select className="datas" value={ano_contas} onChange={(event) => contas_ano(event.target.value)}>
                             <option value="1984">1984</option>
                             <option value="1985">1985</option>
                             <option value="1986">1986</option>
@@ -362,15 +456,8 @@ function Faturamento(props){
                             <option value="2040">2040</option>
                         </select>
                     </div>
-                    <div style={{"display": "flex", "justifyContent":"center"}}>
-                        <div className="conta">
-                            <h3 style={{"margin":"0"}}>Conta de luz</h3>
-                            <h3 className="vencido" style={{"margin":"0"}}>Pago</h3>
-                            <label className="switch" >
-                                <input type="checkbox"></input>
-                                <span className="slider round"></span>
-                            </label>
-                        </div>
+                    <div style={{"display": "block", "justifyContent":"center"}}>
+                        {contas}
                     </div>
                 </div>
             </div>

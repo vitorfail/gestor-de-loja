@@ -124,3 +124,9 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+@media screen and (max-width: 900px){
+    .grafico_faturamento{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
