@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31-Ago-2022 às 19:58
+-- Tempo de geração: 04-Set-2022 às 17:35
 -- Versão do servidor: 10.4.21-MariaDB
 -- versão do PHP: 8.0.11
 
@@ -108,7 +108,7 @@ CREATE TABLE `users_info` (
 --
 
 INSERT INTO `users_info` (`id`, `nome`, `email`, `endereco`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`, `check_pay`, `foto_perfil`) VALUES
-(1, 'Loja tste', 'failcreator0.0@gmail.com', 'Rua bela vista', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-23', '2022-03-12', 'Pago', 'e8d95a51f3af4a3b134bf6bb680a213a', '392f34b26e2a3a3f3012edfd6b91a242199dc615ac0f9bcdfd9623fcc658954b1', 'fotos_perfil/630b756b0fb7b.png'),
+(1, 'Loja teste', 'failcreator0.0@gmail.com', 'Rua Salasia -502 - Centro', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-23', '2022-03-12', 'Pago', 'e8d95a51f3af4a3b134bf6bb680a213a', '392f34b26e2a3a3f3012edfd6b91a242199dc615ac0f9bcdfd9623fcc658954b1', 'fotos_perfil/63120fa11199a.png'),
 (2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', 'Ruas salesiano', '8989090', '192.168.1.2', 'Normal', '20', '2022-09-03', '2022-08-03', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL),
 (4, 'Tudo é 10', 'vitor@gmail.com', 'Rua dolores', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL),
 (5, 'Tudo é 20', 'valesca@hotmail.com', 'Rua algusta', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL);
@@ -125,22 +125,24 @@ CREATE TABLE `user_despesas` (
   `valor_despesas` double NOT NULL,
   `data_vencimento` varchar(130) NOT NULL,
   `data_pagamento` varchar(130) DEFAULT NULL,
-  `descricao` varchar(130) DEFAULT NULL
+  `descricao` varchar(130) DEFAULT NULL,
+  `situacao` varchar(130) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `user_despesas`
 --
 
-INSERT INTO `user_despesas` (`id`, `user_id`, `valor_despesas`, `data_vencimento`, `data_pagamento`, `descricao`) VALUES
-(1, 1, 56.78, '2022-08-16', '2022-08-16', 'Conta agua'),
-(2, 1, 45.68, '2022-08-17', '2022-08-17', 'Lâmpada'),
-(3, 1, 67.89, '2022-08-17', '2022-08-17', 'energia'),
-(4, 1, 34.9, '2022-08-17', '2022-08-17', 'Galão de água'),
-(5, 1, 12, '2022-08-17', '2022-08-17', 'Canetas'),
-(6, 1, 12, '2022-08-17', '2022-08-17', 'Canetas'),
-(7, 1, 130, '2022-08-27', '2022-08-27', 'água'),
-(8, 1, 130, '2022-08-27', '2022-08-27', 'água');
+INSERT INTO `user_despesas` (`id`, `user_id`, `valor_despesas`, `data_vencimento`, `data_pagamento`, `descricao`, `situacao`) VALUES
+(1, 1, 56.78, '2022-08-16', '2022-08-16', 'Conta agua', 'Aberto'),
+(2, 1, 45.68, '2022-08-17', '2022-08-17', 'Lâmpada', 'Aberto'),
+(3, 1, 67.89, '2022-08-17', '2022-08-17', 'energia', 'Aberto'),
+(4, 1, 34.9, '2022-08-17', '2022-08-17', 'Galão de água', 'Aberto'),
+(5, 1, 12, '2022-08-17', '2022-08-17', 'Canetas', 'Aberto'),
+(6, 1, 12, '2022-08-17', '2022-08-17', 'Canetas', 'Aberto'),
+(7, 1, 130, '2022-08-27', '2022-08-27', 'água', 'Aberto'),
+(8, 1, 130, '2022-08-27', '2022-08-27', 'água', 'Aberto'),
+(9, 1, 12.31, '2022-09-04', '2022-09-04', 'Conta de água', NULL);
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,7 @@ CREATE TABLE `user_financeiro` (
 --
 
 INSERT INTO `user_financeiro` (`id`, `user_email`, `caixa`, `custos_fixos`, `user_id`) VALUES
-(1, 'failcreator0.0@gmail.com', 4054.3999999999996, 0, NULL),
+(1, 'failcreator0.0@gmail.com', 4042.0899999999997, 0, NULL),
 (2, 'vitor_andrademanoel@hotmail.com', 0, 0, NULL),
 (4, 'vitor@gmail.com', 0, 0, NULL),
 (5, 'valesca@hotmail.com', 0, 0, NULL);
@@ -276,7 +278,7 @@ ALTER TABLE `users_info`
 -- AUTO_INCREMENT de tabela `user_despesas`
 --
 ALTER TABLE `user_despesas`
-  MODIFY `id` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `user_financeiro`
