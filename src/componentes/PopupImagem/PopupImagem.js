@@ -135,6 +135,7 @@ export default function PopupImagem(){
                     <div className="selecionar">
                         <input placeholder="Selecionar" type="file" onChange={(e) => mudar_imagem(e.target.files[0])}></input>
                     </div>
+                    <h3 style={{ "color": "green","marginLeft":"78px" }}>Endereço:</h3>
                     <div className="dados-user">
                         <input type="text"
                             readOnly={(disabled_endereco)? false : true}
@@ -144,6 +145,7 @@ export default function PopupImagem(){
                         </input>
                         <img src={Editar} alt="editar" id='endereco' onClick={(event) => Editar_nome(event.target.id)}></img>
                     </div>
+                    <h3 style={{ "color": "green","marginLeft":"78px" }}>Email:</h3>
                     <div className="dados-user">
                         <input type="text"
                             readOnly={(disabled_email)? false : true}
@@ -153,6 +155,7 @@ export default function PopupImagem(){
                         </input>
                         <img src={Editar} alt="editar" id='email' onClick={(event) => Editar_nome(event.target.id)}></img>
                     </div>
+                    <h3 style={{ "color": "green","marginLeft":"78px" }}>Número:</h3>
                     <div className="dados-user">
                         <input type="text"
                             readOnly={(disabled_numero)? false : true}

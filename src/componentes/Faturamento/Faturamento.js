@@ -130,7 +130,10 @@ function Faturamento(props){
                                 situacao = 'prazo'
                             }
                         }
-                        contas.push(<div className="conta">
+                        else{
+                            situacao = 'pago'
+                        }
+                        contas.push(<div key={Math.random()} className="conta">
                                         <h3 style={{"margin":"0"}}>{dados[i]["descricao"]}</h3>
                                         <h3 className={situacao} style={{"margin":"0"}}>{dados[i]["data_vencimento"]}</h3>
                                         <label className="switch" >
@@ -176,7 +179,7 @@ function Faturamento(props){
                                 situacao = 'prazo'
                             }
                         }
-                        contas.push(<div className="conta">
+                        contas.push(<div key={Math.random()} className="conta">
                                         <h3 style={{"margin":"0"}}>{dados[i]["descricao"]}</h3>
                                         <h3 className={situacao} style={{"margin":"0"}}>{dados[i]["data_vencimento"]}</h3>
                                         <label className="switch" >

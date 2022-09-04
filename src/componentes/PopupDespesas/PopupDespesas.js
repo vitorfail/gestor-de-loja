@@ -29,7 +29,6 @@ export default class PopupDespesas extends Component{
         this.mask_data_vencimento = this.mask_data_vencimento.bind(this)
         this.selecionarpago = this.selecionarpago.bind(this)
         this.selecionaraberto = this.selecionaraberto.bind(this) 
- 
     }
     static contextType = Authcontext
     componentDidMount(){
@@ -60,7 +59,7 @@ export default class PopupDespesas extends Component{
             custo = parseFloat(custo.replace(",", "."))
             Axios.post('index.php?url=inserirdespesa/pesquisa', {nome: this.state.descricao,
                 valor:custo , data_vencimento: data_venci, 
-                data:data_hoje }).then(res =>{
+                data:data_hoje, situacao: this.state.pago}).then(res =>{
                     if(res.data.data === '1'){
                         setpp_despesa('popup-despesa')
                         this.props.reiniciar()

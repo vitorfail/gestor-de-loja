@@ -7,7 +7,7 @@ export const StoreContext = (props) =>{
     const [email_user, setemail_user] = useState('')
     const [numero_user, setnumero_user] = useState('')
 
-
+    const [pp_calculadora, setpp_calculadora] = useState('popup-calculadora')
     const [pp_despesa, setpp_despesa] = useState('popup-despesa')
     const [pp_estoque, setpp_estoque] = useState('popup-estoque')
     const [pp_imagem, setpp_imagem] = useState('popup-imagem')
@@ -23,7 +23,7 @@ export const StoreContext = (props) =>{
             pp_pagar, setpp_pagar, pp_prazo, setpp_prazo,
              pp_vencido, setpp_vencido, pp_venda, setpp_venda, sem_internet,
               setsem_internet, urlimage, seturlimage, nome_user, setnome_user, 
-              end_user, setend_user, email_user, setemail_user, numero_user, setnumero_user}}>
+              end_user, setend_user, email_user, setemail_user, numero_user, setnumero_user, pp_calculadora, setpp_calculadora}}>
             {props.children}
         </Authcontext.Provider>
     )

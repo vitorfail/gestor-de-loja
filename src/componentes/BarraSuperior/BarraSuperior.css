@@ -6,3 +6,13 @@
     width: 100%;
     box-shadow: 0px 4px 8px 1px rgba(0, 0, 0, 0.2);
 }
+.barra_superior .calculadora-normal{
+    text-align: center;
+    background: red;
+    color: white;
+}
+.barra_superior .calculadora-rh{
+    text-align: center;
+    background: rgb(110, 2, 92);
+    color: white;
+}

@@ -17,13 +17,20 @@
     text-align: center;
 }
 .grafico_faturamento .conta .vencido{
+    color: white;
     background: red;
 }
 .grafico_faturamento .conta .prazo{
+    color: white;
     background: rgb(6, 109, 40);
 }
 .grafico_faturamento .conta .prazo-final{
+    color: white;
     background: rgb(123, 143, 8);
+}
+.grafico_faturamento .conta .pago{
+    color: white;
+    background: rgb(21, 18, 223);
 }
 .grafico_faturamento .conta label{
     margin-left: 34px;
