@@ -1,0 +1,42 @@
+.loader{
+    align-items: center;
+    justify-content: center;
+    margin-left: 190px;
+    display: none;
+    width: 180px;
+    transform: translate3d(-50%,-50%,0);
+}
+.loader.espaco{
+    display: flex;
+}
+.dot{
+    margin-left: 2px;
+    padding-left: 2px;
+    width: 12px;
+    height: 12px;
+    background: #3ac;
+    display: none;
+    animation: slide 2.5s infinite;
+}
+.dot.logando{
+    display: inline-block;
+}
+$var: 1, 2,3, 4,5,6,7,8,9,10;
+@each $v in $var {
+    .dot:nth-child(#{$v}){
+        animation-delay: (0.2s * $v);
+    }
+}
+
+@keyframes slide{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        opacity: .3;
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

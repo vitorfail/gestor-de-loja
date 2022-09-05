@@ -1,0 +1,132 @@
+.verifique-back{
+    width: 100vw;
+    height: 100vh;
+    background-image:linear-gradient(to bottom right, rgb(180, 36, 156), rgb(87, 3, 73));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.verifique-back .login{
+    width: 400px;
+    height: 400px;
+    background: white;
+    display: block;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+}
+.verifique-back .login .titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.verifique-back .login .titulo h2{
+    font-size: 34px;
+}
+.verifique-back .login .cadastro{
+    margin-top: 40px;
+    margin-left: 80px;
+    margin-bottom: 4px;
+    background: rgba(255, 255, 255, 0);
+    color: #3951b2;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    border-bottom:1px solid #3951b2;
+    text-decoration: none;
+}
+.verifique-back .login .cadastro:hover{
+    cursor: pointer;
+}
+.verifique-back .login .botoes{
+    margin-top: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.verifique-back .login .botoes button{
+    outline: none;
+    border: none;
+    font-size: 22px;
+    background: rgb(0, 94, 153);
+    color: white;
+    height: 37px;
+    width: 60%;
+}
+.verifique-back .login .botoes button:hover{
+    border: 2px solid rgb(0, 94, 153);
+    color: rgb(0, 94, 153);
+    background: white;
+    cursor: pointer;
+}
+.verifique-back .login .entradas{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 40px;
+    margin-top: 5%;
+}
+.verifique-back .login .entradas input{
+    border-radius: 12px;
+    text-align: center;
+    margin: 12px;
+    width: 33px;
+    height: 45px;
+    font-size: 30px;
+    border: 2px solid rgb(51, 96, 179);
+    outline: none;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-appearance: none;
+}
+.verifique-back .login .aviso{
+    display: none;
+    text-align: center;
+    color: rgb(206, 0, 0);
+}
+.verifique-back .login .aviso_erro{
+    display: none;
+    text-align: center;
+    color: rgb(206, 0, 0);
+}
+.verifique-back .login .aviso_net{
+    display: none;
+    text-align: center;
+    color: rgb(206, 0, 0);
+}
+.verifique-back .login .aviso_erro.mostrar{
+    margin: 0;
+    animation: tremer .4s;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    display: block;
+}
+.verifique-back .login .aviso_net.mostrar{
+    margin: 0;
+    animation: tremer .4s;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    display: block;
+}
+.verifique-back .login .aviso.mostrar{
+    margin: 0;
+    animation: tremer .4s;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    display: block;
+}
+
+
+@keyframes tremer{
+    0% {margin-left: 0;}
+    25% {margin-left: 33px;}
+    50% {margin-left: 0;}
+    75% {margin-left: -33px;}
+    100% {margin-left: 0;}
+}

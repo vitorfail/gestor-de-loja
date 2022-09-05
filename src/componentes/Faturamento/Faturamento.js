@@ -51,7 +51,7 @@ function Faturamento(props){
             }
             contas_mes(mes)
         }
-    })
+    }, [ano_faturamento, ano_tipo_pagamento, contas_mes])
     function faturamento_ano(e){
         setano_faturamento(e)
         Axios.post('index.php?url=faturamento/pesquisa', {ano:e})

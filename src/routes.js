@@ -8,10 +8,12 @@ import Login from "./pages/Login/Login";
 import Registro from "./pages/Registro/Registro";
 import Check from "./pages/Check/Check";
 import Financeiro from "./pages/Financeiro/Financeiro";
+import Verifique from "./pages/Verifique/Verifique";
 const Rout = () => (
   <BrowserRouter>
       <Switch>
         <RoutesPrivate  exact path="/" component={Home}/>
+        <Route  exact path="/verifique" component={Verifique}/>
         <Route  exact path="/login" component={Login}/>
         <Route path="/check/:code" component={Check}/>
         <Route  exact path="/registro" component={Registro}/>
