@@ -3,11 +3,7 @@ import "./Login.scss";
 import React, { useState } from "react";
 import Axios from "../../Axios.js";
 import { useHistory } from "react-router-dom";
-import { Authcontext } from "../../componentes/Store/Context";
 function Verifique(){
-    const {setnome_user, setend_user, setemail_user, setnumero_user} = React.useContext(Authcontext)
-    const [email, setemail] = useState('');
-    const [senha, setsenha] = useState('');
     const [um, setum] = useState('')
     const [dois, setdois] = useState('')
     const [tres, settres] = useState('')
@@ -22,7 +18,7 @@ function Verifique(){
     const [darespaco, setdarespaco] = useState('');
 
     function login(){
-        if(email === ''|| senha === ''){
+        if(um === ''|| dois === '' || tres === '' || quatro === '' || cinco === '' || seis === ''){
             setaviso("aviso")
             setTimeout(() =>  setaviso('aviso mostrar'), 4);
         }
@@ -32,7 +28,8 @@ function Verifique(){
             setaviso_net('aviso_net')
             setaviso_erro('aviso_erro')
             setaviso('aviso')
-            Axios.post("index.php?url=auth/login", {user: email, password:senha})
+            var mail = localStorage.getItem("email_");
+            Axios.post("index.php?url=auth/login", {email: mail, verif_code:String(um)+String(dois)+String(tres)+String(quatro)+String(cinco)+String(seis)})
             .then(res => {
                 if(res.data.data === 'Operação inválida' || res.data.data === "Usuário não encontrado"){
                     setaviso_erro('aviso_erro mostrar')
@@ -42,13 +39,9 @@ function Verifique(){
                     setlogando('');        
                 }
                 else{
-                    localStorage.setItem('token_jwt', res.data.data[0])
-                    setnome_user(res.data.data[1])
-                    setend_user(res.data.data['endereco'])
-                    setemail_user(res.data.data['email'])
-                    setnumero_user(res.data.data['telefone'])
-                    console.log(res.data.data[1])
-                    setTimeout(() =>{ history.push('/')}, 3000);
+                    if(res.data.data === '1'){
+                        setTimeout(() =>{ history.push('/login')}, 3000);
+                    }
                 }
             }).catch(erro => {
                 setaviso_net('aviso_net mostrar')

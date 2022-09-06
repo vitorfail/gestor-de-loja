@@ -65,7 +65,8 @@ function Registro(){
                             setloading('loading')
                         }
                         if(res.data.data ==='1'){
-                            setTimeout(() =>{ history.push('/login')}, 3000);
+                            localStorage.setItem("email_", email);
+                            setTimeout(() =>{ history.push('/verifique')}, 3000);
                         }
                     }).catch(err =>{
                         setloading('loading')
