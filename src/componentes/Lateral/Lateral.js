@@ -60,11 +60,11 @@ function Lateral(props){
                         
                     </div>
                     <ul>
-                        <Link className="li" to="/"><div className="home" ></div>Home</Link>
-                        <Link className="li" to="/caixa"><div className="caixa" ></div>Caixa</Link>
-                        <Link className="li" to="/estoque"><div className="produtos" ></div>Produtos</Link>
-                        <Link className="li" to="/financeiro"><div className="vendas" ></div>Financeiro</Link>
-                        <div className="li" onClick={() => sair()}><div className="sair" ></div>Sair</div>
+                        <Link className="li" to="/"><div className="home" ></div>&nbsp;<span>Home</span></Link>
+                        <Link className="li" to="/caixa"><div className="caixa" ></div>&nbsp;<span>Caixa</span></Link>
+                        <Link className="li" to="/estoque"><div className="produtos" ></div>&nbsp;<span>Produtos</span></Link>
+                        <Link className="li" to="/financeiro"><div className="vendas" ></div>&nbsp;<span>Financeiro</span></Link>
+                        <div className="li" onClick={() => sair()}><div className="sair" ></div>&nbsp;<span>Sair</span></div>
                     </ul>
             </div>)
 }

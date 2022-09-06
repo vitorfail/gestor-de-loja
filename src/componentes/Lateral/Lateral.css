@@ -15,7 +15,10 @@
     background: none;
     font-size: 20px;
     font-style: inherit;
-    padding: 10px 19px;
+    padding-top: 10px;
+    padding-right: 19px;
+    padding-bottom: 10px;
+    padding-left: 19px;
     display: flex;
     align-items: center;
     color: ivory;
@@ -34,64 +37,64 @@
     margin-right: 10px;
     height: 20px;
     width:20px;
-    background: url('../../icons/home-1.png') no-repeat center right;
+    background: url('../../icons/home-1.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral .li:hover>.home{
     height: 20px;
     width:20px;
-    background: url('../../icons/home-2.png') no-repeat center right;
+    background: url('../../icons/home-2.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral ul .caixa{
     margin-right: 10px;
     height: 20px;
     width:20px;
-    background: url('../../icons/caixa-1.png') no-repeat center right;
+    background: url('../../icons/caixa-1.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral .li:hover>.caixa{
     height: 20px;
     width:20px;
-    background: url('../../icons/caixa-2.png') no-repeat center right;
+    background: url('../../icons/caixa-2.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral ul .produtos{
     margin-right: 10px;
     height: 20px;
     width:20px;
-    background: url('../../icons/produtos-1.png') no-repeat center right;
+    background: url('../../icons/produtos-1.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral .li:hover>.produtos{
     height: 20px;
     width:20px;
-    background: url('../../icons/produtos-2.png') no-repeat center right;
+    background: url('../../icons/produtos-2.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral ul .vendas{
     margin-right: 10px;
     height: 20px;
     width:20px;
-    background: url('../../icons/vendas-1.png') no-repeat center right;
+    background: url('../../icons/vendas-1.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral .li:hover> .vendas{
     height: 20px;
     width:20px;
-    background: url('../../icons/vendas-2.png') no-repeat center right;
+    background: url('../../icons/vendas-2.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral ul .sair{
     height: 20px;
     width:20px;
-    background: url('../../icons/sair.png') no-repeat center right;
+    background: url('../../icons/sair.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral .li:hover> .sair{
     height: 20px;
     width:20px;
-    background: url('../../icons/sair-2.png') no-repeat center right;
+    background: url('../../icons/sair-2.png') no-repeat center;
     background-size: 20px;
 }
 .barralateral a{
@@ -125,7 +128,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 .barralateral .link a{
     font-weight: 700;
@@ -133,7 +135,6 @@
 .barralateral .link a:hover{
     background: white;
     color: blue;
-
 }
 .barralateral .user.vencido{
     background: rgb(228, 48, 41);
@@ -163,7 +164,38 @@
     width: 50px;
     height: 50px;
 }
-
 .barralateral .user .icon_user:hover{
     cursor: pointer;
+}
+@media screen and (max-width: 995px){
+    .barralateral .li span{
+        display: none;
+    }
+    .barralateral .li {
+        justify-content: center;
+        padding-bottom: 23px;
+        padding-top: 23px;
+        padding-left: 0;
+        padding-right: 0;    
+    }
+    .barralateral .li div{
+        height: 45px;
+        width: 45px;
+        background-size: 40px;
+    }
+    .barralateral .sair{
+        background-size: 40px;
+    }
+    .barralateral  .home{
+        background-size: 40px;
+    }
+    .barralateral .caixa{
+        background-size: 40px;
+    }
+    .barralateral  .produtos{
+        background-size: 40px;
+    }
+    .barralateral  .vendas{
+        background-size: 40px;
+    }
 }

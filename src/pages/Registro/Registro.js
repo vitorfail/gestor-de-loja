@@ -56,7 +56,7 @@ function Registro(){
                             setaviso_senha('aviso_senha')
                             setaviso_net('aviso_net')
                             setaviso_email('aviso_email')
-                    
+                            console.log('passou aqui')
                             setaviso_erro("aviso_erro mostrar")
                             setloading('loading')
                         }
@@ -64,8 +64,8 @@ function Registro(){
                             setaviso_net('aviso_net mostrar')
                             setloading('loading')
                         }
-                        if(res.data.data ==='1'){
-                            localStorage.setItem("email_", email);
+                        if(res.data.data["result"] ==='1'){
+                            localStorage.setItem("token_jwt", res.data.data["token"]["0"]);
                             setTimeout(() =>{ history.push('/verifique')}, 3000);
                         }
                     }).catch(err =>{

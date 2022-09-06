@@ -28,8 +28,7 @@ function Verifique(){
             setaviso_net('aviso_net')
             setaviso_erro('aviso_erro')
             setaviso('aviso')
-            var mail = localStorage.getItem("email_");
-            Axios.post("index.php?url=auth/login", {email: mail, verif_code:String(um)+String(dois)+String(tres)+String(quatro)+String(cinco)+String(seis)})
+            Axios.post("index.php?url=auth/verificar", {verif_code:String(um)+String(dois)+String(tres)+String(quatro)+String(cinco)+String(seis)})
             .then(res => {
                 if(res.data.data === 'Operação inválida' || res.data.data === "Usuário não encontrado"){
                     setaviso_erro('aviso_erro mostrar')
@@ -40,7 +39,7 @@ function Verifique(){
                 }
                 else{
                     if(res.data.data === '1'){
-                        setTimeout(() =>{ history.push('/login')}, 3000);
+                        setTimeout(() =>{ history.push('/')}, 3000);
                     }
                 }
             }).catch(erro => {
