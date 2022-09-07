@@ -34,7 +34,7 @@ export default class PopupCalculadora extends Component{
                 }
                 else{
                     if(e === "="){
-                        var simbolo = this.state.resultado.charAt(this.state.resultado.length-1)
+                        let simbolo = this.state.resultado.charAt(this.state.resultado.length-1)
                         if(simbolo === "%"|| simbolo === "+" || simbolo === "-" || simbolo === "*" || simbolo === "*" || simbolo === "." || e === "÷" || e === '√'){
             
                         }

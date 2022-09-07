@@ -52,10 +52,6 @@ function Verifique(){
             })
         }
     }
-    function encaminhar(){
-        history.push('/')
-    }
-
     function um_(event){
         if(event.target === '0' || event.key === '1' || event.key === '2' || event.key === '3' 
             || event.key === '4' || event.key === '5' || event.key === '6' || event.key === '7' 

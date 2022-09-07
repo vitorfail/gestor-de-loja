@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Set-2022 às 17:35
+-- Tempo de geração: 07-Set-2022 às 03:25
 -- Versão do servidor: 10.4.21-MariaDB
 -- versão do PHP: 8.0.11
 
@@ -100,18 +100,19 @@ CREATE TABLE `users_info` (
   `situacao` varchar(1300) DEFAULT NULL,
   `senha` varchar(130) DEFAULT NULL,
   `check_pay` varchar(130) DEFAULT NULL,
-  `foto_perfil` varchar(130) DEFAULT NULL
+  `foto_perfil` varchar(130) DEFAULT NULL,
+  `verif_code` varchar(130) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `users_info`
 --
 
-INSERT INTO `users_info` (`id`, `nome`, `email`, `endereco`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`, `check_pay`, `foto_perfil`) VALUES
-(1, 'Loja teste', 'failcreator0.0@gmail.com', 'Rua Salasia -502 - Centro', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-23', '2022-03-12', 'Pago', 'e8d95a51f3af4a3b134bf6bb680a213a', '392f34b26e2a3a3f3012edfd6b91a242199dc615ac0f9bcdfd9623fcc658954b1', 'fotos_perfil/63120fa11199a.png'),
-(2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', 'Ruas salesiano', '8989090', '192.168.1.2', 'Normal', '20', '2022-09-03', '2022-08-03', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL),
-(4, 'Tudo é 10', 'vitor@gmail.com', 'Rua dolores', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL),
-(5, 'Tudo é 20', 'valesca@hotmail.com', 'Rua algusta', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL);
+INSERT INTO `users_info` (`id`, `nome`, `email`, `endereco`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`, `check_pay`, `foto_perfil`, `verif_code`) VALUES
+(1, 'Loja teste', 'failcreator0.0@gmail.com', 'Rua Salasia -502 - Centro', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-23', '2022-03-12', 'Pago', 'e8d95a51f3af4a3b134bf6bb680a213a', '392f34b26e2a3a3f3012edfd6b91a242199dc615ac0f9bcdfd9623fcc658954b1', 'fotos_perfil/6317f25cb7f6f.png', NULL),
+(2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', 'Ruas salesiano', '8989090', '192.168.1.2', 'Normal', '20', '2022-09-03', '2022-08-03', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL, NULL),
+(4, 'Tudo é 10', 'vitor@gmail.com', 'Rua dolores', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL, NULL),
+(5, 'Tudo é 20', 'valesca@hotmail.com', 'Rua algusta', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

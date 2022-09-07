@@ -4,11 +4,9 @@ import "./Faturamento.css";
 import {Bar, PolarArea} from 'react-chartjs-2';
 import Axios from "../../Axios"
 import Exit from "../../Exit"
-import Loading1 from "../../componentes/Loading1/Loading1"
 
 function Faturamento(props){
     //const { setsem_internet} = React.useContext()
-    const [loading_, setloading_] = useState('loading')
 
     const [ano_contas, setano_contas] = useState('2022')
     const [mes_contas, setmes_contas] = useState('')

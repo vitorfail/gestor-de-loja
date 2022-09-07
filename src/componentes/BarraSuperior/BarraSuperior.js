@@ -7,7 +7,7 @@ function BarraSuperior(){
     const {setpp_calculadora} = React.useContext(Authcontext)
     return(
         <div className="barra_superior">
-            <button onClick={() => setpp_calculadora('popup-calculadora mostrar')} className="calculadora-normal">Calculadora<img src={Cal}></img></button>
+            <button onClick={() => setpp_calculadora('popup-calculadora mostrar')} className="calculadora-normal">Calculadora<img alt="calculadora" src={Cal}></img></button>
             <button className="calculadora-rh">Calculadora Rh</button>
         </div>
     )
