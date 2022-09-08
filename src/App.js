@@ -7,6 +7,7 @@ import SemInternet from "./componentes/SemInternet/SemInternet";
 import PopupImagem from "./componentes/PopupImagem/PopupImagem";
 import PopupCalculadora from "./componentes/PopupCalculadora/PopupCalculadora";
 import PopupEditar from "./componentes/PopupEditar/PopupEditar";
+import Chat from "./componentes/Chat/Chat";
 
 function App(){
     return(
@@ -18,7 +19,8 @@ function App(){
             <PopupImagem></PopupImagem>
             <PopupCalculadora></PopupCalculadora>
             <PopupEditar></PopupEditar>
-            <Rout />
+            <Chat></Chat>
+            <Rout/>
         </div>
     )
 } 

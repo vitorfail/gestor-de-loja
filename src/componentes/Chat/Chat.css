@@ -1,0 +1,23 @@
+.chat{
+    bottom: -9px;
+    right: 0;
+    position: fixed;
+    width: 290px;
+}
+.chat h3{
+    cursor: pointer;
+    height: 24px;
+    background: blue;
+    color: aliceblue;
+    width: 100%;
+    margin: 0;
+}
+.chat .conteudo-chat{
+    transition-timing-function: ease-in-out;    
+    transition-delay: 1s;
+    background: white;
+    height: 300px;
+}
+.chat h3:checked{
+
+}
