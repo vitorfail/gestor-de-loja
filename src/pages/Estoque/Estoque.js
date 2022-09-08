@@ -37,6 +37,7 @@ export default class Estoque extends Component{
         this.iniciar= this.iniciar.bind(this)
         this.mostrar_estoque = this.mostrar_estoque.bind(this)
         this.passador = this.passador.bind(this)
+        this.editar_produto = this.editar_produto.bind(this)
     }
     static contextType = Authcontext
     passador(direcao){
@@ -67,6 +68,12 @@ export default class Estoque extends Component{
     componentDidMount(){
         this.iniciar(0)
         setTimeout(() =>  this.setState({isLoading: false}), 400);
+    }
+    editar_produto(e){
+        console.log('aers')
+        const {setpp_editar, setid_produto} = this.context
+        setid_produto(parseInt(e))
+        setpp_editar('popup-editar mostrar')
     }
     mostrar_estoque(props){
         var data = props
@@ -106,10 +113,10 @@ export default class Estoque extends Component{
                             <h3>R$ {preco}</h3>
                         </div>
                         <div className="editar-2">
-                            <button><img alt="editar" src={Editar}/></button>
+                            <button id={data[i]['id']} onClick={(e) => this.editar_produto(e.target.id)}><img alt="editar" src={Editar}/></button>
                         </div>
                         <div className="excluir-2">
-                            <button><img alt="editar" src={Excluir}/></button>
+                            <button id={data[i]['id']}><img alt="editar" src={Excluir}/></button>
                         </div>
                     </div>)
             }
@@ -209,7 +216,6 @@ export default class Estoque extends Component{
                                     </div>
                                 </div>
                                 {this.state.dados}
-
                             </div>
                             <div className="passadores">
                                 <button onClick={(event) => this.passador('esquerda')}><img alt="Passador_final_esquerda" src={Passador_final_esquerda}/></button>

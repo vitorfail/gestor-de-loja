@@ -1,11 +1,12 @@
 .blocos{
     padding: 40px 15px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
 }
 .blocos .box{
+    margin: 20px;
     width: 240px;
     height: 180px;
     border-radius: 30px;
@@ -19,8 +20,9 @@
 }
 .blocos .box h2{
     margin-top: 40px;
-
     font-size: 30px;
     text-align: center;
     border-bottom: 4px solid rgb(225, 225, 225);
+}
+@media screen and (max-width: 995px){
 }

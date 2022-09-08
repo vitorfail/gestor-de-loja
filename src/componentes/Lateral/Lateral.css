@@ -198,4 +198,21 @@
     .barralateral  .vendas{
         background-size: 40px;
     }
+    .barralateral .user .info {
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .barralateral .user {
+        width: 92%;
+    }
+    .barralateral .user h3 {
+        display: none;
+    }
+    .barralateral .user .icon_user {
+        margin-right: 0px;
+    }
+    .barralateral .user .icon_user img {
+        margin-right: 10px;
+    }
 }
