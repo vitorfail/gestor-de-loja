@@ -26,10 +26,10 @@ export default class PopupEditar extends Component{
         Axios.post('index.php?url=editar/puxar_info', {id: id_produto})
             .then(res => {
                 if(res.data.data !== '0'){
-                    this.setState({produto_nome_:res.data.data["produto-nome"]})
+                    /*this.setState({produto_nome_:res.data.data["produto-nome"]})
                     this.setState({quantidade_: res.data.data["quantidade"]}) 
                     this.mascara_valor(res.data.data["produto_valor"])
-                    this.mascara_percentual(res.data.data["percentual"]) 
+                    this.mascara_percentual(res.data.data["percentual"])*/
                 }
             }).catch( error =>{
                 console.log(error)
