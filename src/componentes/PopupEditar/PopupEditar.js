@@ -9,6 +9,7 @@ export default class PopupEditar extends Component{
     constructor(props){
         super(props)
         this.state = {
+            id:'usando',
             produto_nome_: '',
             produto_valor_: '',
             percentual_: '',
@@ -16,26 +17,33 @@ export default class PopupEditar extends Component{
             loading:'loading',
             conteudo:<p className="aviso_licenca">Sua licenta esta no prazo de <strong>carência</strong> regularize antes do 
             <strong>vencimento</strong>. Depois do prazo de carência só poderá 
-           usar o sistema depois de efeturar pagamento</p>
+           usar o sistema depois de efeturar pagamento</p>,
         }
+        this.fechar = this.fechar.bind(this)
     }
     static contextType = Authcontext
     componentWillReceiveProps(){
-        const {id_produto, setsem_internet} = this.context
-
-        Axios.post('index.php?url=editar/puxar_info', {id: id_produto})
+        const {id_produto, pp_editar,setsem_internet} = this.context
+        console.log(pp_editar)
+        if(pp_editar === 'popup-editar mostrar' && this.state.id === 'usando'){
+            this.setState({id: "usando"})
+            Axios.post('index.php?url=editar/puxar_info', {id: parseInt(id_produto)})
             .then(res => {
+                console.log(res.data.data)
                 if(res.data.data !== '0'){
-                    /*this.setState({produto_nome_:res.data.data["produto-nome"]})
+                    this.setState({produto_nome_:res.data.data["produto-nome"]})
                     this.setState({quantidade_: res.data.data["quantidade"]}) 
                     this.mascara_valor(res.data.data["produto_valor"])
-                    this.mascara_percentual(res.data.data["percentual"])*/
+                    this.mascara_percentual(res.data.data["percentual"])
                 }
             }).catch( error =>{
                 console.log(error)
                 setsem_internet('sem-internet mostrar')
             })
 
+        }
+        else{
+        }
     }
     editar(){
         const {id_produto, setpp_editar, setsem_internet} = this.context
@@ -81,8 +89,14 @@ export default class PopupEditar extends Component{
         e = e.replace(/^(\d{2})(\d)/, '$1/$2');
         return e;
     }
+    fechar(){
+        this.setState({id: ''})
+        const {setid_produto, setpp_editar} = this.context
+        setpp_editar('popup-editar')
+        setid_produto('')
+    }
     render(){
-        const {pp_editar, setpp_editar} = this.context
+        const {pp_editar} = this.context
         return(
             <div className={pp_editar}>
                 <div className="menu">
@@ -102,7 +116,7 @@ export default class PopupEditar extends Component{
                     </div>
                     <div className="botoes">
                         <button className="add" onClick={(event) => this.add_venda()} >Adicionar</button>
-                        <button  className="cancel" onClick={(event) => setpp_editar('popup-editar')}>Cancelar</button>
+                        <button  className="cancel" onClick={(event) => this.fechar()}>Cancelar</button>
                     </div>
                 </div>
             </div>

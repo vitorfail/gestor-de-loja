@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Chat.css"
 import Enviar from "../../icons/enviar.png"
-const {NlpManager} = require('node-nlp')
 
 export default function Chat(){
     const [stylemodal, setstylemodal] = useState({"height":"30px"})

@@ -70,7 +70,7 @@ export default class Estoque extends Component{
         setTimeout(() =>  this.setState({isLoading: false}), 400);
     }
     editar_produto(e){
-        console.log('aers')
+        console.log(e)
         const {setpp_editar, setid_produto} = this.context
         setid_produto(parseInt(e))
         setpp_editar('popup-editar mostrar')
@@ -96,7 +96,7 @@ export default class Estoque extends Component{
                 var custo = parseFloat(data[i]["produto_valor"])
                 var percentual = parseInt(data[i]["percentual"].replace('%', ''))
                 var preco = (custo +(custo *(percentual/100))).toFixed(2)
-               this.lista.push(<div  key={data[i]['id']+data[i]["produto-nome"]} className="entrada">
+               this.lista.push(<div id={data[i]['id']} key={data[i]['id']+data[i]["produto-nome"]} className="entrada">
                         <div className="descri-2">
                             <h3>{data[i]["produto-nome"]}</h3>
                         </div>
@@ -113,7 +113,7 @@ export default class Estoque extends Component{
                             <h3>R$ {preco}</h3>
                         </div>
                         <div className="editar-2">
-                            <button id={data[i]['id']} onClick={(e) => this.editar_produto(e.target.id)}><img alt="editar" src={Editar}/></button>
+                            <button id={data[i]['id']} onClick={(e) => this.editar_produto(e.currentTarget .id)}><img alt="editar" src={Editar}/></button>
                         </div>
                         <div className="excluir-2">
                             <button id={data[i]['id']}><img alt="editar" src={Excluir}/></button>
