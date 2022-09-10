@@ -6,10 +6,9 @@ import Loading1 from "../Loading1/Loading1";
 import { Authcontext } from "../Store/Context";
 
 export default class PopupEditar extends Component{
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
-            id:'usando',
             produto_nome_: '',
             produto_valor_: '',
             percentual_: '',
@@ -22,34 +21,29 @@ export default class PopupEditar extends Component{
         this.fechar = this.fechar.bind(this)
     }
     static contextType = Authcontext
-    componentWillReceiveProps(){
-        const {id_produto, pp_editar,setsem_internet} = this.context
-        console.log(pp_editar)
-        if(pp_editar === 'popup-editar mostrar' && this.state.id === 'usando'){
-            this.setState({id: "usando"})
-            Axios.post('index.php?url=editar/puxar_info', {id: parseInt(id_produto)})
+    componentWillReceiveProps(props){
+        const {setsem_internet} = this.context
+        if(props.id !== 'teste'){
+            Axios.post('index.php?url=editar/puxar_info', {id: parseInt(props.id)})
             .then(res => {
                 console.log(res.data.data)
                 if(res.data.data !== '0'){
                     this.setState({produto_nome_:res.data.data["produto-nome"]})
                     this.setState({quantidade_: res.data.data["quantidade"]}) 
-                    this.mascara_valor(res.data.data["produto_valor"])
-                    this.mascara_percentual(res.data.data["percentual"])
+                    //this.mascara_valor(res.data.data["produto_valor"])
+                    //this.mascara_percentual(res.data.data["percentual"])
                 }
             }).catch( error =>{
                 console.log(error)
                 setsem_internet('sem-internet mostrar')
             })
-
-        }
-        else{
         }
     }
     editar(){
-        const {id_produto, setpp_editar, setsem_internet} = this.context
+        const { setpp_editar, setsem_internet} = this.context
         var produto_valor = parseFloat(((this.state.produto_valor.replace('R$ ', '')).replace('.', '')).replace(',', '.'))
 
-        Axios.post('index.php?url=editar/pesquisa', {id: id_produto, valor: produto_valor, 
+        Axios.post('index.php?url=editar/pesquisa', {id: this.state.id, valor: produto_valor, 
             custo_indireto:0, nome: this.state.produto_nome_, quantidade: this.state.quantidade_ 
             ,percentual: this.state.percentual_})
             .then(res => {
@@ -90,8 +84,7 @@ export default class PopupEditar extends Component{
         return e;
     }
     fechar(){
-        this.setState({id: ''})
-        const {setid_produto, setpp_editar} = this.context
+        const {setpp_editar, setid_produto} = this.context
         setpp_editar('popup-editar')
         setid_produto('')
     }

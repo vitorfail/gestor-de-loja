@@ -19,7 +19,6 @@ export const StoreContext = (props) =>{
     const [pp_editar, setpp_editar] = useState('popup-editar')
     const [urlimage, seturlimage] = useState('')
 
-    const [id_produto, setid_produto] = useState('')
     return(
         <Authcontext.Provider value={{pp_despesa, setpp_despesa, 
             pp_estoque, setpp_estoque, pp_imagem, setpp_imagem, 
@@ -27,7 +26,7 @@ export const StoreContext = (props) =>{
              pp_vencido, setpp_vencido, pp_venda, setpp_venda, sem_internet,
               setsem_internet, urlimage, seturlimage, nome_user, setnome_user, 
               end_user, setend_user, email_user, setemail_user, numero_user, 
-              setnumero_user, pp_calculadora, setpp_calculadora, pp_editar, setpp_editar, id_produto, setid_produto}}>
+              setnumero_user, pp_calculadora, setpp_calculadora, pp_editar, setpp_editar}}>
             {props.children}
         </Authcontext.Provider>
     )

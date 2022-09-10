@@ -18,6 +18,7 @@ import Passador_final_direita from "../../icons/passar-final-direita.png"
 import Loading1 from "../../componentes/Loading1/Loading1";
 import { Authcontext } from "../../componentes/Store/Context";
 import Server from "../../Servidor";
+import PopupEditar from "../../componentes/PopupEditar/PopupEditar";
 
 export default class Estoque extends Component{
     constructor(){
@@ -33,6 +34,7 @@ export default class Estoque extends Component{
             loading: "loading",
             index:0,
             limite:false,
+            id:'teste'
         }
         this.iniciar= this.iniciar.bind(this)
         this.mostrar_estoque = this.mostrar_estoque.bind(this)
@@ -70,9 +72,8 @@ export default class Estoque extends Component{
         setTimeout(() =>  this.setState({isLoading: false}), 400);
     }
     editar_produto(e){
-        console.log(e)
-        const {setpp_editar, setid_produto} = this.context
-        setid_produto(parseInt(e))
+        const {setpp_editar} = this.context
+        this.setState({id:parseInt(e)})
         setpp_editar('popup-editar mostrar')
     }
     mostrar_estoque(props){
@@ -183,6 +184,7 @@ export default class Estoque extends Component{
         const { setpp_estoque} = this.context
         return(this.state.isLoading? <Loading></Loading> :
             <div className="tudo">
+                <PopupEditar id={this.state.id}></PopupEditar>
                 <Loading1 loading={this.state.loading}></Loading1>
                 <PopupEstoque  reiniciar={this.restart.bind(this)}></PopupEstoque>
                 <Lateral dias={this.state.dias} nome={this.state.nome} vencimento={this.state.vencimento} ></Lateral>
