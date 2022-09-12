@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07-Set-2022 às 03:25
+-- Tempo de geração: 12-Set-2022 às 17:34
 -- Versão do servidor: 10.4.21-MariaDB
 -- versão do PHP: 8.0.11
 
@@ -65,7 +65,7 @@ CREATE TABLE `user-produtos` (
 INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `percentual`, `Vendido`, `quantidade`, `custo_indireto`) VALUES
 (1, 1, 'CAMISA POLO', '145.34', '13%', 'Não', 2, 0),
 (2, 2, 'Camisa gola polo', '140.90', '12%', 'Sim', 7, 0),
-(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', 2, 0),
+(3, 1, 'Camisa gola polo', '140.90', '12%', 'Não', 1, 0),
 (4, 1, 'Calça Jean', '45.68', '2%', 'Não', 7, 0),
 (11, 1, 'Calaça leag', '12.41', '34%', 'Não', 7, 0),
 (12, 1, 'Saia infantil', '45.21', '12%', 'Não', 5, 0),
@@ -74,7 +74,7 @@ INSERT INTO `user-produtos` (`id`, `user-id`, `produto-nome`, `produto_valor`, `
 (15, 1, 'Camisa do flamengo', '56.9', '45%', 'Não', 3, 0),
 (16, 1, 'Vestido transparente', '12.56', '12%', 'Não', 11, 0),
 (17, 1, 'Gaita', '34.52', '34%', 'Não', 8, 0),
-(18, 1, 'gelinho', '34.56', '7%', 'Não', 10, 0),
+(18, 1, 'gelinho', '34.56', '11%', 'Não', 10, 0),
 (19, 1, 'Blusa social', '34.9', '12%', 'Não', 12, 0),
 (20, 1, 'Cinto', '34.9', '34%', 'Não', 3, 0),
 (21, 1, 'Toalha vasco', '34.21', '12%', 'Não', 4, 0),
@@ -109,10 +109,26 @@ CREATE TABLE `users_info` (
 --
 
 INSERT INTO `users_info` (`id`, `nome`, `email`, `endereco`, `telefone`, `ip`, `plano`, `valor-plano`, `data_vencimento`, `data-contratacao`, `situacao`, `senha`, `check_pay`, `foto_perfil`, `verif_code`) VALUES
-(1, 'Loja teste', 'failcreator0.0@gmail.com', 'Rua Salasia -502 - Centro', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-23', '2022-03-12', 'Pago', 'e8d95a51f3af4a3b134bf6bb680a213a', '392f34b26e2a3a3f3012edfd6b91a242199dc615ac0f9bcdfd9623fcc658954b1', 'fotos_perfil/6317f25cb7f6f.png', NULL),
+(1, 'Loja teste', 'failcreator0.0@gmail.com', 'Rua Salasia -502 - Centro', '(88) 981393182', '192.168.0.116', 'Normal', '20', '2022-08-23', '2022-03-12', 'Pago', 'e8d95a51f3af4a3b134bf6bb680a213a', '392f34b26e2a3a3f3012edfd6b91a242199dc615ac0f9bcdfd9623fcc658954b1', 'fotos_perfil/631f39802a2ef.png', NULL),
 (2, 'Loja Belle', 'vitor_andrademanoel@hotmail.com', 'Ruas salesiano', '8989090', '192.168.1.2', 'Normal', '20', '2022-09-03', '2022-08-03', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL, NULL),
 (4, 'Tudo é 10', 'vitor@gmail.com', 'Rua dolores', '(09) 80890-8908', '177.37.176.216', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL, NULL),
-(5, 'Tudo é 20', 'valesca@hotmail.com', 'Rua algusta', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL, NULL);
+(5, 'Tudo é 20', 'valesca@hotmail.com', 'Rua algusta', '(78) 76867-8666', '', 'Normal', '20', '2022-09-04', '2022-08-04', 'Aberto', 'e8d95a51f3af4a3b134bf6bb680a213a', NULL, NULL, NULL),
+(6, 'Jandira Roupas', 'vitoria@hotmail.com', 'Ruas Lacerda LTDA', '(98) 98887-7777', '', '', '', '2022-10-06', '2022-09-06', 'Aberto', '2af787436ad25fee896f1b79fa1c417e', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user_custos_fixo`
+--
+
+CREATE TABLE `user_custos_fixo` (
+  `id` int(60) NOT NULL,
+  `user_id` int(130) DEFAULT NULL,
+  `descricao` varchar(1900) DEFAULT NULL,
+  `valor_custo` double NOT NULL,
+  `data_vencimento` varchar(130) DEFAULT NULL,
+  `data_pagamento` varchar(130) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -164,10 +180,11 @@ CREATE TABLE `user_financeiro` (
 --
 
 INSERT INTO `user_financeiro` (`id`, `user_email`, `caixa`, `custos_fixos`, `user_id`) VALUES
-(1, 'failcreator0.0@gmail.com', 4042.0899999999997, 0, NULL),
+(1, 'failcreator0.0@gmail.com', 4199.9, 0, NULL),
 (2, 'vitor_andrademanoel@hotmail.com', 0, 0, NULL),
 (4, 'vitor@gmail.com', 0, 0, NULL),
-(5, 'valesca@hotmail.com', 0, 0, NULL);
+(5, 'valesca@hotmail.com', 0, 0, NULL),
+(6, 'vitoria@hotmail.com', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -211,7 +228,8 @@ INSERT INTO `user_vendas` (`id`, `user_id`, `produto_nome`, `data_venda`, `produ
 (18, 1, 'Gaita', '2022-01-13', 17, 67.89, 'A vista', 1),
 (19, 1, 'Camiseta masculina', '2022-02-18', 13, 98.7, 'A vista', 1),
 (20, 1, 'Camisa do flamengo', '2022-08-25', 15, 192.5, 'A vista', 1),
-(21, 1, 'Camiseta masculina', '2022-08-27', 13, 98.9, 'Boleto', 1);
+(21, 1, 'Camiseta masculina', '2022-08-27', 13, 98.9, 'Boleto', 1),
+(22, 1, 'Camisa gola polo', '2022-09-12', 3, 157.81, 'Pix', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -233,6 +251,12 @@ ALTER TABLE `user-produtos`
 -- Índices para tabela `users_info`
 --
 ALTER TABLE `users_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `user_custos_fixo`
+--
+ALTER TABLE `user_custos_fixo`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -273,7 +297,13 @@ ALTER TABLE `user-produtos`
 -- AUTO_INCREMENT de tabela `users_info`
 --
 ALTER TABLE `users_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `user_custos_fixo`
+--
+ALTER TABLE `user_custos_fixo`
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `user_despesas`
@@ -285,13 +315,13 @@ ALTER TABLE `user_despesas`
 -- AUTO_INCREMENT de tabela `user_financeiro`
 --
 ALTER TABLE `user_financeiro`
-  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `user_vendas`
 --
 ALTER TABLE `user_vendas`
-  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(130) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

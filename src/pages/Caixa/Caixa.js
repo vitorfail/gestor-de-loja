@@ -171,7 +171,7 @@ export default class Caixa extends Component{
         setTimeout(()=> this.setState({loading: "loading"}), 2000)
     }
     render(){
-        const {setpp_venda, setpp_despesa} =this.context
+        const {setpp_venda, setpp_despesa, setpp_custo} =this.context
         return(this.state.isLoading? <Loading></Loading>:
             <div className="tudo">
                 <Loading1 loading={this.state.loading}></Loading1>
@@ -302,6 +302,7 @@ export default class Caixa extends Component{
                             <div className="botoes">
                                 <button className="add" onClick={(event) => setpp_venda('popup-venda mostrar')}>Adicionar venda</button>
                                 <button className="del" onClick={(event) => setpp_despesa('popup-despesa mostrar')}>Adicionar despesas</button>
+                                <button className="custo_fixo" onClick={(event) => setpp_custo('popup-custo mostrar')}>Adicionar Custo fixo</button>
                             </div>
                         </div>
                     </Conteudo>

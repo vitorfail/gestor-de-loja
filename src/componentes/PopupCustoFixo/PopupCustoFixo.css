@@ -1,7 +1,7 @@
-.popup-despesa{
+.popup-custo{
     display: none;
 }
-.popup-despesa.mostrar{
+.popup-custo.mostrar{
     width: 100vw;
     height: 100vh;
     background-color: rgba(122, 122, 122, 0.63);
@@ -13,48 +13,48 @@
     justify-content: center;
     display: flex;
 }
-.popup-despesa .menu{
+.popup-custo .menu{
     border-radius: 50px;
     width: 400px;
     height: 570px;
     background: white;
     display: block;
 }
-.popup-despesa .menu .inputs{    
+.popup-custo .menu .inputs{    
     height: 332px;
     display: block;
 }
-.popup-despesa .menu .inputs .titulo{
+.popup-custo .menu .inputs .titulo{
     padding-left: 15px;
 }
-.popup-despesa .menu .inputs .titulo h1{
+.popup-custo .menu .inputs .titulo h1{
     font-weight: 700;
     font-family: Roboto forte;
-    color: rgb(163, 16, 16);
+    color: #077d81;
 }
-.popup-despesa .menu .inputs .titulo .preencha{
+.popup-custo .menu .inputs .titulo .preencha{
     color: red;
     display: none;
 }
-.popup-despesa .menu .inputs .titulo .preencha.mostrar{
+.popup-custo .menu .inputs .titulo .preencha.mostrar{
     animation: tremer .4s;
     display: block;
 
 }
-.popup-despesa .menu .inputs .input{
+.popup-custo .menu .inputs .input{
     position: relative;
     height: 40px;
     padding-left: 5%;
     margin-top: 5%;
 }
-.popup-despesa .menu .inputs .input .check{
+.popup-custo .menu .inputs .input .check{
     display: flex;
     flex-wrap: wrap;
 }
-.popup-despesa .menu .inputs .input input[type=checkbox]{
+.popup-custo .menu .inputs .input input[type=checkbox]{
     height: 23px;
 }
-.popup-despesa .menu .inputs .input input[type=text]{
+.popup-custo .menu .inputs .input input[type=text]{
     position: absolute;
     width: 70%;
     border: 1px solid lightgrey;
@@ -68,13 +68,13 @@
     -moz-transition: all .1s linear;
     -webkit-appearance: none;
 }
-.popup-despesa .menu .inputs .input input[type=text]:focus{
-    border: 2px solid rgb(163, 16, 16);
+.popup-custo .menu .inputs .input input[type=text]:focus{
+    border: 2px solid #077d81;
 }
-.popup-despesa .menu .inputs .input input[type=text]::placeholder{
+.popup-custo .menu .inputs .input input[type=text]::placeholder{
     color:transparent;
 }
-.popup-despesa .menu .inputs .input label{
+.popup-custo .menu .inputs .input label{
     pointer-events: none;
     position: absolute;
     font-size: 20px;
@@ -86,7 +86,7 @@
     box-sizing: border-box;
     top: 4px;
 }
-.popup-despesa .menu .inputs .input p{
+.popup-custo .menu .inputs .input p{
     margin: 0;
     pointer-events: none;
     font-size: 20px;
@@ -98,26 +98,26 @@
     box-sizing: border-box;
     top: 4px;
 }
-.popup-despesa .menu .inputs .input input[type=text]:focus + .nome,
-.popup-despesa .menu .inputs .input input[type=text]:not(:placeholder-shown) + label{    
+.popup-custo .menu .inputs .input input[type=text]:focus + .nome,
+.popup-custo .menu .inputs .input input[type=text]:not(:placeholder-shown) + label{    
     font-size: 16px;
     top: -16%;
-    color: rgb(163, 16, 16);
+    color: #077d81;
     background: white;
     font-weight: 600;
     z-index: 10;
 }
-.popup-despesa .menu .botoes{
+.popup-custo .menu .botoes{
     justify-content: center;
     justify-items: center;
     margin-top: 18px;
     padding-top: 20px;
     display: flex;
 }
-.popup-despesa .menu .botoes .add{
+.popup-custo .menu .botoes .add{
     font-family: Roboto media;
     border: none;
-    background: rgb(163, 16, 16);
+    background: #077d81;
     border-radius: 10px;
     color: white;
     font-size: 20px;
@@ -126,13 +126,13 @@
     margin-bottom: 8px;
     margin-right: 10px;
 }
-.popup-despesa .menu .botoes .add:hover{
+.popup-custo .menu .botoes .add:hover{
     background: white;
     border: 2px solid rgb(39, 39, 206);
     color: rgb(39, 39, 206, 0.7);
     cursor: pointer;
 }
-.popup-despesa .menu .botoes .cancel{
+.popup-custo .menu .botoes .cancel{
     font-family: Roboto media;
     border: none;
     background: rgba(206, 39, 39, 0.7);
@@ -143,7 +143,7 @@
     height: 50px;
     margin-bottom: 8px;
 }
-.popup-despesa .menu .botoes .cancel:hover{
+.popup-custo .menu .botoes .cancel:hover{
     font-style: Roboto normal;
     background: white;
     border: 2px solid rgba(206, 39, 39, 0.7);

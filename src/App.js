@@ -6,7 +6,8 @@ import PopupVencido from "./componentes/PopupVencido/PopupVencido";
 import SemInternet from "./componentes/SemInternet/SemInternet";
 import PopupImagem from "./componentes/PopupImagem/PopupImagem";
 import PopupCalculadora from "./componentes/PopupCalculadora/PopupCalculadora";
-import Chat from "./componentes/Chat/Chat";
+import PopupCustoFixo from "./componentes/PopupCustoFixo/PopupCustoFixo";
+//import Chat from "./componentes/Chat/Chat";
 
 function App(){
     return(
@@ -17,7 +18,7 @@ function App(){
             <SemInternet ></SemInternet>
             <PopupImagem></PopupImagem>
             <PopupCalculadora></PopupCalculadora>
-            <Chat></Chat>
+            <PopupCustoFixo></PopupCustoFixo>
             <Rout/>
         </div>
     )
