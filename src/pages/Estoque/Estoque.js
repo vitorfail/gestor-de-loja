@@ -94,7 +94,7 @@ export default class Estoque extends Component{
         else{
             this.lista = [];
             for(var i=0; i< data.length; i++){
-                var custo = parseFloat(data[i]["produto_valor"])
+                var custo = parseFloat(data[i]["produto_valor"]+ data[i]["custo_fixo"])
                 var percentual = parseInt(data[i]["percentual"].replace('%', ''))
                 var preco = (custo +(custo *(percentual/100))).toFixed(2)
                this.lista.push(<div id={data[i]['id']} key={data[i]['id']+data[i]["produto-nome"]} className="entrada">
