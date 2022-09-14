@@ -19,9 +19,9 @@ export default class PopupCustoFixo extends Component{
             vencimento:'',
             pago:false,
             aberto: false,
-            data_pagamento:'none'
+            data_pagamento:''
         }
-        this.add_despesa = this.add_despesa.bind(this)
+        this.add_custos = this.add_custos.bind(this)
         this.mascara_valor = this.mascara_valor.bind(this)
         this.mascara_percentual = this.mascara_percentual.bind(this)
         this.mask_data = this.mask_data.bind(this)
@@ -42,7 +42,7 @@ export default class PopupCustoFixo extends Component{
         this.setState({preencha: "preencha"})
         
     }
-    add_despesa(){
+    add_custos(){
         const {setpp_custo} = this.context
         this.setState({preencha: "preencha"})
         if(this.state.descricao ==='' || this.state.produto_valor_ ==='' 
@@ -56,7 +56,7 @@ export default class PopupCustoFixo extends Component{
             var data_hoje =  this.state.data.split('/')
             data_hoje = data_hoje[2]+'-'+data_hoje[1]+'-'+data_hoje[0]
             custo = parseFloat(custo.replace(",", "."))
-            Axios.post('index.php?url=inserirdespesa/pesquisa', {nome: this.state.descricao,
+            Axios.post('index.php?url=inserircustos/pesquisa', {nome: this.state.descricao,
                 valor:custo , data_vencimento: data_venci, 
                 data:data_hoje, situacao: this.state.pago}).then(res =>{
                     if(res.data.data === '1'){
@@ -143,7 +143,7 @@ export default class PopupCustoFixo extends Component{
 
                     </div>
                     <div className="botoes">
-                        <button className="add" onClick={(event) => this.add_despesa()} >Adicionar</button>
+                        <button className="add" onClick={(event) => this.add_custos()} >Adicionar</button>
                         <button  className="cancel" onClick={(event) => setpp_custo('popup-custo')}>Cancelar</button>
                     </div>
                 </div>

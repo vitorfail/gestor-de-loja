@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Set-2022 às 17:34
--- Versão do servidor: 10.4.21-MariaDB
--- versão do PHP: 8.0.11
+-- Tempo de geração: 14-Set-2022 às 03:09
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -127,8 +127,16 @@ CREATE TABLE `user_custos_fixo` (
   `descricao` varchar(1900) DEFAULT NULL,
   `valor_custo` double NOT NULL,
   `data_vencimento` varchar(130) DEFAULT NULL,
-  `data_pagamento` varchar(130) DEFAULT NULL
+  `data_pagamento` varchar(130) DEFAULT NULL,
+  `situacao` varchar(130) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `user_custos_fixo`
+--
+
+INSERT INTO `user_custos_fixo` (`id`, `user_id`, `descricao`, `valor_custo`, `data_vencimento`, `data_pagamento`, `situacao`) VALUES
+(1, 1, 'Salário-Raissa', 1234, '2022-09-13', '2022-09-13', 'Pago');
 
 -- --------------------------------------------------------
 
@@ -159,7 +167,8 @@ INSERT INTO `user_despesas` (`id`, `user_id`, `valor_despesas`, `data_vencimento
 (6, 1, 12, '2022-08-17', '2022-08-17', 'Canetas', 'Aberto'),
 (7, 1, 130, '2022-08-27', '2022-08-27', 'água', 'Aberto'),
 (8, 1, 130, '2022-08-27', '2022-08-27', 'água', 'Aberto'),
-(9, 1, 12.31, '2022-09-04', '2022-09-04', 'Conta de água', NULL);
+(9, 1, 12.31, '2022-09-04', '2022-09-04', 'Conta de água', NULL),
+(10, 1, 231.11, '2022-09-12', '2022-09-12', 'Pagamento- Natalia', 'Pago');
 
 -- --------------------------------------------------------
 
@@ -180,7 +189,7 @@ CREATE TABLE `user_financeiro` (
 --
 
 INSERT INTO `user_financeiro` (`id`, `user_email`, `caixa`, `custos_fixos`, `user_id`) VALUES
-(1, 'failcreator0.0@gmail.com', 4199.9, 0, NULL),
+(1, 'failcreator0.0@gmail.com', 2738.7899999999995, 0, NULL),
 (2, 'vitor_andrademanoel@hotmail.com', 0, 0, NULL),
 (4, 'vitor@gmail.com', 0, 0, NULL),
 (5, 'valesca@hotmail.com', 0, 0, NULL),
@@ -303,13 +312,13 @@ ALTER TABLE `users_info`
 -- AUTO_INCREMENT de tabela `user_custos_fixo`
 --
 ALTER TABLE `user_custos_fixo`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `user_despesas`
 --
 ALTER TABLE `user_despesas`
-  MODIFY `id` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `user_financeiro`

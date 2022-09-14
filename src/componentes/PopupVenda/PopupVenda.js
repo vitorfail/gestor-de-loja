@@ -51,15 +51,16 @@ export default class PopupVenda extends Component{
                     Exit()
                 }
                 else{
+                    console.log(dados['custo_fixo'])
                     var id_roupas = dados['id']
                     var lista_roupas = dados['nomes']
                     var qtd = dados['qtd']
                     var custo_direto = dados['produto_valor']
-                    var custo_indireto = dados['custo_indireto']
+                    var custo_indireto = dados['custo_fixo']
                     var percentual = dados['percentual']
                     for(var i = 0; i < lista_roupas.length; i++){
                         var lucro = parseFloat(percentual[i].replace("%", ''))/ 100
-                        var custo = ((parseFloat(custo_direto[i]) + parseFloat(custo_indireto[i]))*lucro) + (parseFloat(custo_direto[i]) + parseFloat(custo_indireto[i]))
+                        var custo = ((parseFloat(custo_direto[i]) + custo_indireto)*lucro) + (parseFloat(custo_direto[i]) + parseFloat(custo_indireto))
                         this.lista.push(
                         <option key={id_roupas[i] +"lista_roupas"+lista_roupas[i]+i+Math.random()}  value={lista_roupas[i]+"-----"+id_roupas[i]+"-----"+qtd[i]+"-----"+custo.toFixed(2)} >{lista_roupas[i]}</option>
                         )

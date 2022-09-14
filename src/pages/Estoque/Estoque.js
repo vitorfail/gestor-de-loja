@@ -76,7 +76,7 @@ export default class Estoque extends Component{
         this.setState({id:parseInt(e)})
         setpp_editar('popup-editar mostrar')
     }
-    mostrar_estoque(props){
+    mostrar_estoque(props, custo_fixo){
         var data = props
         if(data === '1' || data === 'Usuário não autenticado'){
             Exit()
@@ -94,7 +94,7 @@ export default class Estoque extends Component{
         else{
             this.lista = [];
             for(var i=0; i< data.length; i++){
-                var custo = parseFloat(data[i]["produto_valor"]+ data[i]["custo_fixo"])
+                var custo = parseFloat(data[i]["produto_valor"]) + custo_fixo
                 var percentual = parseInt(data[i]["percentual"].replace('%', ''))
                 var preco = (custo +(custo *(percentual/100))).toFixed(2)
                this.lista.push(<div id={data[i]['id']} key={data[i]['id']+data[i]["produto-nome"]} className="entrada">
@@ -143,7 +143,7 @@ export default class Estoque extends Component{
                 setend_user(dados['endereco'])
                 setemail_user(dados['email'])
                 setnumero_user(dados['telefone']) 
-                this.mostrar_estoque(dados['descricao'])
+                this.mostrar_estoque(dados['descricao'],  dados['custo_fixo'])
                 this.setState({estoque_valor:dados['valor_estoque'] })
                 this.setState({nome: dados['nome']})
                 if(dados['situacao'] === "Aberto"){
